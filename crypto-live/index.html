@@ -158,6 +158,7 @@ table.t{width:100%;border-collapse:collapse;font-size:13px}
   <span><i class="dot" id="wsDot"></i><span id="wsTxt">جارٍ الاتصال…</span></span>
   <span id="upd">—</span>
   <span id="clock" style="direction:ltr"></span>
+  <a class="act tg" href="https://t.me/+7bygsfyVnMJiMWE0" target="_blank" rel="noopener" style="padding:6px 12px;font-size:13px;text-decoration:none">قناة VIP</a>
  </div>
 </div></header>
 <div class="tape"><div id="tape"></div></div>
@@ -343,7 +344,7 @@ function tradeText(t){const px=pxOf(t.s),r=liveR(t,px);
  return[`${t.dir>0?'🟢 شراء':'🔴 بيع'} — ${t.s}/USDT • فريم ${TFN[t.tf]}`,`💰 الدخول: ${fmt(t.entry)}`,`⛔ وقف الخسارة: ${fmt(t.sl0)}`,`🎯 الهدف ١: ${fmt(t.tp1)}`,`🎯 الهدف ٢: ${fmt(t.tp2)}`,`📊 القوة ${Math.abs(t.score)}/100 • ${t.agree} من ٨ استراتيجيات`,`📌 الحالة: ${t.tp1hit?'✅ تحقق الهدف ١ — الوقف على الدخول':'🟡 مفتوحة'} (${fR(r)})`,`⏰ ${tStr(t.t)} مسقط`,`⚠️ ليست توصية مالية`].join('\n')}
 async function copyTxt(t){try{await navigator.clipboard.writeText(t);return true}catch(e){const a=document.createElement('textarea');a.value=t;a.style.cssText='position:fixed;opacity:0';document.body.appendChild(a);a.select();let ok=false;try{ok=document.execCommand('copy')}catch(_){}a.remove();return ok}}
 document.addEventListener('click',async e=>{const b=e.target.closest('[data-cp],[data-tg]');if(!b)return;const t=allOpen().find(x=>x.id===(b.dataset.cp||b.dataset.tg));if(!t)return;const txt=tradeText(t);
- if(b.dataset.tg){open('https://t.me/share/url?url='+encodeURIComponent(location.origin)+'&text='+encodeURIComponent(txt),'_blank');return}
+ if(b.dataset.tg){open('https://t.me/share/url?url='+encodeURIComponent('https://t.me/+7bygsfyVnMJiMWE0')+'&text='+encodeURIComponent(txt),'_blank');return}
  const ok=await copyTxt(txt),sp=b.querySelector('span');b.classList.toggle('ok',ok);sp.textContent=ok?'تم النسخ ✓':'تعذّر النسخ';setTimeout(()=>{b.classList.remove('ok');sp.textContent='نسخ الصفقة'},2000)});
 
 /* ---------- painting ---------- */
