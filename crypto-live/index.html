@@ -169,11 +169,37 @@ table.t{width:100%;border-collapse:collapse;font-size:13px}
 #pay .go.alt{background:none;color:var(--gold);border:1.5px solid var(--gold)}
 .pc{display:flex;gap:8px;margin-top:8px}.pc input{flex:1;min-width:0;background:var(--n0);border:1.5px solid var(--line);border-radius:12px;padding:11px;color:var(--fg);font:700 15px monospace;direction:ltr;text-align:center;text-transform:uppercase}.pc input:focus{outline:none;border-color:var(--gold)}#pay .pc .go{width:auto;flex:none;padding:11px 18px}
 #payErr{color:var(--dn);font-size:13.5px;min-height:20px;margin-top:6px}#payHow{display:none;margin-top:10px}
+/* ===== واجهة التطبيق ===== */
+body{padding-bottom:calc(86px + env(safe-area-inset-bottom));background:radial-gradient(90% 50% at 85% -5%,rgba(215,166,73,.13),transparent 60%),radial-gradient(120% 70% at 20% 0%,#1d3d7c,#0C1B3A 62%) fixed,#0C1B3A;-webkit-tap-highlight-color:transparent;font-variant-numeric:tabular-nums}
+nav.tabs,#clock,.hstat>.tg,#insBtn{display:none!important}
+.wrap{padding:0 14px 24px;max-width:1100px}.wrap>section,.wrap>.grid,.wrap>.g2{margin-top:14px!important}
+.card{border-radius:22px!important;border:1px solid rgba(215,166,73,.2)!important;background:linear-gradient(180deg,rgba(26,52,108,.78),rgba(13,29,64,.82))!important;box-shadow:0 14px 34px rgba(2,8,24,.38),inset 0 1px 0 rgba(255,255,255,.05)}
+h2{font-size:18px;font-weight:800}
+.hid{display:none!important}.wrap>section,.wrap>.grid>section,.wrap>.g2>section{animation:fd .28s ease}
+@keyframes fd{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+header{border-bottom:1px solid rgba(215,166,73,.18)}header .in{padding:9px 14px;flex-wrap:nowrap}
+.hstat{gap:10px;flex-wrap:nowrap;font-size:12px;min-width:0}#upd{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hbtn{white-space:nowrap;background:rgba(215,166,73,.12)}
+#tabbar{position:fixed;z-index:60;left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom));max-width:560px;margin:auto;display:grid;grid-template-columns:repeat(5,1fr);background:rgba(10,22,50,.88);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(215,166,73,.35);border-radius:22px;padding:6px;box-shadow:0 14px 34px rgba(0,0,0,.45)}
+#tabbar button{position:relative;background:none;border:0;color:var(--mut);font:700 11.5px Tajawal,sans-serif;display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 2px;border-radius:16px;cursor:pointer;transition:.2s}
+#tabbar svg{width:22px;height:22px}#tabbar button.on{color:#0C1B3A;background:linear-gradient(180deg,var(--gold2),var(--gold))}
+#tabbar button:focus-visible{outline:2px solid var(--gold)}
+#tabbar i{position:absolute;top:3px;left:calc(50% + 6px);min-width:18px;height:18px;border-radius:9px;background:var(--dn);color:#fff;font:800 11px Tajawal,sans-serif;font-style:normal;display:none;align-items:center;justify-content:center;padding:0 4px}#tabbar i.on{display:flex}
+.toast{bottom:calc(96px + env(safe-area-inset-bottom))!important}#payHow{bottom:calc(96px + env(safe-area-inset-bottom))!important}
+#hero{background:linear-gradient(135deg,rgba(215,166,73,.2),rgba(26,52,108,.8) 45%,rgba(13,29,64,.9))!important;border-color:rgba(215,166,73,.45)!important}
+.hh{display:flex;justify-content:space-between;align-items:center;gap:10px}.hh small{display:block;color:var(--gold);font-size:12px;letter-spacing:.5px}.hh b{font-size:24px;font-weight:900}
+.hchip{border:1px solid var(--gold);background:rgba(12,27,58,.6);color:var(--gold2);border-radius:99px;padding:7px 13px;font:800 12.5px Tajawal,sans-serif;cursor:pointer;white-space:nowrap}
+.hs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}.hs div{background:rgba(12,27,58,.55);border-radius:16px;padding:12px 6px;text-align:center}.hs b{display:block;font-size:22px;font-weight:900;direction:ltr}.hs span{font-size:11.5px;color:var(--mut)}
+#hBest button{width:100%;margin-top:10px;display:flex;align-items:center;gap:10px;text-align:right;background:rgba(12,27,58,.55);border:1px solid var(--line);border-radius:16px;padding:11px 12px;color:var(--fg);font:700 14px Tajawal,sans-serif;cursor:pointer}#hBest button:hover{border-color:var(--gold)}#hBest small{display:block;color:var(--mut);font-size:12px}#hBest em{margin-inline-start:auto;color:var(--gold);font-style:normal;font-size:20px}
+.acg{display:grid;gap:9px;margin-top:12px}.acg .act{justify-content:center;text-decoration:none;padding:13px}.act.alt{background:none!important;border:1.5px solid var(--gold)!important;color:var(--gold)!important}
+#acS{line-height:1.9}
+@media(max-width:640px){.logo small{display:none}.logo b{font-size:16px}.ic{width:36px;height:36px}#upd{display:none}.wrap>.grid,.wrap>.g2{display:block}.wrap>.grid>section+section,.wrap>.g2>section+section{margin-top:14px}}
+.mgmt{font-size:12.5px;color:var(--mut);background:rgba(255,255,255,.04);border-radius:10px;padding:7px 10px;margin-top:8px;line-height:1.6}
 </style>
 </head>
 <body>
 <header><div class="in">
- <div class="logo"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 8h5.5a2.5 2.5 0 0 1 0 5H9zM9 13h6a2.5 2.5 0 0 1 0 5H9zM9 6v14M11 4v2M11 20v-2M14 4v2M14 20v-2"/></svg></span><div><b>غرفة التداول — كريبتو</b><small>٨ استراتيجيات • ٥ فريمات • تحديث تلقائي كل دقيقة • VIP Trading X</small></div></div>
+ <div class="logo"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 8h5.5a2.5 2.5 0 0 1 0 5H9zM9 13h6a2.5 2.5 0 0 1 0 5H9zM9 6v14M11 4v2M11 20v-2M14 4v2M14 20v-2"/></svg></span><div><b style="white-space:nowrap">غرفة التداول</b><small>٨ استراتيجيات • ٥ فريمات • تحديث تلقائي كل دقيقة • VIP Trading X</small></div></div>
  <div class="hstat">
   <span><i class="dot" id="wsDot"></i><span id="wsTxt">جارٍ الاتصال…</span></span>
   <span id="upd">—</span>
@@ -197,6 +223,17 @@ table.t{width:100%;border-collapse:collapse;font-size:13px}
 <div class="tape"><div id="tape"></div></div>
 
 <div class="wrap">
+ <section class="card" id="hero">
+  <div class="hh"><div><small>VIP Trading X</small><b>غرفة التداول</b></div><button class="hchip" id="heroSub">—</button></div>
+  <div class="hs"><div><b id="hN">—</b><span>صفقات مفتوحة</span></div><div><b id="hW">—</b><span>نسبة نجاح الروبوت</span></div><div><b id="hR">—</b><span>صافي النتيجة بعد العمولة</span></div></div>
+  <div id="hBest"></div>
+ </section>
+ <section class="card" id="acct">
+  <h2><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4" stroke="#fff"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6" stroke="#fff"/></svg></span>حسابي</h2>
+  <div class="box" id="acS">—</div>
+  <div class="acg"><button class="act" id="acRenew"><span>اشترك أو جدّد أو أدخل كود</span></button><button class="act alt" id="insBtn2"><span>ثبّت التطبيق على الجوال</span></button><a class="act tg" href="https://t.me/+7bygsfyVnMJiMWE0" target="_blank" rel="noopener"><span>قناة VIP على تلجرام</span></a></div>
+  <p class="mu" style="font-size:13px;line-height:1.8;margin:12px 0 0">كل كود اشتراك يشتغل على جهاز واحد فقط. لو غيّرت جوالك تواصل معنا على تلجرام ونفك لك الربط.</p>
+ </section>
  <nav class="tabs" aria-label="أقسام الغرفة"><a href="#matrix">مصفوفة الإشارات</a><a href="#cmd">مركز القيادة 3D</a><a href="#detail">التحليل</a><a href="#open">الصفقات المفتوحة</a><a href="#perf">الأداء</a><a href="#risk">حاسبة المخاطرة</a><a href="#chart">الشارت</a><a href="#cal">التقويم</a><a href="#journal">دفتر صفقاتي</a><a href="#news">الأخبار</a></nav>
 
  <section class="card" id="aiTop" style="margin-bottom:16px">
@@ -210,7 +247,7 @@ table.t{width:100%;border-collapse:collapse;font-size:13px}
    <p class="sub">كل خانة = صفقة الروبوت على هذا الفريم: الأخضر شراء والأحمر بيع، والرقم ربحها الآن بالـR. «—» لا توجد صفقة، والرقم الصغير قوة الإشارة الحالية.</p>
    <div class="scroll"><table class="mx" id="mx"></table></div>
   </section>
-  <section class="card">
+  <section class="card" id="world">
    <h2><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"><path d="M12 2l9 5v10l-9 5-9-5V7z"/><path d="M12 22V12M21 7l-9 5-9-5"/></svg></span>العالم والأسواق الآن</h2>
    <div id="scene"><div class="hint">المدن المضيئة = جلسات مفتوحة • العملات تدور حسب إشارة الساعة • اضغط عملة</div></div>
    <h3>مزاج السوق</h3>
@@ -259,7 +296,7 @@ table.t{width:100%;border-collapse:collapse;font-size:13px}
 
  <section class="card" id="open" style="margin-top:16px">
   <h2><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></span>كل الصفقات المفتوحة<span class="r" id="openN">—</span></h2>
-  <p class="sub">تُفتح الصفقة عند إغلاق شمعة بقوة ٥٠+، واتفاق ٥ استراتيجيات من ٨، وموافقة اتجاه الفريم الأعلى. أرقامها <b style="color:var(--gold)">مقفلة</b> ومحسوبة على الخادم، فتظهر نفسها على كل الأجهزة حتى لو كانت الصفحة مغلقة. عند الهدف ١ يُغلق النصف ويُنقل الوقف للدخول.</p>
+  <p class="sub">الروبوت يدخل فقط مع اتجاه قوي: قوة ٥٠+، اتفاق ٥ استراتيجيات من ٨، موافقة الفريم الأعلى واتجاه البيتكوين، ومؤشر قوة الاتجاه ADX فوق الحد. أرقام الصفقة <b style="color:var(--gold)">مقفلة</b> ومحسوبة على الخادم، فتظهر نفسها على كل الأجهزة حتى لو كانت الصفحة مغلقة. عند الهدف ١ يُغلق جزء من الصفقة ويُنقل الوقف للدخول، والباقي يكمل بوقف متحرك.</p>
   <div class="tfbar" id="openTf"></div>
   <div class="trades" id="trades" style="margin-top:10px"></div>
  </section>
@@ -267,7 +304,7 @@ table.t{width:100%;border-collapse:collapse;font-size:13px}
  <section class="card" id="perf" style="margin-top:16px">
   <h2><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span>أداء الروبوت لكل فريم<span class="r">نفس القواعد على الشموع السابقة</span></h2>
   <div class="scroll"><table class="t" id="perfT"></table></div>
-  <p class="sub" style="margin-top:8px">R = مقدار المخاطرة (المسافة بين الدخول والوقف). النتائج محسوبة بدون رسوم وانزلاق، وتغطي آخر ~٧٤٠ شمعة لكل فريم. الأداء السابق لا يضمن المستقبل.</p>
+  <p class="sub" style="margin-top:8px">R = مقدار المخاطرة (المسافة بين الدخول والوقف). النتائج بعد خصم عمولة تداول ٠٫٠٨٪ لكل صفقة، وتغطي آخر ~٢٧٠٠ شمعة (اليومي ~١٧٠٠). الأداء السابق لا يضمن المستقبل.</p>
  </section>
 
  <div class="g2">
@@ -279,10 +316,10 @@ table.t{width:100%;border-collapse:collapse;font-size:13px}
     <div><label for="rkLev">الرافعة</label><input id="rkLev" type="number" min="1" max="125" step="1" inputmode="numeric" value="5"></div>
     <div><label for="rkTr">الصفقة</label><select id="rkTr"></select></div>
    </div>
-   <div class="res"><div><b id="rkAmt">—</b><span>المبلغ المعرّض للخسارة</span></div><div><b id="rkQty">—</b><span>الكمية</span></div><div><b id="rkNot">—</b><span>قيمة المركز</span></div><div><b id="rkMar">—</b><span>الهامش المطلوب</span></div><div><b id="rkT1" class="up">—</b><span>الربح عند الهدف ١ (نصف الكمية)</span></div><div><b id="rkT2" class="up">—</b><span>الربح الكامل (الخطة)</span></div></div>
+   <div class="res"><div><b id="rkAmt">—</b><span>المبلغ المعرّض للخسارة</span></div><div><b id="rkQty">—</b><span>الكمية</span></div><div><b id="rkNot">—</b><span>قيمة المركز</span></div><div><b id="rkMar">—</b><span>الهامش المطلوب</span></div><div><b id="rkT1" class="up">—</b><span>الربح عند الهدف ١ (الجزء المغلق)</span></div><div><b id="rkT2" class="up">—</b><span>الربح الكامل (الخطة)</span></div></div>
    <p class="sub" id="rkWarn" style="margin-top:8px"></p>
   </section>
-  <section class="card">
+  <section class="card" id="alertsC">
    <h2><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 0 1-3.4 0"/></svg></span>التنبيهات</h2>
    <div class="sw"><div>تنبيه صوتي<small>صفقة جديدة، هدف، إغلاق</small></div><label class="tg-sw"><input type="checkbox" id="alSnd" aria-label="تنبيه صوتي"><span></span></label></div>
    <div class="sw"><div>إشعارات المتصفح<small>تظهر حتى في تبويب آخر</small></div><label class="tg-sw"><input type="checkbox" id="alNot" aria-label="إشعارات المتصفح"><span></span></label></div>
@@ -298,7 +335,7 @@ table.t{width:100%;border-collapse:collapse;font-size:13px}
  </section>
 
  <div class="g2">
-  <section class="card">
+  <section class="card" id="aiFull">
    <h2><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.8H20l-4.9 3.6 1.9 5.8L12 14.6l-4.9 3.6 1.9-5.8L4 8.8h6.1z"/></svg></span>قراءة المحلل (Claude)<span class="r" id="aiT">—</span></h2>
    <div class="ai" id="ai"><div class="empty">تُحدَّث تلقائيًا ٥ مرات يوميًا: الأخبار، الاقتصاد الكلي، تمركز الحيتان، مستويات التصفية.</div></div>
   </section>
@@ -330,6 +367,13 @@ table.t{width:100%;border-collapse:collapse;font-size:13px}
 
  <p class="disc">الإشارات آلية تجمع ٨ استراتيجيات معروفة (اتجاه EMA، سوبرترند، إيشيموكو، MACD، RSI، اختراق دونشيان، VWAP، الحجم) مع تأكيد الفريم الأعلى، وتُحسب على خادم من شموع Binance المغلقة. ليست توصية مالية؛ القرار وإدارة المخاطرة مسؤوليتك.</p>
 </div>
+<nav id="tabbar" aria-label="التنقل">
+ <button data-t="home" class="on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg><span>الرئيسية</span></button>
+ <button data-t="trades"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg><span>الصفقات</span><i id="tbN"></i></button>
+ <button data-t="an"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/></svg><span>التحليل</span></button>
+ <button data-t="tools"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M12 12h2M16 12h0M8 16h2M12 16h2M16 16h0"/></svg><span>الأدوات</span></button>
+ <button data-t="me"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6"/></svg><span>حسابي</span></button>
+</nav>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -352,30 +396,53 @@ const P={};COINS.forEach(([s])=>P[s]={px:0,chg:0,hi:0,lo:0,qv:0});
 /* ---------- live R ---------- */
 function rOf(t,px){return t.dir*(px-t.entry)/Math.abs(t.entry-t.sl0)}
 function k1(t){return Math.abs(t.tp1-t.entry)/Math.abs(t.entry-t.sl0)}function k2(t){return Math.abs(t.tp2-t.entry)/Math.abs(t.entry-t.sl0)}
-function liveR(t,px){const r=rOf(t,px);return t.tp1hit?0.5*k1(t)+0.5*r:r}
+function FR(t){return(D&&D.cfgs&&D.cfgs[t.tf]||{}).F||0.5}function pctF(t){return AR(Math.round(FR(t)*100))}
+function liveR(t,px){const r=rOf(t,px),f=FR(t);return t.tp1hit?f*k1(t)+(1-f)*r:r}
 const pxOf=s=>P[s].px||(D&&D.coins[s]&&D.coins[s].px)||0;
 function allOpen(){const o=[];if(!D)return o;COINS.forEach(([s])=>TFS.forEach(f=>{const x=D.coins[s]&&D.coins[s].tfs[f];if(x&&x.trade)o.push({...x.trade,s,tf:f,id:s+f+x.trade.t,wr:x.stats.wr,flow:x.flow})}));return o.sort((a,b)=>b.t-a.t)}
 
 /* ---------- fetch ---------- */
+/* ===== تبويبات التطبيق ===== */
+const TABS={home:['hero','aiTop','matrix','world'],trades:['open','perf'],an:['detail','cmd','chart','aiFull','news'],tools:['risk','alertsC','cal','journal'],me:['acct']};
+let TAB='home';
+function setTab(t,keep){if(!TABS[t])t='home';TAB=t;const show=new Set(TABS[t]);document.querySelectorAll('.wrap section').forEach(x=>x.classList.toggle('hid',!show.has(x.id)));
+ document.querySelectorAll('.wrap>.grid,.wrap>.g2').forEach(g=>g.classList.toggle('hid',![...g.children].some(c=>!c.classList.contains('hid'))));
+ const dc=document.querySelector('.disc');if(dc)dc.classList.toggle('hid',t!=='me');
+ document.querySelectorAll('#tabbar button').forEach(b=>{b.classList.toggle('on',b.dataset.t===t);b.setAttribute('aria-current',b.dataset.t===t?'page':'false')});
+ if(!keep)scrollTo({top:0});setTimeout(()=>dispatchEvent(new Event('resize')),60)}
+document.querySelectorAll('#tabbar button').forEach(b=>b.onclick=()=>setTab(b.dataset.t));
+function paintHero(){if(!D)return;const o=allOpen();let n=0,w=0,sum=0;for(const s in D.coins)for(const f in D.coins[s].tfs){const x=D.coins[s].tfs[f];if(!x||x.off)continue;n+=x.stats.n;w+=x.stats.w;sum+=x.stats.sum}
+ $('hN').textContent=o.length;$('hW').textContent=n?Math.round(100*w/n)+'%':'—';$('hR').textContent=fR(sum);$('hR').className=sum>=0?'up':'dn';
+ $('tbN').textContent=o.length;$('tbN').classList.toggle('on',o.length>0);
+ const b=o.slice().sort((x,y)=>(y.wr-x.wr)||(Math.abs(y.score)-Math.abs(x.score)))[0];
+ $('hBest').innerHTML=b?`<button data-s="${b.s}" data-f="${b.tf}"><span class="cic" style="background:${col(b.s)}">${b.s}</span><span><b class="${b.dir>0?'up':'dn'}">${b.dir>0?'شراء':'بيع'} ${b.s}</b> • ${TFN[b.tf]} • نجاح ${b.wr}%<small>أقوى صفقة مفتوحة الآن — اضغط للتحليل الكامل</small></span><em>‹</em></button>`:'<div class="box" style="margin-top:10px"><span class="mu">لا توجد صفقة مفتوحة الآن. الروبوت ينتظر اتجاهًا قويًا، وهذا أفضل من الدخول في سوق متذبذب.</span></div>';
+ const hb=$('hBest').querySelector('button');if(hb)hb.onclick=()=>{select(hb.dataset.s,hb.dataset.f);setTab('an')}}
 /* ===== الاشتراك والتثبيت ===== */
-let K=store.get('k',''),SUB=null,PLAN='m';const TGA='CryptoPulseVIP_Admin';
-async function ensureKey(){if(K||store.get('tr',0))return;try{const d=await(await fetch('/api/trial',{cache:'no-store'})).json();if(d.code){K=d.code;store.set('k',K);store.set('tr',1)}}catch(e){}}
+let K=store.get('k',''),SES=store.get('s',''),SUB=null,PLAN='m';const TGA='CryptoPulseVIP_Admin';
+let DEV=store.get('dev','');if(!/^[a-z0-9]{16,40}$/.test(DEV)){DEV=Array.from(crypto.getRandomValues(new Uint8Array(15)),b=>(b%36).toString(36)).join('')+Date.now().toString(36);store.set('dev',DEV)}
+const FP=[screen.width,screen.height,devicePixelRatio,Intl.DateTimeFormat().resolvedOptions().timeZone,navigator.language,navigator.platform,navigator.hardwareConcurrency||0,navigator.deviceMemory||0,navigator.maxTouchPoints||0].join('~');
+const Q=()=>'k='+encodeURIComponent(K)+'&d='+DEV+'&s='+encodeURIComponent(SES);
+async function session(code){const r=await fetch('/api/activate?k='+encodeURIComponent(code)+'&d='+DEV,{cache:'no-store'});const d=await r.json().catch(()=>({}));if(r.ok&&d.s){SES=d.s;store.set('s',SES);return{ok:true}}return{ok:false,d}}
+async function ensureKey(){if(K||store.get('tr',0))return;try{const d=await(await fetch('/api/trial?fp='+encodeURIComponent(FP),{cache:'no-store'})).json();if(d.code){K=d.code;store.set('k',K);store.set('tr',1)}}catch(e){}}
 function payTg(){const n=PLAN==='y'?'سنوي ($100)':'شهري ($10)';$('payTg').href='https://t.me/'+TGA+'?text='+encodeURIComponent('السلام عليكم، أبي أشترك في تطبيق غرفة التداول\nالخطة: '+n+'\nحوّلت المبلغ، وهذا الإيصال 👇')}
 function showPay(free,msg){$('payS').textContent=msg;$('pay').classList.toggle('free',!!free);$('pay').classList.add('on');$('payErr').textContent='';payTg()}
-function lock(d){const m=d.reason==='expired'?(d.plan==='t'?'انتهت تجربتك المجانية (٧ أيام). اشترك عشان تكمل تشوف الصفقات والتحليل.':'انتهى اشتراكك. جدّد عشان تكمل.'):'الدخول للمشتركين فقط. اشترك أو اكتب كود التفعيل.';showPay(false,m);$('upd').textContent='الاشتراك مطلوب'}
+function lock(d){const m=d.reason==='device'?'هذا الكود مفعّل على جهاز ثاني. كل كود يشتغل على جهاز واحد. تواصل معنا على تلجرام لو غيّرت جهازك.':d.reason==='expired'?(d.plan==='t'?'انتهت تجربتك المجانية (٧ أيام). اشترك عشان تكمل تشوف الصفقات والتحليل.':'انتهى اشتراكك. جدّد عشان تكمل.'):'الدخول للمشتركين فقط. اشترك أو اكتب كود التفعيل.';showPay(false,m);$('upd').textContent='الاشتراك مطلوب'}
 function paintSub(){if(!SUB)return;const dl=Math.max(1,Math.ceil((SUB.exp-Date.now())/864e5)),dt=new Date(SUB.exp-1).toLocaleDateString('en-GB',{timeZone:'Asia/Muscat',day:'2-digit',month:'2-digit',year:'numeric'});
- $('subBtn').textContent=SUB.plan==='t'?'تجربة: باقي '+dl+' يوم':SUB.plan==='o'?'حساب المالك':'مشترك حتى '+dt}
-async function activate(){const c=$('payIn').value.trim();if(!c)return;$('payErr').textContent='جارٍ التحقق…';try{const r=await fetch('/api/signals?k='+encodeURIComponent(c),{cache:'no-store'});
- if(r.ok){K=c.toUpperCase();store.set('k',K);$('pay').classList.remove('on');$('payIn').value='';load()}else{const d=await r.json().catch(()=>({}));$('payErr').textContent=d.reason==='expired'?'هذا الكود منتهي.':'الكود غير صحيح. تأكد منه وحاول مرة ثانية.'}}catch(e){$('payErr').textContent='تعذّر الاتصال. حاول مرة ثانية.'}}
+ const lbl=SUB.plan==='t'?'تجربة: باقي '+dl+' يوم':SUB.plan==='o'?'حساب المالك':'مشترك حتى '+dt;$('subBtn').textContent=lbl;$('heroSub').textContent=lbl;
+ $('acS').innerHTML=`<b style="color:var(--gold)">${SUB.plan==='t'?'تجربة مجانية':SUB.plan==='o'?'حساب المالك':SUB.plan==='y'?'اشتراك سنوي':'اشتراك شهري'}</b><br>ينتهي: <b style="direction:ltr;display:inline-block">${dt}</b> • باقي ${AR(dl)} يوم${SUB.plan==='t'?'<br><span class="mu">اشترك قبل نهاية التجربة عشان ما ينقطع عليك شي.</span>':''}`}
+async function activate(){const c=$('payIn').value.trim();if(!c)return;$('payErr').textContent='جارٍ التحقق…';try{const r=await session(c);
+ if(r.ok){K=c.toUpperCase();store.set('k',K);$('pay').classList.remove('on','free');$('payIn').value='';load()}else{const w=r.d.reason;$('payErr').textContent=w==='expired'?'هذا الكود منتهي.':w==='device'?'هذا الكود مفعّل على جهاز ثاني. كل كود لجهاز واحد.':'الكود غير صحيح. تأكد منه وحاول مرة ثانية.'}}catch(e){$('payErr').textContent='تعذّر الاتصال. حاول مرة ثانية.'}}
 $('payGo').onclick=activate;$('payIn').onkeydown=e=>{if(e.key==='Enter')activate()};$('payX').onclick=()=>$('pay').classList.remove('on');
 $('payPl').onclick=e=>{const b=e.target.closest('button');if(!b)return;PLAN=b.dataset.p;[...$('payPl').children].forEach(x=>x.classList.toggle('on',x===b));payTg()};
 $('subBtn').onclick=()=>showPay(true,SUB&&SUB.plan==='t'?'أنت الحين في التجربة المجانية. اشترك قبل ما تنتهي عشان ما ينقطع عليك شي.':SUB?'اشتراكك شغّال. تقدر تجدّد أو تدخل كود جديد من هنا.':'اشترك أو اكتب كود التفعيل.');
 addEventListener('beforeinstallprompt',e=>{e.preventDefault();window.__bip=e});
-if(matchMedia('(display-mode: standalone)').matches||navigator.standalone)$('insBtn').style.display='none';
+$('heroSub').onclick=$('acRenew').onclick=()=>$('subBtn').click();$('insBtn2').onclick=()=>$('insBtn').click();
+if(matchMedia('(display-mode: standalone)').matches||navigator.standalone)$('insBtn2').style.display='none';
 $('insBtn').onclick=async()=>{if(window.__bip){window.__bip.prompt();window.__bip=null}else $('payHow').style.display='block'};
-addEventListener('appinstalled',()=>{$('insBtn').style.display='none'});
+addEventListener('appinstalled',()=>{$('insBtn2').style.display='none'});
 if('serviceWorker'in navigator)navigator.serviceWorker.register('/sw.js').catch(()=>{});
-async function load(){try{await ensureKey();const r=await fetch('/api/signals?k='+encodeURIComponent(K),{cache:'no-store'});if(r.status===401){lock(await r.json().catch(()=>({})));return}if(!r.ok)throw 0;const d=await r.json();if(!d.coins)throw 0;D=d;SUB=d.sub||null;paintSub();if(!$('pay').classList.contains('free'))$('pay').classList.remove('on');
+async function load(){try{await ensureKey();if(K&&!SES){const a=await session(K);if(!a.ok){lock(a.d);return}}let r=await fetch('/api/signals?'+Q(),{cache:'no-store'});
+ if(r.status===401){let d=await r.json().catch(()=>({}));if(d.reason==='session'){const a=await session(K);if(!a.ok){lock(a.d);return}r=await fetch('/api/signals?'+Q(),{cache:'no-store'});if(r.status===401)d=await r.json().catch(()=>({}))}if(r.status===401){lock(d);return}}if(!r.ok)throw 0;const d=await r.json();if(!d.coins)throw 0;D=d;SUB=d.sub||null;paintSub();if(!$('pay').classList.contains('free'))$('pay').classList.remove('on');
  $('upd').textContent='آخر تحديث للإشارات '+new Date(D.updated).toLocaleTimeString('en-GB',{timeZone:'Asia/Muscat',hour:'2-digit',minute:'2-digit'});
  alerts();paintAll()}catch(e){$('upd').textContent='تعذّر تحديث الإشارات — إعادة المحاولة خلال دقيقة'}}
 async function ai(){try{const d=await(await fetch('analysis.json?t='+Date.now(),{cache:'no-store'})).json();AI=d;if(!d||!d.text)return;
@@ -396,14 +463,14 @@ function alerts(){const prev=store.get('seen',null),cur={},want=store.get('alTf'
  op.forEach(t=>cur[t.id]={tp1:t.tp1hit,s:t.s,tf:t.tf,dir:t.dir});
  if(prev){for(const id in cur){const t=cur[id];if(!want.includes(t.tf))continue;const tr=op.find(x=>x.id===id);
    if(!prev[id])notify('open',`صفقة جديدة: ${t.dir>0?'🟢 شراء':'🔴 بيع'} ${t.s} (${TFN[t.tf]})`,`الدخول ${fmt(tr.entry)} • الوقف ${fmt(tr.sl0)} • الهدف ${fmt(tr.tp1)}`);
-   else if(t.tp1&&!prev[id].tp1)notify('tp1',`🎯 ${t.s} (${TFN[t.tf]}): تحقق الهدف ١`,'أغلق النصف وانقل الوقف للدخول')}
+   else if(t.tp1&&!prev[id].tp1)notify('tp1',`🎯 ${t.s} (${TFN[t.tf]}): تحقق الهدف ١`,'أغلق '+pctF(t)+'٪ وانقل الوقف للدخول')}
   for(const id in prev){if(cur[id]||!want.includes(prev[id].tf))continue;const p=prev[id],x=D.coins[p.s]&&D.coins[p.s].tfs[p.tf],c=x&&x.recent[0];if(c)notify(c.r>0?'win':'loss',`${c.r>0?'✅':'⛔'} ${p.s} (${TFN[p.tf]}): أُغلقت الصفقة`,`النتيجة ${fR(c.r)}`)}}
  store.set('seen',cur)}
 function paintLog(){$('log').innerHTML=events.length?events.map(e=>`<div><time>${tStr(e.t)}</time><span class="pill ${e.type==='win'||e.type==='tp1'?'b-up':e.type==='loss'?'b-dn':'b-gd'}">${{open:'صفقة',tp1:'هدف ١',win:'ربح',loss:'خسارة'}[e.type]}</span><span>${esc(e.txt)}</span></div>`).join(''):'<div class="empty">ستظهر هنا الأحداث تلقائيًا.</div>'}
 
 /* ---------- trade text ---------- */
 function tradeText(t){const px=pxOf(t.s),r=liveR(t,px);
- return[`${t.dir>0?'🟢 شراء':'🔴 بيع'} — ${t.s}/USDT • فريم ${TFN[t.tf]}`,`💰 الدخول: ${fmt(t.entry)}`,(t.tp1hit?`⛔ وقف الخسارة: ${fmt(t.entry)} (نُقل للدخول بعد الهدف ١، كان ${fmt(t.sl0)})`:`⛔ وقف الخسارة: ${fmt(t.sl0)}`),`🎯 الهدف ١: ${fmt(t.tp1)}`,`🎯 الهدف ٢: ${fmt(t.tp2)}`,`📊 القوة ${Math.abs(t.score)}/100 • ${t.agree} من ٨ استراتيجيات`,...(t.wr?[`✅ نسبة النجاح التاريخية: ${t.wr}%`]:[]),...(t.flow!=null?[`⚖️ الشراء ${t.flow.toFixed(0)}% / البيع ${(100-t.flow).toFixed(0)}%`]:[]),`📌 الحالة: ${t.tp1hit?'✅ تحقق الهدف ١ — الوقف على الدخول':'🟡 مفتوحة'} (${fR(r)})`,`⏰ ${tStr(t.t)} مسقط`,`⚠️ ليست توصية مالية`].join('\n')}
+ return[`${t.dir>0?'🟢 شراء':'🔴 بيع'} — ${t.s}/USDT • فريم ${TFN[t.tf]}`,`💰 الدخول: ${fmt(t.entry)}`,(t.tp1hit?`⛔ وقف الخسارة الآن: ${fmt(t.sl)} (متحرك بعد الهدف ١، كان ${fmt(t.sl0)})`:`⛔ وقف الخسارة: ${fmt(t.sl0)}`),`🎯 الهدف ١: ${fmt(t.tp1)}`,`🎯 الهدف ٢: ${fmt(t.tp2)}`,`🧭 الإدارة: عند الهدف ١ أغلق ${pctF(t)}٪ وانقل الوقف للدخول، والباقي بوقف متحرك حتى الهدف ٢`,`📊 القوة ${Math.abs(t.score)}/100 • ${t.agree} من ٨ استراتيجيات`,...(t.wr?[`✅ نسبة النجاح التاريخية: ${t.wr}%`]:[]),...(t.flow!=null?[`⚖️ الشراء ${t.flow.toFixed(0)}% / البيع ${(100-t.flow).toFixed(0)}%`]:[]),`📌 الحالة: ${t.tp1hit?'✅ تحقق الهدف ١ — الوقف متحرك':'🟡 مفتوحة'} (${fR(r)})`,`⏰ ${tStr(t.t)} مسقط`,`⚠️ ليست توصية مالية`].join('\n')}
 async function copyTxt(t){try{await navigator.clipboard.writeText(t);return true}catch(e){const a=document.createElement('textarea');a.value=t;a.style.cssText='position:fixed;opacity:0';document.body.appendChild(a);a.select();let ok=false;try{ok=document.execCommand('copy')}catch(_){}a.remove();return ok}}
 document.addEventListener('click',async e=>{const b=e.target.closest('[data-cp],[data-tg]');if(!b)return;const t=allOpen().find(x=>x.id===(b.dataset.cp||b.dataset.tg));if(!t)return;const txt=tradeText(t);
  if(b.dataset.tg){open('https://t.me/share/url?url='+encodeURIComponent('https://t.me/+7bygsfyVnMJiMWE0')+'&text='+encodeURIComponent(txt),'_blank');return}
@@ -414,26 +481,28 @@ const CP='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-widt
 const TG='<svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.8 19c-.2 1-.9 1.3-1.8.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8 8.8-7.9c.4-.3-.1-.5-.6-.2L6.6 13 2 11.6c-1-.3-1-1 .2-1.5L20.5 3c.9-.3 1.6.2 1.4 1.3z"/></svg>';
 function tradeCard(t){const px=pxOf(t.s),r=liveR(t,px),pct=t.dir*(px-t.entry)/t.entry*100,pos=Math.max(0,Math.min(100,(rOf(t,px)+1)/(1+k2(t))*100)),e1=(1+k1(t))/(1+k2(t))*100;
  return`<div class="trade ${t.dir>0?'buy':'sell'}"><div class="top"><span class="cic" style="background:${col(t.s)}">${t.s}</span><b>${t.dir>0?'شراء':'بيع'} ${t.s}</b><span class="pill b-gd">${TFN[t.tf]}</span>${t.wr?`<span class="pill b-up wr60">نجاح ${t.wr}%</span>`:''}${t.tp1hit?'<span class="pill b-up">الهدف ١ ✓</span>':''}<div class="pnl ${r>=0?'up':'dn'}">${fR(r)}<small style="font-size:12px;display:block">${pct>=0?'+':''}${pct.toFixed(2)}%</small></div></div>
- <div class="lv"><div><span>الدخول</span><b>${fmt(t.entry)}</b></div><div class="sl">${t.tp1hit?`<span>الوقف الآن (على الدخول)</span><b>${fmt(t.entry)}</b><small class="mu" style="display:block;text-decoration:line-through">${fmt(t.sl0)}</small>`:`<span>الوقف</span><b>${fmt(t.sl0)}</b>`}</div><div class="tp ${t.tp1hit?'hit':''}"><span>الهدف ١</span><b>${fmt(t.tp1)}</b></div><div class="tp"><span>الهدف ٢</span><b>${fmt(t.tp2)}</b></div></div>
+ <div class="lv"><div><span>الدخول</span><b>${fmt(t.entry)}</b></div><div class="sl">${t.tp1hit?`<span>الوقف الآن (${t.sl===t.entry?'على الدخول':'متحرك'})</span><b>${fmt(t.sl)}</b><small class="mu" style="display:block;text-decoration:line-through">${fmt(t.sl0)}</small>`:`<span>الوقف</span><b>${fmt(t.sl0)}</b>`}</div><div class="tp ${t.tp1hit?'hit':''}"><span>الهدف ١</span><b>${fmt(t.tp1)}</b></div><div class="tp"><span>الهدف ٢</span><b>${fmt(t.tp2)}</b></div></div>
  <div class="track"><em style="left:${e1}%"></em><i style="left:${pos}%"></i></div>
  <div class="meta"><span>الآن <b style="direction:ltr;display:inline-block">${fmt(px)}</b></span><span>فُتحت ${tStr(t.t)}</span><span>قوة ${Math.abs(t.score)} • ${t.agree}/٨</span>${t.flow!=null?`<span>شراء <b class="up">${t.flow.toFixed(0)}%</b> / بيع <b class="dn">${(100-t.flow).toFixed(0)}%</b></span>`:''}</div>
+ <div class="mgmt">${t.tp1hit?`تحقق الهدف ١: أُغلق ${pctF(t)}٪ من الصفقة، والباقي يكمل بوقف متحرك.`:`عند الهدف ١: أغلق ${pctF(t)}٪ وانقل الوقف للدخول، والباقي بوقف متحرك.`}</div>
  <div class="acts"><button class="act" data-cp="${t.id}">${CP}<span>نسخ الصفقة</span></button><button class="act tg" data-tg="${t.id}">${TG}<span>تلجرام</span></button></div></div>`}
 function paintMatrix(){if(!D)return;let h='<thead><tr><th style="text-align:right">العملة</th>'+TFS.map(f=>`<th>${TFN[f]}</th>`).join('')+'</tr></thead><tbody>';
  COINS.forEach(([s,n,c])=>{const C=D.coins[s];h+=`<tr><td><div class="coin"><span class="cic" style="background:${c}">${s}</span><div><b>${s}</b><small id="mp-${s}">${fmt(pxOf(s))}</small>${C&&C.tfs['1h']&&C.tfs['1h'].flow!=null?`<small class="${C.tfs['1h'].flow>=50?'up':'dn'}" style="display:block">شراء ${C.tfs['1h'].flow.toFixed(0)}%</small>`:''}</div></div></td>`;
   TFS.forEach(f=>{const x=C&&C.tfs[f],on=s===sel&&f===tf?' sel':'';if(!x){h+=`<td><button class="cell${on}" data-s="${s}" data-f="${f}">—</button></td>`;return}
    if(x.trade){const r=liveR(x.trade,pxOf(s));h+=`<td><button class="cell ${x.trade.dir>0?'L':'S'}${on}" data-s="${s}" data-f="${f}" aria-label="${s} ${TFN[f]}"><b class="${x.trade.dir>0?'up':'dn'}">${x.trade.dir>0?'▲ شراء':'▼ بيع'}</b><small class="${r>=0?'up':'dn'}">${fR(r)}</small></button></td>`}
-   else if(!x.ok){h+=`<td><button class="cell${on}" data-s="${s}" data-f="${f}" aria-label="${s} ${TFN[f]} غير معتمد" title="نسبة النجاح ${x.stats.wr}% أقل من ${D.cfg.MINWR}%"><b class="mu" style="font-size:11px">غير معتمد</b><small class="mu">${x.stats.wr}%</small></button></td>`}
+   else if(x.off){h+=`<td><button class="cell${on}" data-s="${s}" data-f="${f}" aria-label="${s} ${TFN[f]} متوقف"><b class="mu" style="font-size:11px">متوقف</b><small class="mu">تحليل فقط</small></button></td>`}
+   else if(!x.ok){h+=`<td><button class="cell${on}" data-s="${s}" data-f="${f}" aria-label="${s} ${TFN[f]} غير معتمد" title="أداء هذه الخانة تحت الشرط"><b class="mu" style="font-size:11px">غير معتمد</b><small class="mu">${x.stats.wr}%</small></button></td>`}
    else{const[l,cl]=label(x.score);h+=`<td><button class="cell${on}" data-s="${s}" data-f="${f}" aria-label="${s} ${TFN[f]}"><b class="mu">—</b><small class="${cl==='nt'?'mu':cl}">${x.score>0?'+':''}${x.score}</small></button></td>`}});
   h+='</tr>'});
- $('mx').innerHTML=h+'</tbody>';$('mx').querySelectorAll('.cell').forEach(b=>b.onclick=()=>{select(b.dataset.s,b.dataset.f);$('detail').scrollIntoView({behavior:'smooth'})})}
+ $('mx').innerHTML=h+'</tbody>';$('mx').querySelectorAll('.cell').forEach(b=>b.onclick=()=>{select(b.dataset.s,b.dataset.f);setTab('an')})}
 function paintTfBar(){$('tfbar').innerHTML=TFS.map(f=>`<button class="tfb${f===tf?' on':''}" data-f="${f}">${TFN[f]} <small class="mu">${TFK[f]}</small></button>`).join('');$('tfbar').querySelectorAll('.tfb').forEach(b=>b.onclick=()=>select(sel,b.dataset.f))}
 function paintDetail(){const d=P[sel];$('selName').textContent=`${nameOf(sel)} • ${sel}/USDT`;$('selIc').textContent=sel;$('selIc').style.background=col(sel);$('selPx').textContent=fmt(pxOf(sel));
  $('selChg').innerHTML=d.px?`<span class="${d.chg>=0?'up':'dn'}">${d.chg>=0?'▲':'▼'} ${d.chg.toFixed(2)}% • H ${fmt(d.hi)} • L ${fmt(d.lo)}</span>`:'';
  paintTfBar();if(!D)return;const C=D.coins[sel],x=C&&C.tfs[tf];if(!x){$('vTxt').textContent='لا تتوفر بيانات';return}
  const[lb,c]=label(x.score);$('needle').style.transform=`rotate(${x.score*.9}deg)`;$('vTxt').textContent=lb+' — '+TFN[tf];$('vTxt').className='v '+(c==='nt'?'':c);
  $('verdict').style.borderColor=c==='up'?'var(--up)':c==='dn'?'var(--dn)':'var(--line)';
- const gate=Math.abs(x.score)>=D.cfg.TH&&x.agree>=D.cfg.AGREE&&x.htf===Math.sign(x.score);
- $('vWhy').innerHTML=`القوة ${Math.abs(x.score)}/100 • ${x.agree} من ٨ استراتيجيات متفقة • الفريم الأعلى ${x.htf>0?'<span class="up">صاعد</span>':x.htf<0?'<span class="dn">هابط</span>':'—'} • RSI ${x.rsi.toFixed(0)}<br>${gate?'<span class="up">✔ شروط الدخول متحققة على آخر شمعة مغلقة</span>':'<span class="mu">شروط الدخول: قوة ٥٠+، اتفاق ٥ من ٨، موافقة الفريم الأعلى، ونسبة نجاح ٦٠٪+</span>'}`;
+ const cf=D.cfgs[tf],dr=Math.sign(x.score),gate=Math.abs(x.score)>=cf.TH&&x.agree>=cf.AGREE&&x.htf===dr&&x.adx>=cf.ADX&&(!cf.BTCF||x.btc==null||x.btc===dr);
+ $('vWhy').innerHTML=`القوة ${Math.abs(x.score)}/100 • ${x.agree} من ٨ استراتيجيات متفقة • الفريم الأعلى ${x.htf>0?'<span class="up">صاعد</span>':x.htf<0?'<span class="dn">هابط</span>':'—'} • RSI ${x.rsi.toFixed(0)} • قوة الاتجاه ADX <b class="${x.adx>=cf.ADX?'up':'mu'}">${x.adx!=null?x.adx.toFixed(0):'—'}</b>/${cf.ADX}${cf.BTCF&&x.btc!=null?` • اتجاه البيتكوين ${x.btc>0?'<span class="up">صاعد</span>':'<span class="dn">هابط</span>'}`:''}<br>${gate?'<span class="up">✔ شروط الدخول متحققة على آخر شمعة مغلقة</span>':`<span class="mu">شروط الدخول: قوة ${cf.TH}+، اتفاق ${cf.AGREE} من ٨، موافقة الفريم الأعلى${cf.BTCF?' والبيتكوين':''}، اتجاه قوي (ADX ${cf.ADX}+)، وخانة ناجحة ٦٠٪+ ورابحة بعد التكاليف</span>`}`;
  $('votes').innerHTML=Object.keys(D.weights).map(k=>{const v=x.votes[k],w=Math.abs(v)*50;return`<div class="vt"><span style="min-width:118px">${D.names[k]}</span><div class="bar2"><i style="${v>=0?'left:50%':'right:50%'};width:${w}%;background:${v>0?'var(--up)':v<0?'var(--dn)':'transparent'}"></i></div><span class="${v>0?'up':v<0?'dn':'mu'}" style="min-width:34px;text-align:left">${v>0?'شراء':v<0?'بيع':'—'}</span></div>`}).join('');
  const se=C.sent||{},cb=AI&&AI.coins&&AI.coins[sel];
  $('fund').innerHTML=`<div><b class="${cb?(cb.bias==='bullish'?'up':cb.bias==='bearish'?'dn':''):'mu'}">${cb?({bullish:'إيجابية',bearish:'سلبية',neutral:'محايدة'}[cb.bias]||'—'):'—'}</b><span>نظرة Claude الأساسية</span></div><div><b class="${se.funding>0?'up':se.funding<0?'dn':''}">${se.funding!=null?(se.funding*100).toFixed(4)+'%':'—'}</b><span>معدل التمويل</span></div><div><b>${se.ls!=null?`<span class="up">${(100*se.ls/(1+se.ls)).toFixed(0)}%</span> / <span class="dn">${(100/(1+se.ls)).toFixed(0)}%</span>`:'—'}</b><span>حسابات شراء / بيع (عقود)</span></div><div><b class="${se.oiChg>0?'up':se.oiChg<0?'dn':''}">${se.oiChg!=null?(se.oiChg>0?'+':'')+se.oiChg.toFixed(1)+'%':se.oiUsd?'$'+big(se.oiUsd):'—'}</b><span>${se.oiChg!=null?'تغير العقود المفتوحة ٢٤س':'العقود المفتوحة'}</span></div>`;
@@ -444,10 +513,10 @@ function paintDetail(){const d=P[sel];$('selName').textContent=`${nameOf(sel)} �
  if(cb&&cb.note)ex+=`<br><span class="mu">${esc(cb.note)}</span>`;
  if(x.flow!=null)ex=`<div class="flow" style="margin:0 0 8px"><b>نسبة الشراء والبيع (آخر ٢٤ شمعة ${TFN[tf]})</b><div class="fb"><i dir="rtl" class="b" style="width:${x.flow}%">شراء ${x.flow.toFixed(0)}%</i><i dir="rtl" class="s" style="width:${100-x.flow}%">بيع ${(100-x.flow).toFixed(0)}%</i></div><small>من حجم التداول الفعلي على Binance (المشترون المبادرون مقابل البائعين)</small></div>`+ex;
  $('expert').innerHTML=ex;
- $('selTrade').innerHTML=x.trade?tradeCard({...x.trade,s:sel,tf,id:sel+tf+x.trade.t,wr:x.stats.wr,flow:x.flow}):!x.ok?`<div class="box"><b class="dn">غير معتمد: نسبة نجاح ${sel} على ${TFN[tf]} = ${x.stats.wr}%</b><br><span class="mu">الروبوت ما يفتح صفقات إلا على الفريمات اللي نسبة نجاحها ${D.cfg.MINWR}% أو أكثر.</span></div>`:`<div class="box"><b style="color:var(--gold)">لا توجد صفقة مفتوحة على ${sel} — ${TFN[tf]}</b><br><span class="mu">الروبوت ينتظر شمعة مغلقة تحقق الشروط، والتحليل يتحدث تلقائيًا.</span></div>`;
+ $('selTrade').innerHTML=x.trade?tradeCard({...x.trade,s:sel,tf,id:sel+tf+x.trade.t,wr:x.stats.wr,flow:x.flow}):x.off?`<div class="box"><b style="color:var(--gold)">صفقات فريم ${TFN[tf]} متوقفة</b><br><span class="mu">في الاختبار على ٦٠٠٠ شمعة لكل عملة، هذا الفريم خاسر بعد خصم عمولة التداول، فالروبوت يعرض التحليل فقط وما يفتح عليه صفقات.</span></div>`:!x.ok?`<div class="box"><b class="dn">غير معتمد: ${sel} على ${TFN[tf]}</b><br><span class="mu">نسبة النجاح ${x.stats.wr}% وصافي النتيجة ${fR(x.stats.sum)} بعد التكاليف. الروبوت يفتح فقط على الخانات اللي نجاحها ${D.cfg.MINWR}%+ وصافيها موجب.</span></div>`:`<div class="box"><b style="color:var(--gold)">لا توجد صفقة مفتوحة على ${sel} — ${TFN[tf]}</b><br><span class="mu">الروبوت ينتظر شمعة مغلقة تحقق الشروط، والتحليل يتحدث تلقائيًا.</span></div>`;
  const st=x.stats;$('tfStats').innerHTML=`<div><b>${AR(st.n)}</b><span>صفقات منذ ${new Date(st.from).toLocaleDateString('en-GB',{day:'2-digit',month:'2-digit'})}</span></div><div><b class="${st.wr>=D.cfg.MINWR?'up':'dn'}">${st.n?st.wr+'%':'—'}</b><span>نسبة النجاح</span></div><div><b class="${st.sum>=0?'up':'dn'}">${fR(st.sum)}</b><span>صافي النتيجة</span></div><div><b class="dn">-${st.dd.toFixed(1)}R</b><span>أقصى تراجع</span></div>`;
  curve($('tfEq'),st.curve);
- const wl={sl:'وقف',tp2:'الهدف ٢',rev:'إشارة معاكسة',exp:'انتهاء المدة'};
+ const wl={sl:'وقف',tp2:'الهدف ٢',rev:'إشارة معاكسة',exp:'انتهاء المدة',be:'هدف ١ ثم الدخول',trail:'هدف ١ ثم وقف متحرك'};
  $('recent').innerHTML='<thead><tr><th>آخر الصفقات</th><th>الخروج</th><th class="num">R</th></tr></thead><tbody>'+(x.recent.map(t=>`<tr><td>${t.dir>0?'<span class="up">شراء</span>':'<span class="dn">بيع</span>'} @ <span style="direction:ltr;display:inline-block">${fmt(t.entry)}</span><br><small class="mu">${tStr(t.t)}</small></td><td>${t.tp1hit&&t.why==='sl'?'هدف ١ ثم الدخول':wl[t.why]}</td><td class="num ${t.r>=0?'up':'dn'}">${fR(t.r)}</td></tr>`).join('')||'<tr><td colspan="3" class="mu">—</td></tr>')+'</tbody>';
  $('dTime').textContent=TFK[tf]}
 function curve(svg,rs){if(!rs||!rs.length){svg.innerHTML='';return}const pts=[0];rs.forEach(r=>pts.push(pts.at(-1)+r));const mx=Math.max(...pts,1),mn=Math.min(...pts,-1),y=v=>74-(v-mn)/(mx-mn)*68,x=i=>i/(pts.length-1||1)*596+2;
@@ -458,10 +527,10 @@ function paintOpen(){const all=allOpen(),list=openTf==='all'?all:all.filter(t=>t
  $('openTf').querySelectorAll('.tfb').forEach(b=>b.onclick=()=>{openTf=b.dataset.f;paintOpen()});
  $('trades').innerHTML=list.length?list.map(tradeCard).join(''):'<div class="empty">لا توجد صفقات مفتوحة على هذا الفريم الآن.</div>';rkOptions()}
 function paintPerf(){if(!D)return;let h='<thead><tr><th>الفريم</th><th>الأسلوب</th><th>صفقات</th><th>نسبة النجاح</th><th class="num">صافي النتيجة</th><th>أفضل عملة</th><th>أضعف عملة</th></tr></thead><tbody>';
- TFS.forEach(f=>{let n=0,w=0,sum=0,best=null,worst=null;COINS.forEach(([s])=>{const x=D.coins[s]&&D.coins[s].tfs[f];if(!x)return;n+=x.stats.n;w+=x.stats.w;sum+=x.stats.sum;if(!best||x.stats.sum>best[1])best=[s,x.stats.sum];if(!worst||x.stats.sum<worst[1])worst=[s,x.stats.sum]});
+ TFS.forEach(f=>{if(D.cfgs[f].OFF){h+=`<tr><td>${TFN[f]}</td><td class="mu" colspan="6">متوقف — خاسر بعد عمولة التداول في الاختبار، يُعرض للتحليل فقط</td></tr>`;return}let n=0,w=0,sum=0,best=null,worst=null;COINS.forEach(([s])=>{const x=D.coins[s]&&D.coins[s].tfs[f];if(!x)return;n+=x.stats.n;w+=x.stats.w;sum+=x.stats.sum;if(!best||x.stats.sum>best[1])best=[s,x.stats.sum];if(!worst||x.stats.sum<worst[1])worst=[s,x.stats.sum]});
   h+=`<tr><td>${TFN[f]}</td><td class="mu">${TFK[f]}</td><td>${AR(n)}</td><td>${n?Math.round(w/n*100)+'%':'—'}</td><td class="num ${sum>=0?'up':'dn'}">${fR(sum)}</td><td>${best?best[0]+' <span class="up" style="direction:ltr;display:inline-block">'+fR(best[1])+'</span>':'—'}</td><td>${worst?worst[0]+' <span class="dn" style="direction:ltr;display:inline-block">'+fR(worst[1])+'</span>':'—'}</td></tr>`});
  $('perfT').innerHTML=h+'</tbody>'}
-function paintAll(){paintMatrix();paintDetail();paintOpen();paintPerf();riskCalc();if(window.G)G.sig();c3build()}
+function paintAll(){paintHero();paintMatrix();paintDetail();paintOpen();paintPerf();riskCalc();if(window.G)G.sig();c3build()}
 function select(s,f){sel=s;tf=f||tf;store.set('sel',sel);store.set('tf',tf);paintMatrix();paintDetail();riskCalc();tv();c3load()}
 
 /* ---------- live prices ---------- */
@@ -485,7 +554,7 @@ function riskCalc(){const bal=+$('rkBal').value||0,pct=+$('rkPct').value||0,lev=
  const t=allOpen().find(x=>x.id===$('rkTr').value);if(!t){$('rkSrc').textContent='—';return}$('rkSrc').textContent=t.s+' • '+TFN[t.tf];
  const amt=bal*pct/100,dist=Math.abs(t.entry-t.sl0),qty=dist?amt/dist:0,not=qty*t.entry,mar=not/lev;
  $('rkAmt').textContent='$'+fmt(amt,2);$('rkQty').textContent=fmt(qty,qty>=100?2:qty>=1?4:6)+' '+t.s;$('rkNot').textContent='$'+fmt(not,2);$('rkMar').textContent='$'+fmt(mar,2);
- $('rkT1').textContent='+$'+fmt(qty/2*Math.abs(t.tp1-t.entry),2);$('rkT2').textContent='+$'+fmt(qty/2*Math.abs(t.tp1-t.entry)+qty/2*Math.abs(t.tp2-t.entry),2);
+ {const f=FR(t);$('rkT1').textContent='+$'+fmt(qty*f*Math.abs(t.tp1-t.entry),2);$('rkT2').textContent='+$'+fmt(qty*f*Math.abs(t.tp1-t.entry)+qty*(1-f)*Math.abs(t.tp2-t.entry),2)}
  $('rkWarn').innerHTML=mar>bal?'<span class="dn">⚠ الهامش المطلوب أكبر من رصيدك — ارفع الرافعة أو قلّل المخاطرة.</span>':pct>2?'<span style="color:var(--gold)">⚠ مخاطرة أعلى من ٢٪ لكل صفقة مرتفعة.</span>':'الكمية محسوبة بحيث تخسر النسبة المحددة فقط إذا ضرب الوقف.'}
 ['rkBal','rkPct','rkLev','rkTr'].forEach(i=>$(i).addEventListener('input',riskCalc));
 const rk=store.get('rk',null);if(rk){$('rkBal').value=rk.bal;$('rkPct').value=rk.pct;$('rkLev').value=rk.lev}
@@ -607,7 +676,7 @@ function paintNews(){const n=AI&&AI.news;if(!n||!n.length)return;$('newsH').inne
 /* ---------- boot ---------- */
 setInterval(()=>{$('clock').textContent=new Date().toLocaleTimeString('en-GB',{timeZone:'Asia/Muscat'})+' مسقط'},1000);
 setInterval(load,60000);setInterval(tape,5000);setInterval(poll,10000);setInterval(ai,300000);setInterval(mood,300000);
-three();c3init();setInterval(paintSess,30000);paintSess();setInterval(paintTimer,15000);connect();setTimeout(poll,3000);paintDetail();tv();load();ai();mood();paintLog();paintJ();paintAlTf();tape();
+$('cmd').before($('detail'));setTab('home',1);three();c3init();setInterval(paintSess,30000);paintSess();setInterval(paintTimer,15000);connect();setTimeout(poll,3000);paintDetail();tv();load();ai();mood();paintLog();paintJ();paintAlTf();tape();
 widget('calW','https://s3.tradingview.com/external-embedding/embed-widget-events.js',{colorTheme:'light',isTransparent:false,width:'100%',height:'100%',locale:'ar_AE',importanceFilter:'0,1',countryFilter:'us,eu,cn,jp,gb'});
 widget('newsW','https://s3.tradingview.com/external-embedding/embed-widget-timeline.js',{feedMode:'market',market:'crypto',isTransparent:false,displayMode:'regular',width:'100%',height:'100%',colorTheme:'light',locale:'ar_AE'});
 </script>
