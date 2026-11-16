@@ -150,6 +150,14 @@ table.t{width:100%;border-collapse:collapse;font-size:13px}
 .ses i{width:9px;height:9px;border-radius:50%;background:#55627a;flex:none}.ses.on i{background:var(--up);box-shadow:0 0 8px var(--up)}
 .ses span{margin-inline-start:auto;color:var(--mut);font-size:12px;direction:ltr}
 .prog{height:10px;border-radius:6px;background:rgba(255,255,255,.08);overflow:hidden;margin:6px 0}.prog i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2))}
+.conf{display:grid;grid-template-columns:120px 1fr;gap:14px;align-items:center}
+.cring{position:relative;width:120px;height:120px}.cring svg{width:120px;height:120px;transform:rotate(-90deg)}.cring div{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}.cring b{font-size:26px;line-height:1}.cring small{font-size:11.5px;color:var(--mut);margin-top:4px}
+.cbars{display:grid;gap:9px}.cbar{display:grid;grid-template-columns:92px 1fr 42px;gap:8px;align-items:center;font-size:12.5px}.cbar span{color:var(--mut)}.cbar i{display:block;height:8px;border-radius:9px;background:rgba(255,255,255,.08);position:relative;overflow:hidden}.cbar i u{position:absolute;top:0;bottom:0;border-radius:9px}.cbar i:after{content:'';position:absolute;left:50%;top:-2px;bottom:-2px;width:1px;background:rgba(255,255,255,.35)}.cbar b{text-align:left;direction:ltr;font-size:12.5px}
+.banks{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}.bank{background:var(--in);border:1px solid rgba(215,166,73,.22);border-radius:14px;padding:11px 12px}.bank .bt{display:flex;justify-content:space-between;align-items:center;gap:6px}.bank .bt b{font-size:14px}.bank .rt{font-size:22px;font-weight:800;color:var(--fg);direction:ltr;text-align:right;margin:6px 0 2px}.bank p{margin:4px 0 0;font-size:12.5px;line-height:1.7;color:var(--mut)}.bank .nx{font-size:12px;color:var(--gold2)}
+.pill{font-size:11px;padding:2px 8px;border-radius:99px;white-space:nowrap}
+.evl{display:grid;gap:6px}.ev{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;background:var(--in);border-radius:12px;padding:8px 11px;font-size:13px}.ev time{color:var(--gold);font-size:12px;direction:ltr;white-space:nowrap}.ev em{font-style:normal;font-size:11px;color:var(--mut);white-space:nowrap}
+.flw{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:13px}.flw:last-child{border:0}.flw b{direction:ltr;white-space:nowrap}
+@media(max-width:520px){.conf{grid-template-columns:1fr;justify-items:center}.cbars{width:100%}}
 .nw{display:flex;gap:8px;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.06)}.nw:last-child{border:0}
 .nw em{font-style:normal;font-size:11px;padding:1px 7px;border-radius:99px;height:fit-content;white-space:nowrap}
 #scene{height:300px}
@@ -204,7 +212,7 @@ header{border-bottom:1px solid rgba(215,166,73,.18)}header .in{padding:9px 14px;
 </head>
 <body>
 <header><div class="in">
- <div class="logo"><img class="av" src="https://cdn.jsdelivr.net/gh/aumanalbalushi-collab/ayman@1b610c1a88794d2ad31beeb8d001a0bacc4b86ed/crypto-live/ayman-s.jpg" alt="Ayman Al-Balushi" width="40" height="40"><div><b style="white-space:nowrap">غرفة التداول</b><small class="en">Ayman Al-Balushi • ٥ فريمات • تحديث كل دقيقة</small></div></div>
+ <div class="logo"><img class="av" src="https://cdn.jsdelivr.net/gh/aumanalbalushi-collab/ayman@c5821f0e0fdc769a0a3b94a119f879dd64465a52/crypto-live/ayman-ws.jpg" alt="Ayman Al-Balushi" width="40" height="40"><div><b style="white-space:nowrap">غرفة التداول</b><small class="en">Ayman Al-Balushi • ٥ فريمات • تحديث كل دقيقة</small></div></div>
  <div class="hstat">
   <span><i class="dot" id="wsDot"></i><span id="wsTxt">جارٍ الاتصال…</span></span>
   <span id="upd">—</span>
@@ -229,7 +237,7 @@ header{border-bottom:1px solid rgba(215,166,73,.18)}header .in{padding:9px 14px;
 
 <div class="wrap">
  <section class="card" id="hero">
-  <div class="hh"><div class="who"><img class="av lg" src="https://cdn.jsdelivr.net/gh/aumanalbalushi-collab/ayman@1b610c1a88794d2ad31beeb8d001a0bacc4b86ed/crypto-live/ayman.jpg" alt="Ayman Al-Balushi" width="58" height="58"><div><small class="en">Ayman Al-Balushi</small><b>غرفة التداول</b></div></div><button class="hchip" id="heroSub">—</button></div>
+  <div class="hh"><div class="who"><img class="av lg" src="https://cdn.jsdelivr.net/gh/aumanalbalushi-collab/ayman@c5821f0e0fdc769a0a3b94a119f879dd64465a52/crypto-live/ayman-w.jpg" alt="Ayman Al-Balushi" width="58" height="58"><div><small class="en">Ayman Al-Balushi</small><b>غرفة التداول</b></div></div><button class="hchip" id="heroSub">—</button></div>
   <div class="hs"><div><b id="hN">—</b><span>صفقات مفتوحة</span></div><div><b id="hW">—</b><span>نسبة نجاح الروبوت</span></div><div><b id="hR">—</b><span>صافي النتيجة بعد العمولة</span></div></div>
   <div id="hBest"></div>
   <div id="riskB" class="riskb hid"></div>
@@ -245,6 +253,13 @@ header{border-bottom:1px solid rgba(215,166,73,.18)}header .in{padding:9px 14px;
  <section class="card" id="aiTop" style="margin-bottom:16px">
   <h2><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.8H20l-4.9 3.6 1.9 5.8L12 14.6l-4.9 3.6 1.9-5.8L4 8.8h6.1z"/></svg></span>تحليل Claude الآن<span class="r" id="aiTopT">—</span></h2>
   <div id="aiTopB"><div class="empty">جارٍ تحميل قراءة المحلل…</div></div>
+ </section>
+
+ <section class="card" id="conf" style="margin-bottom:16px">
+  <h2><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 12l5-3"/><circle cx="12" cy="12" r="1.6" fill="#fff"/></svg></span>النظرة الشاملة للسوق<span class="r" id="confT">فني + أساسي + مؤسسات + معنويات</span></h2>
+  <div class="conf"><div class="cring"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="50" fill="none" stroke="rgba(255,255,255,.09)" stroke-width="11"/><circle id="confArc" cx="60" cy="60" r="50" fill="none" stroke="#D7A649" stroke-width="11" stroke-linecap="round" stroke-dasharray="0 315"/></svg><div><b id="confN">—</b><small id="confL">جارٍ الحساب</small></div></div>
+  <div class="cbars" id="confB"></div></div>
+  <p class="sub" style="margin:10px 0 0" id="confW"></p>
  </section>
 
  <div class="grid">
@@ -302,7 +317,7 @@ header{border-bottom:1px solid rgba(215,166,73,.18)}header .in{padding:9px 14px;
 
  <section class="card" id="open" style="margin-top:16px">
   <h2><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></span>كل الصفقات المفتوحة<span class="r" id="openN">—</span></h2>
-  <p class="sub">الروبوت يدخل فقط مع اتجاه قوي: اتفاق أغلب الاستراتيجيات الثماني، موافقة الفريم الأعلى واتجاه البيتكوين، ومؤشر قوة الاتجاه ADX فوق الحد، وعلى خانات نجاحها ٧٠٪+ فقط. وكل صفقة عليها تقييم (A+ إلى C) من مراكز كبار المتداولين والأخبار ونظرة Claude. أرقام الصفقة <b style="color:var(--gold)">مقفلة</b> ومحسوبة على الخادم، فتظهر نفسها على كل الأجهزة حتى لو كانت الصفحة مغلقة. عند الهدف ١ يُغلق جزء من الصفقة ويُنقل الوقف للدخول، والباقي يكمل بوقف متحرك.</p>
+  <p class="sub">الروبوت يدخل فقط مع اتجاه قوي: اتفاق أغلب الاستراتيجيات الثماني، موافقة الفريم الأعلى واتجاه البيتكوين، ومؤشر قوة الاتجاه ADX فوق الحد، وعلى خانات نجاحها ٧٠٪+ فقط (والفريمات السريعة ٥ و١٥ دقيقة ٥٠٪+ للمضاربة). وكل صفقة عليها تقييم (A+ إلى C) من مراكز كبار المتداولين والأخبار ونظرة Claude. أرقام الصفقة <b style="color:var(--gold)">مقفلة</b> ومحسوبة على الخادم، فتظهر نفسها على كل الأجهزة حتى لو كانت الصفحة مغلقة. عند الهدف ١ يُغلق جزء من الصفقة ويُنقل الوقف للدخول، والباقي يكمل بوقف متحرك.</p>
   <div class="tfbar" id="openTf"></div>
   <div class="trades" id="trades" style="margin-top:10px"></div>
  </section>
@@ -366,6 +381,14 @@ header{border-bottom:1px solid rgba(215,166,73,.18)}header .in{padding:9px 14px;
   <div class="scroll"><table class="t" style="margin-top:8px"><thead><tr><th>التاريخ</th><th>العملة</th><th>الاتجاه</th><th class="num">دخول</th><th class="num">خروج</th><th class="num">الربح</th><th>ملاحظة</th><th></th></tr></thead><tbody id="jBody"></tbody></table></div>
  </section>
 
+ <section class="card" id="macro" style="margin-top:16px">
+  <h2><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10l9-6 9 6"/><path d="M5 10v8M9.5 10v8M14.5 10v8M19 10v8M3 21h18"/></svg></span>البنوك المركزية والمؤسسات<span class="r" id="mcT">—</span></h2>
+  <div id="mcS" class="box"><span class="mu">جارٍ تحميل التحليل الأساسي…</span></div>
+  <h3>أسعار الفائدة وتوجه البنوك</h3><div class="banks" id="mcB"></div>
+  <div class="g2" style="margin-top:4px"><div><h3>تدفقات المؤسسات وصناديق ETF</h3><div id="mcF"></div></div><div><h3>أحداث قوية قادمة</h3><div class="evl" id="mcE"></div></div></div>
+  <p class="sub" style="margin-top:10px">التشديد (رفع الفائدة) وقوة الدولار وخروج أموال الصناديق تضغط عادةً على الكريبتو، والتيسير ودخول الأموال يدعمه. القسم يتحدث مع كل قراءة من Claude.</p>
+ </section>
+
  <section class="card" id="news" style="margin-top:16px">
   <h2><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round"><path d="M4 4h13v16H6a2 2 0 0 1-2-2zM17 8h3v10a2 2 0 0 1-2 2"/><path d="M8 8h5M8 12h5M8 16h3"/></svg></span>أخبار الكريبتو المباشرة</h2>
   <div class="wid" id="newsW"></div>
@@ -409,17 +432,19 @@ function allOpen(){const o=[];if(!D)return o;COINS.forEach(([s])=>TFS.forEach(f=
 
 /* ---------- fetch ---------- */
 /* ===== تقييم جودة الصفقة: مؤسسات + أخبار + Claude فوق الشروط الفنية ===== */
+const MW=tf=>(D&&D.cfg&&D.cfg.MINWRTF&&D.cfg.MINWRTF[tf])||(D&&D.cfg&&D.cfg.MINWR)||70;
 function grade(t){const c=D.coins[t.s]||{},i=c.inst||{},ai=AI&&AI.coins&&AI.coins[t.s],d=t.dir,p=[];let g=0;
  if(t.wr>=80){g+=2;p.push([1,'نسبة نجاح الخانة '+t.wr+'%'])}else if(t.wr>=75){g+=1;p.push([1,'نسبة نجاح الخانة '+t.wr+'%'])}
  if(i.top){const ok=d>0?i.top>1:i.top<1;if(ok)g+=1;p.push([ok?1:0,ok?'كبار المتداولين مع اتجاه الصفقة':'كبار المتداولين عكس الصفقة'])}
  if(i.crowd){const ok=d>0?i.crowd<1:i.crowd>1;if(ok)g+=1;p.push([ok?1:0,ok?'أغلبية الحسابات في الاتجاه المعاكس (إيجابي)':'أغلبية الحسابات في نفس الاتجاه (ازدحام)'])}
  if(ai&&ai.bias&&ai.bias!=='neutral'){const ok=(ai.bias==='bullish')===(d>0);g+=ok?1:-1;p.push([ok?1:0,ok?'نظرة Claude الأساسية مع الصفقة':'نظرة Claude الأساسية عكس الصفقة'])}
+ const mb=AI&&AI.macro&&AI.macro.bias;if(mb&&mb!=='neutral'){const ok=(mb==='bullish')===(d>0);g+=ok?1:-1;p.push([ok?1:0,ok?'البنوك المركزية والمؤسسات مع الصفقة':'البنوك المركزية والمؤسسات عكس الصفقة'])}
  if(AI&&AI.risk&&AI.risk.level==='high'){g-=1;p.push([0,'خبر قوي قريب: خفّف حجم الصفقة'])}
  const L=g>=4?'A+':g>=3?'A':g>=2?'B':'C';return{g,L,p}}
 function gradeHtml(t){const G=grade(t);return`<div class="grd"><b class="gr g${G.L[0]}">${G.L}</b><span>${G.p.map(x=>`<i class="${x[0]?'up':'dn'}">${x[0]?'✓':'✗'}</i> ${x[1]}`).join(' • ')||'لا توجد بيانات إضافية الآن'}</span></div>`}
 function paintRisk(){const r=AI&&AI.risk,el=$('riskB');if(!el)return;if(!r||!r.level||r.level==='low'){el.classList.add('hid');return}el.classList.remove('hid');el.className='riskb '+(r.level==='high'?'hi':'md');el.innerHTML=`<b>${r.level==='high'?'تنبيه: خبر قوي التأثير قريب':'انتبه: أخبار متوسطة التأثير'}</b><span>${esc(r.note||'')}</span>`}
 /* ===== تبويبات التطبيق ===== */
-const TABS={home:['hero','aiTop','matrix','world'],trades:['open','perf'],an:['detail','cmd','chart','aiFull','news'],tools:['risk','alertsC','cal','journal'],me:['acct']};
+const TABS={home:['hero','aiTop','conf','matrix','world'],trades:['open','perf'],an:['detail','macro','cmd','chart','aiFull','news'],tools:['risk','alertsC','cal','journal'],me:['acct']};
 let TAB='home';
 function setTab(t,keep){if(!TABS[t])t='home';TAB=t;const show=new Set(TABS[t]);document.querySelectorAll('.wrap section').forEach(x=>x.classList.toggle('hid',!show.has(x.id)));
  document.querySelectorAll('.wrap>.grid,.wrap>.g2').forEach(g=>g.classList.toggle('hid',![...g.children].some(c=>!c.classList.contains('hid'))));
@@ -464,7 +489,7 @@ async function load(){try{await ensureKey();if(K&&!SES){const a=await session(K)
  alerts();paintAll()}catch(e){$('upd').textContent='تعذّر تحديث الإشارات — إعادة المحاولة خلال دقيقة'}}
 async function ai(){try{const d=await(await fetch('analysis.json?t='+Date.now(),{cache:'no-store'})).json();AI=d;if(!d||!d.text)return;
  $('aiT').textContent=d.updated?tStr(Date.parse(d.updated)):'';$('ai').innerHTML='';if(d.headline){const h=document.createElement('div');h.style.cssText='color:var(--gold);font-size:16px;margin-bottom:6px';h.textContent=d.headline;$('ai').appendChild(h)}
- const t=document.createElement('div');t.textContent=d.text;$('ai').appendChild(t);paintAiTop();paintRisk();if(D)paintAll();else paintDetail();paintNews()}catch(e){}}
+ const t=document.createElement('div');t.textContent=d.text;$('ai').appendChild(t);paintAiTop();paintRisk();paintMacro();if(D)paintAll();else{paintDetail();paintConf()}paintNews()}catch(e){}}
 function paintAiTop(){const d=AI;if(!d||!d.text)return;$('aiTopT').textContent=d.updated?'آخر تحديث '+tStr(Date.parse(d.updated)):'';
  const BN={bullish:['b-up','إيجابي'],bearish:['b-dn','سلبي'],neutral:['b-nt','محايد']};
  const chips=d.coins?Object.entries(d.coins).map(([k,v])=>{const b=BN[v.bias]||BN.neutral;return`<span class="${b[0]}" title="${esc(v.note||'')}">${k} ${b[1]}</span>`}).join(''):'';
@@ -520,7 +545,7 @@ function paintDetail(){const d=P[sel];$('selName').textContent=`${nameOf(sel)} �
  const[lb,c]=label(x.score);$('needle').style.transform=`rotate(${x.score*.9}deg)`;$('vTxt').textContent=lb+' — '+TFN[tf];$('vTxt').className='v '+(c==='nt'?'':c);
  $('verdict').style.borderColor=c==='up'?'var(--up)':c==='dn'?'var(--dn)':'var(--line)';
  const cf=D.cfgs[tf],dr=Math.sign(x.score),gate=Math.abs(x.score)>=cf.TH&&x.agree>=cf.AGREE&&x.htf===dr&&x.adx>=cf.ADX&&(!cf.BTCF||x.btc==null||x.btc===dr);
- $('vWhy').innerHTML=`القوة ${Math.abs(x.score)}/100 • ${x.agree} من ٨ استراتيجيات متفقة • الفريم الأعلى ${x.htf>0?'<span class="up">صاعد</span>':x.htf<0?'<span class="dn">هابط</span>':'—'} • RSI ${x.rsi.toFixed(0)} • قوة الاتجاه ADX <b class="${x.adx>=cf.ADX?'up':'mu'}">${x.adx!=null?x.adx.toFixed(0):'—'}</b>/${cf.ADX}${cf.BTCF&&x.btc!=null?` • اتجاه البيتكوين ${x.btc>0?'<span class="up">صاعد</span>':'<span class="dn">هابط</span>'}`:''}<br>${gate?'<span class="up">✔ شروط الدخول متحققة على آخر شمعة مغلقة</span>':`<span class="mu">شروط الدخول: قوة ${cf.TH}+، اتفاق ${cf.AGREE} من ٨، موافقة الفريم الأعلى${cf.BTCF?' والبيتكوين':''}، اتجاه قوي (ADX ${cf.ADX}+)، وخانة ناجحة ${D.cfg.MINWR}٪+ ورابحة بعد التكاليف</span>`}`;
+ $('vWhy').innerHTML=`القوة ${Math.abs(x.score)}/100 • ${x.agree} من ٨ استراتيجيات متفقة • الفريم الأعلى ${x.htf>0?'<span class="up">صاعد</span>':x.htf<0?'<span class="dn">هابط</span>':'—'} • RSI ${x.rsi.toFixed(0)} • قوة الاتجاه ADX <b class="${x.adx>=cf.ADX?'up':'mu'}">${x.adx!=null?x.adx.toFixed(0):'—'}</b>/${cf.ADX}${cf.BTCF&&x.btc!=null?` • اتجاه البيتكوين ${x.btc>0?'<span class="up">صاعد</span>':'<span class="dn">هابط</span>'}`:''}<br>${gate?'<span class="up">✔ شروط الدخول متحققة على آخر شمعة مغلقة</span>':`<span class="mu">شروط الدخول: قوة ${cf.TH}+، اتفاق ${cf.AGREE} من ٨، موافقة الفريم الأعلى${cf.BTCF?' والبيتكوين':''}، اتجاه قوي (ADX ${cf.ADX}+)، وخانة ناجحة ${MW(tf)}٪+ ورابحة بعد التكاليف</span>`}`;
  $('votes').innerHTML=Object.keys(D.weights).map(k=>{const v=x.votes[k],w=Math.abs(v)*50;return`<div class="vt"><span style="min-width:118px">${D.names[k]}</span><div class="bar2"><i style="${v>=0?'left:50%':'right:50%'};width:${w}%;background:${v>0?'var(--up)':v<0?'var(--dn)':'transparent'}"></i></div><span class="${v>0?'up':v<0?'dn':'mu'}" style="min-width:34px;text-align:left">${v>0?'شراء':v<0?'بيع':'—'}</span></div>`}).join('');
  const se=C.sent||{},cb=AI&&AI.coins&&AI.coins[sel];
  $('fund').innerHTML=`<div><b class="${cb?(cb.bias==='bullish'?'up':cb.bias==='bearish'?'dn':''):'mu'}">${cb?({bullish:'إيجابية',bearish:'سلبية',neutral:'محايدة'}[cb.bias]||'—'):'—'}</b><span>نظرة Claude الأساسية</span></div><div><b class="${se.funding>0?'up':se.funding<0?'dn':''}">${se.funding!=null?(se.funding*100).toFixed(4)+'%':'—'}</b><span>معدل التمويل</span></div><div><b>${se.ls!=null?`<span class="up">${(100*se.ls/(1+se.ls)).toFixed(0)}%</span> / <span class="dn">${(100/(1+se.ls)).toFixed(0)}%</span>`:'—'}</b><span>حسابات شراء / بيع (عقود)</span></div>${C.inst&&C.inst.top?`<div><b><span class="up">${(100*C.inst.top/(1+C.inst.top)).toFixed(0)}%</span> / <span class="dn">${(100/(1+C.inst.top)).toFixed(0)}%</span></b><span>كبار المتداولين: شراء / بيع</span></div>`:''}<div><b class="${se.oiChg>0?'up':se.oiChg<0?'dn':''}">${se.oiChg!=null?(se.oiChg>0?'+':'')+se.oiChg.toFixed(1)+'%':se.oiUsd?'$'+big(se.oiUsd):'—'}</b><span>${se.oiChg!=null?'تغير العقود المفتوحة ٢٤س':'العقود المفتوحة'}</span></div>`;
@@ -531,8 +556,8 @@ function paintDetail(){const d=P[sel];$('selName').textContent=`${nameOf(sel)} �
  if(cb&&cb.note)ex+=`<br><span class="mu">${esc(cb.note)}</span>`;
  if(x.flow!=null)ex=`<div class="flow" style="margin:0 0 8px"><b>نسبة الشراء والبيع (آخر ٢٤ شمعة ${TFN[tf]})</b><div class="fb"><i dir="rtl" class="b" style="width:${x.flow}%">شراء ${x.flow.toFixed(0)}%</i><i dir="rtl" class="s" style="width:${100-x.flow}%">بيع ${(100-x.flow).toFixed(0)}%</i></div><small>من حجم التداول الفعلي على Binance (المشترون المبادرون مقابل البائعين)</small></div>`+ex;
  $('expert').innerHTML=ex;
- $('selTrade').innerHTML=x.trade?tradeCard({...x.trade,s:sel,tf,id:sel+tf+x.trade.t,wr:x.stats.wr,flow:x.flow}):x.off?`<div class="box"><b style="color:var(--gold)">صفقات فريم ${TFN[tf]} متوقفة</b><br><span class="mu">في الاختبار على ٦٠٠٠ شمعة لكل عملة، ما ثبت لهذا الفريم إعداد رابح بنسبة نجاح ٧٠٪+ بعد خصم العمولة، فالروبوت يعرض التحليل فقط وما يفتح عليه صفقات.</span></div>`:!x.ok?`<div class="box"><b class="dn">غير معتمد: ${sel} على ${TFN[tf]}</b><br><span class="mu">نسبة النجاح ${x.stats.wr}% وصافي النتيجة ${fR(x.stats.sum)} بعد التكاليف. الروبوت يفتح فقط على الخانات اللي نجاحها ${D.cfg.MINWR}%+ وصافيها موجب.</span></div>`:`<div class="box"><b style="color:var(--gold)">لا توجد صفقة مفتوحة على ${sel} — ${TFN[tf]}</b><br><span class="mu">الروبوت ينتظر شمعة مغلقة تحقق الشروط، والتحليل يتحدث تلقائيًا.</span></div>`;
- const st=x.stats;$('tfStats').innerHTML=`<div><b>${AR(st.n)}</b><span>صفقات منذ ${new Date(st.from).toLocaleDateString('en-GB',{day:'2-digit',month:'2-digit'})}</span></div><div><b class="${st.wr>=D.cfg.MINWR?'up':'dn'}">${st.n?st.wr+'%':'—'}</b><span>نسبة النجاح</span></div><div><b class="${st.sum>=0?'up':'dn'}">${fR(st.sum)}</b><span>صافي النتيجة</span></div><div><b class="dn">-${st.dd.toFixed(1)}R</b><span>أقصى تراجع</span></div>`;
+ $('selTrade').innerHTML=x.trade?tradeCard({...x.trade,s:sel,tf,id:sel+tf+x.trade.t,wr:x.stats.wr,flow:x.flow}):x.off?`<div class="box"><b style="color:var(--gold)">صفقات فريم ${TFN[tf]} متوقفة</b><br><span class="mu">في الاختبار على ٦٠٠٠ شمعة لكل عملة، ما ثبت لهذا الفريم إعداد رابح بنسبة نجاح ٧٠٪+ بعد خصم العمولة، فالروبوت يعرض التحليل فقط وما يفتح عليه صفقات.</span></div>`:!x.ok?`<div class="box"><b class="dn">غير معتمد: ${sel} على ${TFN[tf]}</b><br><span class="mu">نسبة النجاح ${x.stats.wr}% وصافي النتيجة ${fR(x.stats.sum)} بعد التكاليف. الروبوت يفتح فقط على الخانات اللي نجاحها ${MW(tf)}%+ وصافيها موجب.</span></div>`:`<div class="box"><b style="color:var(--gold)">لا توجد صفقة مفتوحة على ${sel} — ${TFN[tf]}</b><br><span class="mu">الروبوت ينتظر شمعة مغلقة تحقق الشروط، والتحليل يتحدث تلقائيًا.</span></div>`;
+ const st=x.stats;$('tfStats').innerHTML=`<div><b>${AR(st.n)}</b><span>صفقات منذ ${new Date(st.from).toLocaleDateString('en-GB',{day:'2-digit',month:'2-digit'})}</span></div><div><b class="${st.wr>=MW(tf)?'up':'dn'}">${st.n?st.wr+'%':'—'}</b><span>نسبة النجاح</span></div><div><b class="${st.sum>=0?'up':'dn'}">${fR(st.sum)}</b><span>صافي النتيجة</span></div><div><b class="dn">-${st.dd.toFixed(1)}R</b><span>أقصى تراجع</span></div>`;
  curve($('tfEq'),st.curve);
  const wl={sl:'وقف',tp2:'الهدف ٢',rev:'إشارة معاكسة',exp:'انتهاء المدة',be:'هدف ١ ثم الدخول',trail:'هدف ١ ثم وقف متحرك'};
  $('recent').innerHTML='<thead><tr><th>آخر الصفقات</th><th>الخروج</th><th class="num">R</th></tr></thead><tbody>'+(x.recent.map(t=>`<tr><td>${t.dir>0?'<span class="up">شراء</span>':'<span class="dn">بيع</span>'} @ <span style="direction:ltr;display:inline-block">${fmt(t.entry)}</span><br><small class="mu">${tStr(t.t)}</small></td><td>${t.tp1hit&&t.why==='sl'?'هدف ١ ثم الدخول':wl[t.why]}</td><td class="num ${t.r>=0?'up':'dn'}">${fR(t.r)}</td></tr>`).join('')||'<tr><td colspan="3" class="mu">—</td></tr>')+'</tbody>';
@@ -548,7 +573,7 @@ function paintPerf(){if(!D)return;let h='<thead><tr><th>الفريم</th><th>ا�
  TFS.forEach(f=>{if(D.cfgs[f].OFF){h+=`<tr><td>${TFN[f]}</td><td class="mu" colspan="6">متوقف — ما ثبت له ربح بنسبة ٧٠٪+ بعد العمولة، يُعرض للتحليل فقط</td></tr>`;return}let n=0,w=0,sum=0,best=null,worst=null;COINS.forEach(([s])=>{const x=D.coins[s]&&D.coins[s].tfs[f];if(!x)return;n+=x.stats.n;w+=x.stats.w;sum+=x.stats.sum;if(!best||x.stats.sum>best[1])best=[s,x.stats.sum];if(!worst||x.stats.sum<worst[1])worst=[s,x.stats.sum]});
   h+=`<tr><td>${TFN[f]}</td><td class="mu">${TFK[f]}</td><td>${AR(n)}</td><td>${n?Math.round(w/n*100)+'%':'—'}</td><td class="num ${sum>=0?'up':'dn'}">${fR(sum)}</td><td>${best?best[0]+' <span class="up" style="direction:ltr;display:inline-block">'+fR(best[1])+'</span>':'—'}</td><td>${worst?worst[0]+' <span class="dn" style="direction:ltr;display:inline-block">'+fR(worst[1])+'</span>':'—'}</td></tr>`});
  $('perfT').innerHTML=h+'</tbody>'}
-function paintAll(){paintHero();paintMatrix();paintDetail();paintOpen();paintPerf();riskCalc();if(window.G)G.sig();c3build()}
+function paintAll(){paintConf();paintHero();paintMatrix();paintDetail();paintOpen();paintPerf();riskCalc();if(window.G)G.sig();c3build()}
 function select(s,f){sel=s;tf=f||tf;store.set('sel',sel);store.set('tf',tf);paintMatrix();paintDetail();riskCalc();tv();c3load()}
 
 /* ---------- live prices ---------- */
@@ -598,7 +623,7 @@ function paintAlTf(){const w=store.get('alTf',['15m','1h','4h']);$('alTf').inner
 function tv(){$('chT').textContent=sel+' • '+TFN[tf];$('tv').innerHTML='';const f=document.createElement('iframe');f.style.cssText='width:100%;height:100%;border:0';f.title='الشارت';f.loading='lazy';
  f.src='https://s.tradingview.com/widgetembed/?symbol=BINANCE%3A'+sel+'USDT&interval='+TVI[tf]+'&theme=light&style=1&locale=ar_AE&timezone=Asia%2FMuscat&studies=%5B%22RSI%40tv-basicstudies%22%2C%22MACD%40tv-basicstudies%22%2C%22IchimokuCloud%40tv-basicstudies%22%5D&allow_symbol_change=1';$('tv').appendChild(f)}
 function widget(el,src,cfg){const d=$(el);d.innerHTML='<div class="tradingview-widget-container" style="height:100%"><div class="tradingview-widget-container__widget" style="height:100%"></div></div>';const s=document.createElement('script');s.src=src;s.async=true;s.textContent=JSON.stringify(cfg);d.firstChild.appendChild(s)}
-async function mood(){try{const r=await(await fetch('https://api.alternative.me/fng/?limit=1')).json();const v=+r.data[0].value;$('fngN').textContent=v;$('fngN').className=v<25?'dn':v>75?'up':'';$('fngL').textContent='الخوف والطمع: '+({'Extreme Fear':'خوف شديد','Fear':'خوف','Neutral':'محايد','Greed':'طمع','Extreme Greed':'طمع شديد'}[r.data[0].value_classification]||'')}catch(e){}
+async function mood(){try{const r=await(await fetch('https://api.alternative.me/fng/?limit=1')).json();const v=+r.data[0].value;FNG=v;paintConf();$('fngN').textContent=v;$('fngN').className=v<25?'dn':v>75?'up':'';$('fngL').textContent='الخوف والطمع: '+({'Extreme Fear':'خوف شديد','Fear':'خوف','Neutral':'محايد','Greed':'طمع','Extreme Greed':'طمع شديد'}[r.data[0].value_classification]||'')}catch(e){}
  try{const g=(await(await fetch('https://api.coingecko.com/api/v3/global')).json()).data;$('gCap').textContent='$'+big(g.total_market_cap.usd);$('gDom').textContent=g.market_cap_percentage.btc.toFixed(1)+'%';const ch=g.market_cap_change_percentage_24h_usd;$('gChg').innerHTML=`<span class="${ch>=0?'up':'dn'}">${ch>=0?'+':''}${ch.toFixed(2)}%</span>`}catch(e){}}
 
 /* ---------- 3D: globe with world sessions + orbiting coins ---------- */
@@ -689,6 +714,27 @@ function paintTimer(){const x=D&&D.coins[sel]&&D.coins[sel].tfs[tf],tr=x&&x.trad
  if(!tr){$('tTimer').innerHTML=`<b class="hh">وقت الصفقة</b><span class="mu">لا توجد صفقة مفتوحة على ${sel} — ${TFN[tf]}. الروبوت يراقب كل شمعة.</span>`;return}
  const el=Date.now()-tr.t,max=48*TFMS[tf],p=Math.min(100,el/max*100),rem=Math.max(0,max-el),f=ms=>{const m=Math.floor(ms/6e4),d=Math.floor(m/1440),h=Math.floor(m%1440/60),mm=m%60;return(d?d+'ي ':'')+(h?h+'س ':'')+mm+'د'},r=liveR(tr,pxOf(sel));
  $('tTimer').innerHTML=`<b class="hh">وقت الصفقة — ${tr.dir>0?'<span class="up">شراء</span>':'<span class="dn">بيع</span>'} ${sel} (${TFN[tf]})</b>مضى <b>${f(el)}</b> • متبقٍ حتى الإغلاق الزمني <b>${f(rem)}</b><div class="prog"><i style="width:${p}%"></i></div>النتيجة الآن <b class="${r>=0?'up':'dn'}" style="direction:ltr;display:inline-block">${fR(r)}</b>${tr.tp1hit?' • <span class="up">الهدف ١ تحقق والوقف على الدخول</span>':''}`}
+let FNG=null;
+/* ===== النظرة الشاملة: فني ٤٠٪ + أساسي ٣٠٪ + مؤسسات ٢٠٪ + معنويات ١٠٪ ===== */
+function paintConf(){if(!$('confB'))return;const cl=v=>Math.max(-100,Math.min(100,Math.round(v)));let tech=null,fund=null,inst=null,sent=null;
+ if(D&&D.coins){let a=[];COINS.forEach(([s])=>{const c=D.coins[s];if(!c)return;['1h','4h','1d'].forEach(f=>{const x=c.tfs[f];if(x&&x.score!=null)a.push(x.score)})});if(a.length)tech=cl(a.reduce((x,y)=>x+y,0)/a.length);
+  let b=[];COINS.forEach(([s])=>{const i=D.coins[s]&&D.coins[s].inst;if(i&&i.top)b.push((i.top/(1+i.top)-.5)*400)});if(b.length)inst=cl(b.reduce((x,y)=>x+y,0)/b.length)}
+ if(AI){const bv={bullish:1,bearish:-1,neutral:0};let f=0,w=0;if(AI.macro&&AI.macro.bias){f+=bv[AI.macro.bias]*60;w+=.6}if(AI.coins){const v=Object.values(AI.coins).map(x=>bv[x.bias]||0);if(v.length){f+=v.reduce((x,y)=>x+y,0)/v.length*40;w+=.4}}if(w)fund=cl(f/w)}
+ if(FNG!=null)sent=cl((FNG-50)*2);
+ const parts=[['التحليل الفني',tech,.4],['الأساسي والبنوك',fund,.3],['كبار المتداولين',inst,.2],['معنويات السوق',sent,.1]];let tw=0,tv=0;parts.forEach(p=>{if(p[1]!=null){tw+=p[2];tv+=p[1]*p[2]}});
+ $('confB').innerHTML=parts.map(([n,v])=>`<div class="cbar"><span>${n}</span><i>${v==null?'':`<u style="${v>=0?'left:50%':'right:50%'};width:${Math.abs(v)/2}%;background:${v>=0?'var(--up)':'var(--dn)'}"></u>`}</i><b class="${v==null?'mu':v>0?'up':v<0?'dn':''}">${v==null?'—':(v>0?'+':'')+v}</b></div>`).join('');
+ if(!tw)return;const T=cl(tv/tw),L=T>=40?['صعود قوي','up']:T>=15?['ميل للصعود','up']:T<=-40?['هبوط قوي','dn']:T<=-15?['ميل للهبوط','dn']:['محايد / تذبذب',''];
+ $('confN').textContent=(T>0?'+':'')+T;$('confN').className=L[1];$('confL').textContent=L[0];const arc=$('confArc');arc.setAttribute('stroke',T>=15?'#2fd48a':T<=-15?'#ff5d6c':'#D7A649');arc.setAttribute('stroke-dasharray',(Math.abs(T)/100*314).toFixed(0)+' 315');
+ const agree=parts.filter(p=>p[1]!=null&&Math.abs(p[1])>=15),up=agree.filter(p=>p[1]>0).length,dn=agree.filter(p=>p[1]<0).length;
+ $('confW').innerHTML=up&&dn?`<b style="color:var(--gold)">العوامل متعارضة</b> — ${up} مع الصعود و${dn} مع الهبوط: صفقات أصغر وأهداف أقرب.`:up+dn>=3?`<b class="${up?'up':'dn'}">توافق قوي</b> — ${up+dn} عوامل في نفس الاتجاه: الصفقات ${up?'الشرائية':'البيعية'} لها أفضلية.`:'العوامل غير حاسمة الآن: التزم بصفقات الروبوت المعتمدة وإدارة المخاطرة.'}
+function paintMacro(){const m=AI&&AI.macro;if(!m||!$('mcB'))return;const ST={hawkish:['b-dn','تشديد'],dovish:['b-up','تيسير'],neutral:['b-nt','محايد']},IM={bullish:['b-up','إيجابي'],bearish:['b-dn','سلبي'],neutral:['b-nt','محايد']};
+ $('mcT').textContent=AI.updated?'آخر تحديث '+tStr(Date.parse(AI.updated)):'';const bi=IM[m.bias]||IM.neutral;
+ $('mcS').innerHTML=`<span class="pill ${bi[0]}">أثرها على الكريبتو: ${bi[1]}</span><div style="margin-top:7px;line-height:1.85">${esc(m.summary||'')}</div>`;
+ const dd=x=>{const t=Date.parse(x);if(isNaN(t))return esc(x||'');const n=Math.ceil((t-Date.now())/864e5);return new Date(t).toLocaleDateString('ar-OM-u-nu-latn',{day:'numeric',month:'long',timeZone:'Asia/Muscat'})+(n>=0?` • بعد ${n} يوم`:'')};
+ $('mcB').innerHTML=(m.banks||[]).map(b=>{const st=ST[b.stance]||ST.neutral;return`<div class="bank"><div class="bt"><b>${esc(b.n)}</b><span class="pill ${st[0]}">${st[1]}</span></div><div class="rt">${esc(b.rate||'—')}</div><div class="nx">القرار القادم: ${dd(b.next)}</div><p>${esc(b.last||'')}${b.note?'<br>'+esc(b.note):''}</p></div>`}).join('');
+ $('mcF').innerHTML=(m.flows||[]).map(f=>{const c=IM[f.impact]||IM.neutral;return`<div class="flw"><span><span class="pill ${c[0]}">${c[1]}</span> ${esc(f.t)}</span><b class="${f.impact==='bullish'?'up':f.impact==='bearish'?'dn':''}">${esc(f.v)}</b></div>`}).join('')||'<span class="mu">—</span>';
+ const ev=(m.events||[]).filter(e=>Date.parse(e.at)>Date.now()-36e5).sort((a,b)=>Date.parse(a.at)-Date.parse(b.at));
+ $('mcE').innerHTML=ev.map(e=>`<div class="ev"><time>${new Date(Date.parse(e.at)).toLocaleString('en-GB',{timeZone:'Asia/Muscat',weekday:'short',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})}</time><span>${esc(e.t)}</span><em><b class="stg">${'●'.repeat(Math.min(3,e.strength||1))}${'○'.repeat(3-Math.min(3,e.strength||1))}</b></em></div>`).join('')||'<span class="mu">لا أحداث قوية مسجلة.</span>'}
 function paintNews(){const n=AI&&AI.news;if(!n||!n.length)return;$('newsH').innerHTML=n.slice(0,6).map(x=>`<div class="nw"><em class="${x.impact==='bullish'?'b-up':x.impact==='bearish'?'b-dn':'b-nt'}">${x.impact==='bullish'?'إيجابي':x.impact==='bearish'?'سلبي':'محايد'}</em><span>${x.strength?`<b class="stg" title="قوة التأثير">${'●'.repeat(Math.min(3,x.strength))}${'○'.repeat(3-Math.min(3,x.strength))}</b> `:''}${esc(x.t)}${x.coins&&x.coins.length?' <small class="mu">('+x.coins.map(esc).join('، ')+')</small>':''}</span></div>`).join('')}
 
 /* ---------- boot ---------- */
