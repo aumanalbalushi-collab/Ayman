@@ -150,6 +150,10 @@ table.t{width:100%;border-collapse:collapse;font-size:13px}
 .ses i{width:9px;height:9px;border-radius:50%;background:#55627a;flex:none}.ses.on i{background:var(--up);box-shadow:0 0 8px var(--up)}
 .ses span{margin-inline-start:auto;color:var(--mut);font-size:12px;direction:ltr}
 .prog{height:10px;border-radius:6px;background:rgba(255,255,255,.08);overflow:hidden;margin:6px 0}.prog i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2))}
+.fx{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:760px){.fx{grid-template-columns:1fr}}
+.fc{background:var(--in);border:1px solid rgba(215,166,73,.28);border-radius:16px;padding:12px}.fc .ft{display:flex;align-items:center;gap:10px}.fc .ft .cic{width:40px;height:40px;font-size:12px}.fc .ft b{font-size:17px}.fc .px{margin-inline-start:auto;text-align:left;direction:ltr}.fc .px b{font-size:19px;display:block}.fc .px small{font-size:12px}
+.ftf{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:10px}.ftf button{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:11px;padding:7px 2px;color:var(--fg);font:inherit;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;min-width:0}.ftf button:hover{border-color:var(--gold)}.ftf button.L{border-color:var(--up);background:rgba(47,212,138,.12)}.ftf button.S{border-color:var(--dn);background:rgba(255,93,108,.12)}.ftf small{font-size:10.5px;color:var(--mut)}.ftf b{font-size:12.5px}.ftf i{font-style:normal;font-size:10px;color:var(--mut)}
+.fmeta{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;font-size:12px}.fmeta span{background:rgba(255,255,255,.05);border-radius:99px;padding:3px 9px}.flv{display:flex;justify-content:space-between;gap:8px;margin-top:8px;font-size:12.5px}.flv b{direction:ltr;display:inline-block}.fnx{margin-top:8px;font-size:12.5px;line-height:1.7;color:var(--mut)}
 .conf{display:grid;grid-template-columns:120px 1fr;gap:14px;align-items:center}
 .cring{position:relative;width:120px;height:120px}.cring svg{width:120px;height:120px;transform:rotate(-90deg)}.cring div{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}.cring b{font-size:26px;line-height:1;direction:ltr}.cring small{font-size:11.5px;color:var(--mut);margin-top:4px}
 .cbars{display:grid;gap:9px}.cbar{display:grid;grid-template-columns:92px 1fr 42px;gap:8px;align-items:center;font-size:12.5px}.cbar span{color:var(--mut)}.cbar i{display:block;height:8px;border-radius:9px;background:rgba(255,255,255,.08);position:relative;overflow:hidden}.cbar i u{position:absolute;top:0;bottom:0;border-radius:9px}.cbar i:after{content:'';position:absolute;left:50%;top:-2px;bottom:-2px;width:1px;background:rgba(255,255,255,.35)}.cbar b{text-align:left;direction:ltr;font-size:12.5px}
@@ -253,6 +257,11 @@ header{border-bottom:1px solid rgba(215,166,73,.18)}header .in{padding:9px 14px;
  <section class="card" id="aiTop" style="margin-bottom:16px">
   <h2><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.8H20l-4.9 3.6 1.9 5.8L12 14.6l-4.9 3.6 1.9-5.8L4 8.8h6.1z"/></svg></span>تحليل Claude الآن<span class="r" id="aiTopT">—</span></h2>
   <div id="aiTopB"><div class="empty">جارٍ تحميل قراءة المحلل…</div></div>
+ </section>
+
+ <section class="card" id="focus" style="margin-bottom:16px">
+  <h2><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 7.5h4a2 2 0 0 1 0 4h-4zM9.5 11.5h4.5a2 2 0 0 1 0 4H9.5zM9.5 6v12M11.5 6v1.5M11.5 16.5V18"/></svg></span>تركيز: البيتكوين والإيثيريوم<span class="r">إعدادات روبوت خاصة بهما • اضغط أي فريم</span></h2>
+  <div class="fx" id="fx"></div>
  </section>
 
  <section class="card" id="conf" style="margin-bottom:16px">
@@ -425,7 +434,8 @@ const P={};COINS.forEach(([s])=>P[s]={px:0,chg:0,hi:0,lo:0,qv:0});
 /* ---------- live R ---------- */
 function rOf(t,px){return t.dir*(px-t.entry)/Math.abs(t.entry-t.sl0)}
 function k1(t){return Math.abs(t.tp1-t.entry)/Math.abs(t.entry-t.sl0)}function k2(t){return Math.abs(t.tp2-t.entry)/Math.abs(t.entry-t.sl0)}
-function FR(t){return(D&&D.cfgs&&D.cfgs[t.tf]||{}).F||0.5}function pctF(t){return AR(Math.round(FR(t)*100))}
+const CFX=(c,f)=>D&&D.cfgs?(D.cfgs[c+':'+f]||D.cfgs[f]):null;
+function FR(t){return(CFX(t.s,t.tf)||{}).F||0.5}function pctF(t){return AR(Math.round(FR(t)*100))}
 function liveR(t,px){const r=rOf(t,px),f=FR(t);return t.tp1hit?f*k1(t)+(1-f)*r:r}
 const pxOf=s=>P[s].px||(D&&D.coins[s]&&D.coins[s].px)||0;
 function allOpen(){const o=[];if(!D)return o;COINS.forEach(([s])=>TFS.forEach(f=>{const x=D.coins[s]&&D.coins[s].tfs[f];if(x&&x.trade)o.push({...x.trade,s,tf:f,id:s+f+x.trade.t,wr:x.stats.wr,flow:x.flow})}));return o.sort((a,b)=>b.t-a.t)}
@@ -444,7 +454,7 @@ function grade(t){const c=D.coins[t.s]||{},i=c.inst||{},ai=AI&&AI.coins&&AI.coin
 function gradeHtml(t){const G=grade(t);return`<div class="grd"><b class="gr g${G.L[0]}">${G.L}</b><span>${G.p.map(x=>`<i class="${x[0]?'up':'dn'}">${x[0]?'✓':'✗'}</i> ${x[1]}`).join(' • ')||'لا توجد بيانات إضافية الآن'}</span></div>`}
 function paintRisk(){const r=AI&&AI.risk,el=$('riskB');if(!el)return;if(!r||!r.level||r.level==='low'){el.classList.add('hid');return}el.classList.remove('hid');el.className='riskb '+(r.level==='high'?'hi':'md');el.innerHTML=`<b>${r.level==='high'?'تنبيه: خبر قوي التأثير قريب':'انتبه: أخبار متوسطة التأثير'}</b><span>${esc(r.note||'')}</span>`}
 /* ===== تبويبات التطبيق ===== */
-const TABS={home:['hero','aiTop','conf','matrix','world'],trades:['open','perf'],an:['detail','macro','cmd','chart','aiFull','news'],tools:['risk','alertsC','cal','journal'],me:['acct']};
+const TABS={home:['hero','focus','aiTop','conf','matrix','world'],trades:['open','perf'],an:['detail','macro','cmd','chart','aiFull','news'],tools:['risk','alertsC','cal','journal'],me:['acct']};
 let TAB='home';
 function setTab(t,keep){if(!TABS[t])t='home';TAB=t;const show=new Set(TABS[t]);document.querySelectorAll('.wrap section').forEach(x=>x.classList.toggle('hid',!show.has(x.id)));
  document.querySelectorAll('.wrap>.grid,.wrap>.g2').forEach(g=>g.classList.toggle('hid',![...g.children].some(c=>!c.classList.contains('hid'))));
@@ -489,7 +499,7 @@ async function load(){try{await ensureKey();if(K&&!SES){const a=await session(K)
  alerts();paintAll()}catch(e){$('upd').textContent='تعذّر تحديث الإشارات — إعادة المحاولة خلال دقيقة'}}
 async function ai(){try{const d=await(await fetch('analysis.json?t='+Date.now(),{cache:'no-store'})).json();AI=d;if(!d||!d.text)return;
  $('aiT').textContent=d.updated?tStr(Date.parse(d.updated)):'';$('ai').innerHTML='';if(d.headline){const h=document.createElement('div');h.style.cssText='color:var(--gold);font-size:16px;margin-bottom:6px';h.textContent=d.headline;$('ai').appendChild(h)}
- const t=document.createElement('div');t.textContent=d.text;$('ai').appendChild(t);paintAiTop();paintRisk();paintMacro();if(D)paintAll();else{paintDetail();paintConf()}paintNews()}catch(e){}}
+ const t=document.createElement('div');t.textContent=d.text;$('ai').appendChild(t);paintAiTop();paintRisk();paintMacro();paintFocus();if(D)paintAll();else{paintDetail();paintConf()}paintNews()}catch(e){}}
 function paintAiTop(){const d=AI;if(!d||!d.text)return;$('aiTopT').textContent=d.updated?'آخر تحديث '+tStr(Date.parse(d.updated)):'';
  const BN={bullish:['b-up','إيجابي'],bearish:['b-dn','سلبي'],neutral:['b-nt','محايد']};
  const chips=d.coins?Object.entries(d.coins).map(([k,v])=>{const b=BN[v.bias]||BN.neutral;return`<span class="${b[0]}" title="${esc(v.note||'')}">${k} ${b[1]}</span>`}).join(''):'';
@@ -526,7 +536,7 @@ function tradeCard(t){const px=pxOf(t.s),r=liveR(t,px),pct=t.dir*(px-t.entry)/t.
  <div class="lv"><div><span>الدخول</span><b>${fmt(t.entry)}</b></div><div class="sl">${t.tp1hit?`<span>الوقف الآن (${t.sl===t.entry?'على الدخول':'متحرك'})</span><b>${fmt(t.sl)}</b><small class="mu" style="display:block;text-decoration:line-through">${fmt(t.sl0)}</small>`:`<span>الوقف</span><b>${fmt(t.sl0)}</b>`}</div><div class="tp ${t.tp1hit?'hit':''}"><span>الهدف ١</span><b>${fmt(t.tp1)}</b></div><div class="tp"><span>الهدف ٢</span><b>${fmt(t.tp2)}</b></div></div>
  <div class="track"><em style="left:${e1}%"></em><i style="left:${pos}%"></i></div>
  <div class="meta"><span>الآن <b style="direction:ltr;display:inline-block">${fmt(px)}</b></span><span>فُتحت ${tStr(t.t)}</span><span>قوة ${Math.abs(t.score)} • ${t.agree}/٨</span>${t.flow!=null?`<span>شراء <b class="up">${t.flow.toFixed(0)}%</b> / بيع <b class="dn">${(100-t.flow).toFixed(0)}%</b></span>`:''}</div>
- ${gradeHtml(t)}${D.cfgs[t.tf]&&D.cfgs[t.tf].FAST?'<div class="fast">⚡ فريم سريع (مضاربة): نتائجه في الاختبار الطويل أضعف من فريم الساعة و٤ ساعات واليومي. خاطر بنصف حجمك المعتاد.</div>':''}
+ ${gradeHtml(t)}${CFX(t.s,t.tf)&&CFX(t.s,t.tf).FAST?'<div class="fast">⚡ فريم سريع (مضاربة): نتائجه في الاختبار الطويل أضعف من فريم الساعة و٤ ساعات واليومي. خاطر بنصف حجمك المعتاد.</div>':''}
  <div class="mgmt">${t.tp1hit?`تحقق الهدف ١: أُغلق ${pctF(t)}٪ من الصفقة، والباقي يكمل بوقف متحرك.`:`عند الهدف ١: أغلق ${pctF(t)}٪ وانقل الوقف للدخول، والباقي بوقف متحرك.`}</div>
  <div class="acts"><button class="act" data-cp="${t.id}">${CP}<span>نسخ الصفقة</span></button><button class="act tg" data-tg="${t.id}">${TG}<span>تلجرام</span></button></div></div>`}
 function paintMatrix(){if(!D)return;let h='<thead><tr><th style="text-align:right">العملة</th>'+TFS.map(f=>`<th>${TFN[f]}</th>`).join('')+'</tr></thead><tbody>';
@@ -544,7 +554,7 @@ function paintDetail(){const d=P[sel];$('selName').textContent=`${nameOf(sel)} �
  paintTfBar();if(!D)return;const C=D.coins[sel],x=C&&C.tfs[tf];if(!x){$('vTxt').textContent='لا تتوفر بيانات';return}
  const[lb,c]=label(x.score);$('needle').style.transform=`rotate(${x.score*.9}deg)`;$('vTxt').textContent=lb+' — '+TFN[tf];$('vTxt').className='v '+(c==='nt'?'':c);
  $('verdict').style.borderColor=c==='up'?'var(--up)':c==='dn'?'var(--dn)':'var(--line)';
- const cf=D.cfgs[tf],dr=Math.sign(x.score),gate=Math.abs(x.score)>=cf.TH&&x.agree>=cf.AGREE&&x.htf===dr&&x.adx>=cf.ADX&&(!cf.BTCF||x.btc==null||x.btc===dr);
+ const cf=CFX(sel,tf),dr=Math.sign(x.score),gate=Math.abs(x.score)>=cf.TH&&x.agree>=cf.AGREE&&x.htf===dr&&x.adx>=cf.ADX&&(!cf.BTCF||x.btc==null||x.btc===dr);
  $('vWhy').innerHTML=`القوة ${Math.abs(x.score)}/100 • ${x.agree} من ٨ استراتيجيات متفقة • الفريم الأعلى ${x.htf>0?'<span class="up">صاعد</span>':x.htf<0?'<span class="dn">هابط</span>':'—'} • RSI ${x.rsi.toFixed(0)} • قوة الاتجاه ADX <b class="${x.adx>=cf.ADX?'up':'mu'}">${x.adx!=null?x.adx.toFixed(0):'—'}</b>/${cf.ADX}${cf.BTCF&&x.btc!=null?` • اتجاه البيتكوين ${x.btc>0?'<span class="up">صاعد</span>':'<span class="dn">هابط</span>'}`:''}<br>${gate?'<span class="up">✔ شروط الدخول متحققة على آخر شمعة مغلقة</span>':`<span class="mu">شروط الدخول: قوة ${cf.TH}+، اتفاق ${cf.AGREE} من ٨، موافقة الفريم الأعلى${cf.BTCF?' والبيتكوين':''}، اتجاه قوي (ADX ${cf.ADX}+)، وخانة ناجحة ${MW(tf)}٪+ ورابحة بعد التكاليف</span>`}`;
  $('votes').innerHTML=Object.keys(D.weights).map(k=>{const v=x.votes[k],w=Math.abs(v)*50;return`<div class="vt"><span style="min-width:118px">${D.names[k]}</span><div class="bar2"><i style="${v>=0?'left:50%':'right:50%'};width:${w}%;background:${v>0?'var(--up)':v<0?'var(--dn)':'transparent'}"></i></div><span class="${v>0?'up':v<0?'dn':'mu'}" style="min-width:34px;text-align:left">${v>0?'شراء':v<0?'بيع':'—'}</span></div>`}).join('');
  const se=C.sent||{},cb=AI&&AI.coins&&AI.coins[sel];
@@ -573,7 +583,7 @@ function paintPerf(){if(!D)return;let h='<thead><tr><th>الفريم</th><th>ا�
  TFS.forEach(f=>{if(D.cfgs[f].OFF){h+=`<tr><td>${TFN[f]}</td><td class="mu" colspan="6">متوقف — ما ثبت له ربح بنسبة ٧٠٪+ بعد العمولة، يُعرض للتحليل فقط</td></tr>`;return}let n=0,w=0,sum=0,best=null,worst=null;COINS.forEach(([s])=>{const x=D.coins[s]&&D.coins[s].tfs[f];if(!x)return;n+=x.stats.n;w+=x.stats.w;sum+=x.stats.sum;if(!best||x.stats.sum>best[1])best=[s,x.stats.sum];if(!worst||x.stats.sum<worst[1])worst=[s,x.stats.sum]});
   h+=`<tr><td>${TFN[f]}</td><td class="mu">${TFK[f]}</td><td>${AR(n)}</td><td>${n?Math.round(w/n*100)+'%':'—'}</td><td class="num ${sum>=0?'up':'dn'}">${fR(sum)}</td><td>${best?best[0]+' <span class="up" style="direction:ltr;display:inline-block">'+fR(best[1])+'</span>':'—'}</td><td>${worst?worst[0]+' <span class="dn" style="direction:ltr;display:inline-block">'+fR(worst[1])+'</span>':'—'}</td></tr>`});
  $('perfT').innerHTML=h+'</tbody>'}
-function paintAll(){paintConf();paintHero();paintMatrix();paintDetail();paintOpen();paintPerf();riskCalc();if(window.G)G.sig();c3build()}
+function paintAll(){paintFocus();paintConf();paintHero();paintMatrix();paintDetail();paintOpen();paintPerf();riskCalc();if(window.G)G.sig();c3build()}
 function select(s,f){sel=s;tf=f||tf;store.set('sel',sel);store.set('tf',tf);paintMatrix();paintDetail();riskCalc();tv();c3load()}
 
 /* ---------- live prices ---------- */
@@ -715,6 +725,24 @@ function paintTimer(){const x=D&&D.coins[sel]&&D.coins[sel].tfs[tf],tr=x&&x.trad
  const el=Date.now()-tr.t,max=48*TFMS[tf],p=Math.min(100,el/max*100),rem=Math.max(0,max-el),f=ms=>{const m=Math.floor(ms/6e4),d=Math.floor(m/1440),h=Math.floor(m%1440/60),mm=m%60;return(d?d+'ي ':'')+(h?h+'س ':'')+mm+'د'},r=liveR(tr,pxOf(sel));
  $('tTimer').innerHTML=`<b class="hh">وقت الصفقة — ${tr.dir>0?'<span class="up">شراء</span>':'<span class="dn">بيع</span>'} ${sel} (${TFN[tf]})</b>مضى <b>${f(el)}</b> • متبقٍ حتى الإغلاق الزمني <b>${f(rem)}</b><div class="prog"><i style="width:${p}%"></i></div>النتيجة الآن <b class="${r>=0?'up':'dn'}" style="direction:ltr;display:inline-block">${fR(r)}</b>${tr.tp1hit?' • <span class="up">الهدف ١ تحقق والوقف على الدخول</span>':''}`}
 let FNG=null;
+/* ===== تركيز BTC و ETH ===== */
+function paintFocus(){const el=$('fx');if(!el||!D)return;const BN={bullish:['up','إيجابية'],bearish:['dn','سلبية'],neutral:['','محايدة']};
+ el.innerHTML=['BTC','ETH'].map(s=>{const C=D.coins[s];if(!C)return'';const p=P[s]||{},px=pxOf(s),ai=AI&&AI.coins&&AI.coins[s],i=C.inst||{},se=C.sent||{},lv=AI&&AI.levels&&AI.levels[s];
+  let best=null;const chips=TFS.map(f=>{const x=C.tfs[f];if(!x)return`<button disabled><small>${TFN[f]}</small><b class="mu">—</b></button>`;
+   if(x.trade){const r=liveR(x.trade,px);return`<button class="${x.trade.dir>0?'L':'S'}" data-s="${s}" data-f="${f}"><small>${TFN[f]}</small><b class="${x.trade.dir>0?'up':'dn'}">${x.trade.dir>0?'شراء':'بيع'}</b><i>${r>=0?'+':''}${r.toFixed(2)}R</i></button>`}
+   const cf=CFX(s,f),dr=Math.sign(x.score),cnd=[Math.abs(x.score)>=cf.TH,x.agree>=cf.AGREE,x.htf===dr,x.adx>=cf.ADX,!cf.BTCF||x.btc==null||x.btc===dr],met=cnd.filter(Boolean).length;
+   if(x.ok&&(!best||met>best.met||(met===best.met&&Math.abs(x.score)>Math.abs(best.x.score))))best={f,x,met,dr};
+   return`<button data-s="${s}" data-f="${f}"><small>${TFN[f]}</small><b class="${!x.ok?'mu':x.score>=15?'up':x.score<=-15?'dn':''}">${x.ok?(x.score>0?'+':'')+x.score:'—'}</b><i>${x.ok?'جاهزية '+met+'/5':'غير معتمد'}</i></button>`}).join('');
+  const open=TFS.map(f=>C.tfs[f]&&C.tfs[f].trade?f:null).filter(Boolean);
+  const nx=open.length?`<b style="color:var(--gold)">صفقة مفتوحة على ${open.map(f=>TFN[f]).join(' و')}</b> — اضغطها لتشوف الدخول والوقف والأهداف.`:best?`أقرب فرصة: <b class="${best.dr>0?'up':'dn'}">${best.dr>0?'شراء':'بيع'}</b> على فريم ${TFN[best.f]} (تحقق ${best.met} من ٥ شروط، نجاح الخانة ${best.x.stats.wr}%). الروبوت يدخل تلقائيًا أول ما تكتمل الشروط على شمعة مغلقة.`:'لا توجد خانة معتمدة قريبة من الدخول الآن.';
+  const pct=x=>(100*x/(1+x)).toFixed(0)+'%';
+  return`<div class="fc"><div class="ft"><span class="cic" style="background:${col(s)}">${s}</span><div><b>${nameOf(s)}</b><br><small class="mu">${s}/USDT</small></div><div class="px"><b>${fmt(px)}</b>${p.chg!=null?`<small class="${p.chg>=0?'up':'dn'}">${p.chg>=0?'▲':'▼'} ${p.chg.toFixed(2)}%</small>`:''}</div></div>
+   <div class="ftf">${chips}</div>
+   <div class="fmeta">${ai?`<span>نظرة Claude: <b class="${(BN[ai.bias]||BN.neutral)[0]}">${(BN[ai.bias]||BN.neutral)[1]}</b></span>`:''}${i.top?`<span>كبار المتداولين: <b class="up">${pct(i.top)}</b> / <b class="dn">${(100-100*i.top/(1+i.top)).toFixed(0)}%</b></span>`:''}${se.funding!=null?`<span>التمويل: <b class="${se.funding>0?'up':'dn'}" style="direction:ltr;display:inline-block">${(se.funding*100).toFixed(4)}%</b></span>`:''}${C.tfs['1h']&&C.tfs['1h'].flow!=null?`<span>تدفق الشراء (ساعة): <b class="${C.tfs['1h'].flow>=50?'up':'dn'}">${C.tfs['1h'].flow}%</b></span>`:''}</div>
+   ${lv?`<div class="flv"><span>الدعم: <b class="up">${(lv.s||[]).map(fmt).join(' • ')}</b></span><span>المقاومة: <b class="dn">${(lv.r||[]).map(fmt).join(' • ')}</b></span></div>`:''}
+   <div class="fnx">${nx}</div></div>`}).join('');
+ el.querySelectorAll('button[data-s]').forEach(b=>b.onclick=()=>{select(b.dataset.s,b.dataset.f);setTab('an')})}
+setInterval(()=>{if(TAB==='home')paintFocus()},5000);
 /* ===== النظرة الشاملة: فني ٤٠٪ + أساسي ٣٠٪ + مؤسسات ٢٠٪ + معنويات ١٠٪ ===== */
 function paintConf(){if(!$('confB'))return;const cl=v=>Math.max(-100,Math.min(100,Math.round(v)));let tech=null,fund=null,inst=null,sent=null;
  if(D&&D.coins){let a=[];COINS.forEach(([s])=>{const c=D.coins[s];if(!c)return;['1h','4h','1d'].forEach(f=>{const x=c.tfs[f];if(x&&x.score!=null)a.push(x.score)})});if(a.length)tech=cl(a.reduce((x,y)=>x+y,0)/a.length);
