@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>غرفة التداول — VIP Trading X</title>
+<title>غرفة التداول — Ayman Al-Balushi</title>
 <meta name="theme-color" content="#0C1B3A">
 <link rel="manifest" href="/manifest.json"><link rel="apple-touch-icon" href="https://cdn.jsdelivr.net/gh/aumanalbalushi-collab/ayman@991cdd9927e8dbd51621531f94a8cef1edad3c54/crypto-live/icon-180.png"><link rel="icon" href="https://cdn.jsdelivr.net/gh/aumanalbalushi-collab/ayman@991cdd9927e8dbd51621531f94a8cef1edad3c54/crypto-live/icon-192.png">
 <meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="غرفة التداول">
@@ -196,12 +196,15 @@ header{border-bottom:1px solid rgba(215,166,73,.18)}header .in{padding:9px 14px;
 @media(max-width:640px){.logo small{display:none}.logo b{font-size:16px}.ic{width:36px;height:36px}#upd{display:none}.wrap>.grid,.wrap>.g2{display:block}.wrap>.grid>section+section,.wrap>.g2>section+section{margin-top:14px}}
 .grd{display:flex;gap:9px;align-items:flex-start;margin-top:8px;font-size:12.5px;line-height:1.7;color:var(--mut)}.grd i{font-style:normal;font-weight:900}.gr{flex:none;min-width:34px;text-align:center;border-radius:9px;padding:2px 6px;font-size:14px;font-weight:900;color:#0C1B3A}.gA{background:linear-gradient(180deg,var(--gold2),var(--gold))}.gB{background:#9fb0cc}.gC{background:#6b7a96;color:#fff}
 .riskb{margin-top:10px;border-radius:14px;padding:10px 12px;font-size:13px;line-height:1.7}.riskb b{display:block}.riskb span{color:var(--fg);opacity:.85}.riskb.hi{background:rgba(255,93,108,.16);border:1px solid var(--dn)}.riskb.hi b{color:var(--dn)}.riskb.md{background:rgba(215,166,73,.14);border:1px solid var(--gold)}.riskb.md b{color:var(--gold)}.stg{color:var(--gold);letter-spacing:1px;font-size:11px}
+.av{width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);box-shadow:0 0 0 3px rgba(215,166,73,.18);flex:none;background:#142A5B}.av.lg{width:58px;height:58px}.who{display:flex;align-items:center;gap:12px}.en{direction:ltr;unicode-bidi:isolate;letter-spacing:.3px}
+.fast{margin-top:8px;font-size:12.5px;line-height:1.7;color:var(--gold2);background:rgba(215,166,73,.1);border:1px dashed rgba(215,166,73,.5);border-radius:10px;padding:7px 10px}
+@media(min-width:900px){#tabbar{left:50%;right:auto;transform:translateX(-50%);width:560px}.wrap{max-width:1180px}}
 .mgmt{font-size:12.5px;color:var(--mut);background:rgba(255,255,255,.04);border-radius:10px;padding:7px 10px;margin-top:8px;line-height:1.6}
 </style>
 </head>
 <body>
 <header><div class="in">
- <div class="logo"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 8h5.5a2.5 2.5 0 0 1 0 5H9zM9 13h6a2.5 2.5 0 0 1 0 5H9zM9 6v14M11 4v2M11 20v-2M14 4v2M14 20v-2"/></svg></span><div><b style="white-space:nowrap">غرفة التداول</b><small>٨ استراتيجيات • ٥ فريمات • تحديث تلقائي كل دقيقة • VIP Trading X</small></div></div>
+ <div class="logo"><img class="av" src="https://cdn.jsdelivr.net/gh/aumanalbalushi-collab/ayman@1b610c1a88794d2ad31beeb8d001a0bacc4b86ed/crypto-live/ayman-s.jpg" alt="Ayman Al-Balushi" width="40" height="40"><div><b style="white-space:nowrap">غرفة التداول</b><small class="en">Ayman Al-Balushi • ٥ فريمات • تحديث كل دقيقة</small></div></div>
  <div class="hstat">
   <span><i class="dot" id="wsDot"></i><span id="wsTxt">جارٍ الاتصال…</span></span>
   <span id="upd">—</span>
@@ -226,7 +229,7 @@ header{border-bottom:1px solid rgba(215,166,73,.18)}header .in{padding:9px 14px;
 
 <div class="wrap">
  <section class="card" id="hero">
-  <div class="hh"><div><small>VIP Trading X</small><b>غرفة التداول</b></div><button class="hchip" id="heroSub">—</button></div>
+  <div class="hh"><div class="who"><img class="av lg" src="https://cdn.jsdelivr.net/gh/aumanalbalushi-collab/ayman@1b610c1a88794d2ad31beeb8d001a0bacc4b86ed/crypto-live/ayman.jpg" alt="Ayman Al-Balushi" width="58" height="58"><div><small class="en">Ayman Al-Balushi</small><b>غرفة التداول</b></div></div><button class="hchip" id="heroSub">—</button></div>
   <div class="hs"><div><b id="hN">—</b><span>صفقات مفتوحة</span></div><div><b id="hW">—</b><span>نسبة نجاح الروبوت</span></div><div><b id="hR">—</b><span>صافي النتيجة بعد العمولة</span></div></div>
   <div id="hBest"></div>
   <div id="riskB" class="riskb hid"></div>
@@ -498,7 +501,7 @@ function tradeCard(t){const px=pxOf(t.s),r=liveR(t,px),pct=t.dir*(px-t.entry)/t.
  <div class="lv"><div><span>الدخول</span><b>${fmt(t.entry)}</b></div><div class="sl">${t.tp1hit?`<span>الوقف الآن (${t.sl===t.entry?'على الدخول':'متحرك'})</span><b>${fmt(t.sl)}</b><small class="mu" style="display:block;text-decoration:line-through">${fmt(t.sl0)}</small>`:`<span>الوقف</span><b>${fmt(t.sl0)}</b>`}</div><div class="tp ${t.tp1hit?'hit':''}"><span>الهدف ١</span><b>${fmt(t.tp1)}</b></div><div class="tp"><span>الهدف ٢</span><b>${fmt(t.tp2)}</b></div></div>
  <div class="track"><em style="left:${e1}%"></em><i style="left:${pos}%"></i></div>
  <div class="meta"><span>الآن <b style="direction:ltr;display:inline-block">${fmt(px)}</b></span><span>فُتحت ${tStr(t.t)}</span><span>قوة ${Math.abs(t.score)} • ${t.agree}/٨</span>${t.flow!=null?`<span>شراء <b class="up">${t.flow.toFixed(0)}%</b> / بيع <b class="dn">${(100-t.flow).toFixed(0)}%</b></span>`:''}</div>
- ${gradeHtml(t)}
+ ${gradeHtml(t)}${D.cfgs[t.tf]&&D.cfgs[t.tf].FAST?'<div class="fast">⚡ فريم سريع (مضاربة): نتائجه في الاختبار الطويل أضعف من فريم الساعة و٤ ساعات واليومي. خاطر بنصف حجمك المعتاد.</div>':''}
  <div class="mgmt">${t.tp1hit?`تحقق الهدف ١: أُغلق ${pctF(t)}٪ من الصفقة، والباقي يكمل بوقف متحرك.`:`عند الهدف ١: أغلق ${pctF(t)}٪ وانقل الوقف للدخول، والباقي بوقف متحرك.`}</div>
  <div class="acts"><button class="act" data-cp="${t.id}">${CP}<span>نسخ الصفقة</span></button><button class="act tg" data-tg="${t.id}">${TG}<span>تلجرام</span></button></div></div>`}
 function paintMatrix(){if(!D)return;let h='<thead><tr><th style="text-align:right">العملة</th>'+TFS.map(f=>`<th>${TFN[f]}</th>`).join('')+'</tr></thead><tbody>';
