@@ -160,7 +160,7 @@ table.t{width:100%;border-collapse:collapse;font-size:13px}
 .banks{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}.bank{background:var(--in);border:1px solid rgba(215,166,73,.22);border-radius:14px;padding:11px 12px}.bank .bt{display:flex;justify-content:space-between;align-items:center;gap:6px}.bank .bt b{font-size:14px}.bank .rt{font-size:22px;font-weight:800;color:var(--fg);direction:ltr;text-align:right;margin:6px 0 2px}.bank p{margin:4px 0 0;font-size:12.5px;line-height:1.7;color:var(--mut)}.bank .nx{font-size:12px;color:var(--gold2)}
 .pill{font-size:11px;padding:2px 8px;border-radius:99px;white-space:nowrap}
 .evl{display:grid;gap:6px}.ev{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;background:var(--in);border-radius:12px;padding:8px 11px;font-size:13px}.ev time{color:var(--gold);font-size:12px;direction:ltr;white-space:nowrap}.ev em{font-style:normal;font-size:11px;color:var(--mut);white-space:nowrap}
-.flw{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:13px}.flw:last-child{border:0}.flw b{unicode-bidi:plaintext;text-align:left;max-width:50%}
+.flw{display:flex;flex-direction:column;gap:3px;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:13px}.flw:last-child{border:0}.flw b{direction:rtl;unicode-bidi:isolate;text-align:right;font-size:14px}
 @media(max-width:520px){.conf{grid-template-columns:1fr;justify-items:center}.cbars{width:100%}}
 .nw{display:flex;gap:8px;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.06)}.nw:last-child{border:0}
 .nw em{font-style:normal;font-size:11px;padding:1px 7px;border-radius:99px;height:fit-content;white-space:nowrap}
@@ -544,7 +544,7 @@ function paintMatrix(){if(!D)return;let h='<thead><tr><th style="text-align:righ
   TFS.forEach(f=>{const x=C&&C.tfs[f],on=s===sel&&f===tf?' sel':'';if(!x){h+=`<td><button class="cell${on}" data-s="${s}" data-f="${f}">—</button></td>`;return}
    if(x.trade){const r=liveR(x.trade,pxOf(s));h+=`<td><button class="cell ${x.trade.dir>0?'L':'S'}${on}" data-s="${s}" data-f="${f}" aria-label="${s} ${TFN[f]}"><b class="${x.trade.dir>0?'up':'dn'}">${x.trade.dir>0?'▲ شراء':'▼ بيع'}</b><small class="${r>=0?'up':'dn'}">${fR(r)}</small></button></td>`}
    else if(x.off){h+=`<td><button class="cell${on}" data-s="${s}" data-f="${f}" aria-label="${s} ${TFN[f]} متوقف"><b class="mu" style="font-size:11px">متوقف</b><small class="mu">تحليل فقط</small></button></td>`}
-   else if(!x.ok){h+=`<td><button class="cell${on}" data-s="${s}" data-f="${f}" aria-label="${s} ${TFN[f]} غير معتمد" title="أداء هذه الخانة تحت الشرط"><b class="mu" style="font-size:11px">غير معتمد</b><small class="mu">${x.stats.wr}%</small></button></td>`}
+   else if(!x.ok){h+=`<td><button class="cell${on}" data-s="${s}" data-f="${f}" aria-label="${s} ${TFN[f]} غير معتمد" title="أداء هذه الخانة تحت الشرط"><b class="mu" style="font-size:11px">غير معتمد</b><small class="mu">${x.stats.n<8?'صفقات قليلة':x.stats.sum<=0?'خاسرة بعد العمولة':'نجاح '+x.stats.wr+'%'}</small></button></td>`}
    else{const[l,cl]=label(x.score);h+=`<td><button class="cell${on}" data-s="${s}" data-f="${f}" aria-label="${s} ${TFN[f]}"><b class="mu">—</b><small class="${cl==='nt'?'mu':cl}">${x.score>0?'+':''}${x.score}</small></button></td>`}});
   h+='</tr>'});
  $('mx').innerHTML=h+'</tbody>';$('mx').querySelectorAll('.cell').forEach(b=>b.onclick=()=>{select(b.dataset.s,b.dataset.f);setTab('an')})}
