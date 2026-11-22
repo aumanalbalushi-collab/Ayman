@@ -228,7 +228,7 @@ header{background:rgba(8,19,41,.86)!important;-webkit-backdrop-filter:blur(14px)
 button:active{transform:scale(.97)}button{transition:background .2s,border-color .2s,color .2s,transform .12s}
 /* مفتاح السوق */
 .mktw{max-width:1180px;margin:0 auto;padding:0 14px 9px}
-.mkt{position:relative;display:grid;grid-template-columns:1fr 1fr;background:rgba(255,255,255,.04);border:1px solid var(--bd);border-radius:14px;padding:4px}
+.mkt{position:relative;display:grid;grid-template-columns:repeat(3,1fr);background:rgba(255,255,255,.04);border:1px solid var(--bd);border-radius:14px;padding:4px}
 .mkt button{all:unset;position:relative;z-index:1;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;padding:9px 8px;border-radius:10px;font:800 14px Tajawal,sans-serif;color:var(--mut);transition:color .25s}
 .mkt button svg{width:18px;height:18px}.mkt button.on{color:#0C1B3A}
 .mkt button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
@@ -286,7 +286,7 @@ button:active{transform:scale(.97)}button{transition:background .2s,border-color
   <button class="hbtn" id="insBtn">ثبّت التطبيق</button>
  </div>
 </div>
-<div class="mktw"><div id="mkt" class="mkt" role="tablist" aria-label="السوق"><span class="ind" aria-hidden="true"></span><button role="tab" data-m="c"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 8h4a2 2 0 010 4h-4m0 0h4.5a2 2 0 010 4H9.5m0-8v8m2-10v2m0 8v2"/></svg>الكريبتو</button><button role="tab" data-m="s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10m6 10V4m6 16v-7m4 7H2"/></svg>الأسهم الأمريكية</button></div></div>
+<div class="mktw"><div id="mkt" class="mkt" role="tablist" aria-label="السوق"><span class="ind" aria-hidden="true"></span><button role="tab" data-m="c"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 8h4a2 2 0 010 4h-4m0 0h4.5a2 2 0 010 4H9.5m0-8v8m2-10v2m0 8v2"/></svg>الكريبتو</button><button role="tab" data-m="s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10m6 10V4m6 16v-7m4 7H2"/></svg>الأسهم</button><button role="tab" data-m="m"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l3 6-9 12L3 9z"/><path d="M3 9h18M9 3l3 6 3-6M12 9v12"/></svg>السلع</button></div></div>
 </header>
 <div id="pay" role="dialog" aria-modal="true" aria-labelledby="payT"><div class="pb">
  <button class="x" id="payX" aria-label="إغلاق">×</button>
@@ -396,7 +396,7 @@ button:active{transform:scale(.97)}button{transition:background .2s,border-color
 
  <section class="card" id="open" style="margin-top:16px">
   <h2><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></span>كل الصفقات المفتوحة<span class="r" id="openN">—</span></h2>
-  <p class="sub">في الكريبتو الروبوت يدخل فقط مع اتجاه قوي، وفي الأسهم يعمل معه «روبوت الارتداد للمتوسط» على فريم ٤ ساعات للأسواق المتذبذبة. روبوت الاتجاه: اتفاق أغلب الاستراتيجيات الثماني، موافقة الفريم الأعلى واتجاه البيتكوين، ومؤشر قوة الاتجاه ADX فوق الحد، وعلى خانات نجاحها ٧٠٪+ فقط (فريم ١٥ دقيقة ٦٥٪+، و٥ دقائق للتحليل فقط بدون صفقات). وكل صفقة عليها تقييم (A+ إلى C) من مراكز كبار المتداولين والأخبار ونظرة Claude. أرقام الصفقة <b style="color:var(--gold)">مقفلة</b> ومحسوبة على الخادم، فتظهر نفسها على كل الأجهزة حتى لو كانت الصفحة مغلقة. عند الهدف ١ يُغلق جزء من الصفقة ويُنقل الوقف للدخول، والباقي يكمل بوقف متحرك.</p>
+  <p class="sub">في الكريبتو الروبوت يدخل فقط مع اتجاه قوي. في الأسهم يعمل معه «روبوت الارتداد للمتوسط» على فريم ٤ ساعات. وفي السلع (الذهب والفضة والنفط) يتداول الروبوتان على فريم ٤ ساعات فقط لأنه الفريم الوحيد اللي نجح في اختبار بيانات ما شافها، والباقي تحليل فقط. روبوت الاتجاه: اتفاق أغلب الاستراتيجيات الثماني، موافقة الفريم الأعلى واتجاه البيتكوين، ومؤشر قوة الاتجاه ADX فوق الحد، وعلى خانات نجاحها ٧٠٪+ فقط (فريم ١٥ دقيقة ٦٥٪+، و٥ دقائق للتحليل فقط بدون صفقات). وكل صفقة عليها تقييم (A+ إلى C) من مراكز كبار المتداولين والأخبار ونظرة Claude. أرقام الصفقة <b style="color:var(--gold)">مقفلة</b> ومحسوبة على الخادم، فتظهر نفسها على كل الأجهزة حتى لو كانت الصفحة مغلقة. عند الهدف ١ يُغلق جزء من الصفقة ويُنقل الوقف للدخول، والباقي يكمل بوقف متحرك.</p>
   <div class="tfbar" id="openTf"></div>
   <div class="trades" id="trades" style="margin-top:10px"></div>
  </section>
@@ -473,7 +473,7 @@ button:active{transform:scale(.97)}button{transition:background .2s,border-color
   <div class="wid" id="newsW"></div>
  </section>
 
- <p class="disc">الإشارات آلية تجمع ٨ استراتيجيات معروفة (اتجاه EMA، سوبرترند، إيشيموكو، MACD، RSI، اختراق دونشيان، VWAP، الحجم) مع تأكيد الفريم الأعلى، وتُحسب على خادم من الشموع المغلقة (Binance للعملات، وHyperliquid للأسهم الأمريكية التي تتداول ٢٤ ساعة). ليست توصية مالية؛ القرار وإدارة المخاطرة مسؤوليتك.</p>
+ <p class="disc">الإشارات آلية تجمع ٨ استراتيجيات معروفة (اتجاه EMA، سوبرترند، إيشيموكو، MACD، RSI، اختراق دونشيان، VWAP، الحجم) مع تأكيد الفريم الأعلى، وتُحسب على خادم من الشموع المغلقة (Binance للعملات، وHyperliquid للأسهم الأمريكية والسلع التي تتداول ٢٤ ساعة). ليست توصية مالية؛ القرار وإدارة المخاطرة مسؤوليتك.</p>
 </div>
 <nav id="tabbar" aria-label="التنقل">
  <button data-t="home" class="on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg><span>الرئيسية</span></button>
@@ -487,11 +487,12 @@ button:active{transform:scale(.97)}button{transition:background .2s,border-color
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
 const COINS=[['BTC','بيتكوين','#F7931A'],['ETH','إيثريوم','#8C8CF7'],['SOL','سولانا','#14F195'],['XRP','ريبل','#9fb0cc'],['BNB','بينانس','#F3BA2F'],['DOGE','دوجكوين','#C2A633'],['ADA','كاردانو','#3b82f6'],['AVAX','أفالانش','#E84142'],['LINK','تشينلينك','#2A5ADA'],['SUI','سوي','#4DA2FF'],['TRX','ترون','#EF0027'],['DOT','بولكادوت','#E6007A'],['LTC','لايتكوين','#8f9396'],['NEAR','نير','#00C08B'],['TON','تون','#0098EA'],
-['NVDA','إنفيديا','#76B900','s'],['AAPL','أبل','#8E8E93','s'],['TSLA','تسلا','#CC0000','s'],['MSFT','مايكروسوفت','#00A4EF','s'],['SPX','مؤشر S&P 500','#1F6FEB','s']];
+['NVDA','إنفيديا','#76B900','s'],['AAPL','أبل','#8E8E93','s'],['TSLA','تسلا','#CC0000','s'],['MSFT','مايكروسوفت','#00A4EF','s'],['SPX','مؤشر S&P 500','#1F6FEB','s'],
+['XAU','الذهب','#D4AF37','m'],['XAG','الفضة','#B8BCC2','m'],['WTI','نفط WTI','#C08A4B','m'],['BRENT','نفط برنت','#6FAE8A','m']];
 const MK=s=>(COINS.find(c=>c[0]===s)||[0,0,0,'x'])[3]||'c',CC=COINS.filter(c=>!c[3]),pairOf=s=>MK(s)==='c'?s+'/USDT':s+'/USD';
-const HLX={NVDA:'xyz:NVDA',AAPL:'xyz:AAPL',TSLA:'xyz:TSLA',MSFT:'xyz:MSFT',SPX:'xyz:SP500'};
-const TVS={NVDA:'NASDAQ:NVDA',AAPL:'NASDAQ:AAPL',TSLA:'NASDAQ:TSLA',MSFT:'NASDAQ:MSFT',SPX:'FOREXCOM:SPXUSD'},tvSym=s=>TVS[s]||'BINANCE:'+s+'USDT';
-const MKN={c:'الكريبتو',s:'الأسهم'};let mf=(()=>{try{return JSON.parse(localStorage.getItem('cx_mf'))||'c'}catch(e){return'c'}})();if(!MKN[mf])mf='c';const inM=s=>MK(s)===mf,MC=()=>COINS.filter(c=>(c[3]||'c')===mf);
+const HLX={NVDA:'xyz:NVDA',AAPL:'xyz:AAPL',TSLA:'xyz:TSLA',MSFT:'xyz:MSFT',SPX:'xyz:SP500',XAU:'xyz:GOLD',XAG:'xyz:SILVER',WTI:'xyz:CL',BRENT:'xyz:BRENTOIL'};
+const TVS={NVDA:'NASDAQ:NVDA',AAPL:'NASDAQ:AAPL',TSLA:'NASDAQ:TSLA',MSFT:'NASDAQ:MSFT',SPX:'FOREXCOM:SPXUSD',XAU:'OANDA:XAUUSD',XAG:'OANDA:XAGUSD',WTI:'TVC:USOIL',BRENT:'TVC:UKOIL'},tvSym=s=>TVS[s]||'BINANCE:'+s+'USDT';
+const MKN={c:'الكريبتو',s:'الأسهم',m:'السلع'},DEF={c:'BTC',s:'SPX',m:'XAU'},FOC={c:['BTC','ETH'],s:['SPX','NVDA'],m:['XAU','WTI']},FOCT={c:'تركيز: البيتكوين والإيثيريوم',s:'تركيز: S&P 500 وإنفيديا',m:'تركيز: الذهب ونفط WTI'},MKT={c:'العملات الرقمية',s:'الأسهم الأمريكية',m:'السلع: الذهب والفضة والنفط'};let mf=(()=>{try{return JSON.parse(localStorage.getItem('cx_mf'))||'c'}catch(e){return'c'}})();if(!MKN[mf])mf='c';const inM=s=>MK(s)===mf,MC=()=>COINS.filter(c=>(c[3]||'c')===mf);
 const TFS=['5m','15m','1h','4h','1d'],TFN={'5m':'٥ دقائق','15m':'١٥ دقيقة','1h':'ساعة','4h':'٤ ساعات','1d':'يومي'},TFK={'5m':'سكالبينج','15m':'سكالبينج','1h':'مضاربة يومية','4h':'سوينغ','1d':'متوسط المدى'},TVI={'5m':'5','15m':'15','1h':'60','4h':'240','1d':'D'};
 const $=i=>document.getElementById(i);
 const col=s=>COINS.find(c=>c[0]===s)[2],nameOf=s=>COINS.find(c=>c[0]===s)[1];
@@ -503,7 +504,7 @@ const AR=n=>String(n).replace(/\d/g,d=>'٠١٢٣٤٥٦٧٨٩'[d]);
 const tStr=t=>new Date(t).toLocaleString('en-GB',{timeZone:'Asia/Muscat',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});
 const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const label=s=>s>=50?['شراء قوي','up']:s>=20?['ميل للشراء','up']:s<=-50?['بيع قوي','dn']:s<=-20?['ميل للبيع','dn']:['محايد','nt'];
-let D=null,AI=null,sel=store.get('sel','BTC'),tf=store.get('tf','1h'),openTf='all';if(!COINS.some(c=>c[0]===sel))sel='BTC';if(MK(sel)!==mf)sel=mf==='s'?'SPX':'BTC';if(!TFS.includes(tf))tf='1h';
+let D=null,AI=null,sel=store.get('sel','BTC'),tf=store.get('tf','1h'),openTf='all';if(!COINS.some(c=>c[0]===sel))sel='BTC';if(MK(sel)!==mf)sel=DEF[mf];if(!TFS.includes(tf))tf='1h';
 const P={};COINS.forEach(([s])=>P[s]={px:0,chg:0,hi:0,lo:0,qv:0});
 
 /* ---------- live R ---------- */
@@ -680,8 +681,8 @@ async function hlPoll(){try{const[m,c]=await(await fetch('https://api.hyperliqui
 hlPoll();setInterval(hlPoll,10000);
 /* ===== السوق: كريبتو | أسهم ===== */
 function mktInd(){const m=$('mkt');if(!m)return;const b=m.querySelector(`button[data-m="${mf}"]`),i=m.querySelector('.ind');m.querySelectorAll('button').forEach(x=>{x.classList.toggle('on',x===b);x.setAttribute('aria-selected',x===b)});if(b&&i){i.style.width=b.offsetWidth+'px';i.style.transform=`translateX(${b.offsetLeft}px)`}}
-function setMarket(m){if(!MKN[m])return;mf=m;store.set('mf',m);mktInd();const ft=$('fxT');if(ft)ft.textContent=m==='s'?'تركيز: S&P 500 وإنفيديا':'تركيز: البيتكوين والإيثيريوم';const t=$('mkTt');if(t)t.textContent=m==='s'?'الأسهم الأمريكية':'العملات الرقمية';
- document.body.classList.toggle('stk',m==='s');tape();paintHero();paintOpen();paintFocus();paintNewsC();paintPerf();if(MK(sel)!==m)select(m==='s'?'SPX':'BTC');else{paintMatrix();paintDetail()}}
+function setMarket(m){if(!MKN[m])return;mf=m;store.set('mf',m);mktInd();const ft=$('fxT');if(ft)ft.textContent=FOCT[m];const t=$('mkTt');if(t)t.textContent=MKT[m];
+ document.body.classList.toggle('stk',m==='s');tape();paintHero();paintOpen();paintFocus();paintNewsC();paintPerf();if(MK(sel)!==m)select(DEF[m]);else{paintMatrix();paintDetail()}}
 document.querySelectorAll('#mkt button').forEach(b=>b.onclick=()=>setMarket(b.dataset.m));addEventListener('resize',mktInd);setTimeout(()=>setMarket(mf),0);
 /* ===== قائمة الأسواق (على طريقة Binance) ===== */
 function sigOf(s){const C=D&&D.coins[s];if(!C)return null;for(const f of['1d','4h','1h','15m']){const x=C.tfs[f];if(x&&x.trade)return{t:x.trade,f}}const x=C.tfs['1h']||C.tfs['4h'];return x?{score:x.score}:null}
@@ -827,7 +828,7 @@ function paintTimer(){const x=D&&D.coins[sel]&&D.coins[sel].tfs[tf],tr=x&&x.trad
 let FNG=null;
 /* ===== تركيز BTC و ETH ===== */
 function paintFocus(){const el=$('fx');if(!el||!D)return;const BN={bullish:['up','إيجابية'],bearish:['dn','سلبية'],neutral:['','محايدة']};
- el.innerHTML=(mf==='s'?['SPX','NVDA']:['BTC','ETH']).map(s=>{const C=D.coins[s];if(!C)return'';const p=P[s]||{},px=pxOf(s),ai=AI&&AI.coins&&AI.coins[s],i=C.inst||{},se=C.sent||{},lv=AI&&AI.levels&&AI.levels[s];
+ el.innerHTML=FOC[mf].map(s=>{const C=D.coins[s];if(!C)return'';const p=P[s]||{},px=pxOf(s),ai=AI&&AI.coins&&AI.coins[s],i=C.inst||{},se=C.sent||{},lv=AI&&AI.levels&&AI.levels[s];
   let best=null;const chips=TFS.map(f=>{const x=C.tfs[f];if(!x)return`<button disabled><small>${TFN[f]}</small><b class="mu">—</b></button>`;
    if(x.trade){const r=liveR(x.trade,px);return`<button class="${x.trade.dir>0?'L':'S'}" data-s="${s}" data-f="${f}"><small>${TFN[f]}</small><b class="${x.trade.dir>0?'up':'dn'}">${x.trade.dir>0?'شراء':'بيع'}</b><i dir="ltr">${r>=0?'+':''}${r.toFixed(2)}R</i></button>`}
    const cf=CFX(s,f),dr=Math.sign(x.score),cnd=[Math.abs(x.score)>=cf.TH,x.agree>=cf.AGREE,x.htf===dr,x.adx>=cf.ADX,!cf.BTCF||x.btc==null||x.btc===dr],met=cnd.filter(Boolean).length;
