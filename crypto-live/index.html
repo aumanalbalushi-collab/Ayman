@@ -213,6 +213,65 @@ header{border-bottom:1px solid rgba(215,166,73,.18)}header .in{padding:9px 14px;
 @media(min-width:900px){#tabbar{left:50%;right:auto;transform:translateX(-50%);width:560px}.wrap{max-width:1180px}}
 .mgmt{font-size:12.5px;color:var(--mut);background:rgba(255,255,255,.04);border-radius:10px;padding:7px 10px;margin-top:8px;line-height:1.6}
 </style>
+<style>
+/* ===== v3: طابع احترافي على طريقة Binance + TradingView بهوية الكحلي والذهبي ===== */
+:root{--bg:#081329;--sf:#0F1F44;--sf2:#132857;--bd:rgba(255,255,255,.07);--bdg:rgba(215,166,73,.28);--ease:cubic-bezier(.2,.8,.2,1)}
+body{background:radial-gradient(80% 40% at 100% 0%,rgba(215,166,73,.10),transparent 60%),radial-gradient(70% 50% at 0% 10%,rgba(40,80,170,.22),transparent 60%),var(--bg) fixed!important}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:36px 36px;mask-image:radial-gradient(80% 60% at 50% 0%,#000,transparent)}
+header{background:rgba(8,19,41,.86)!important;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.card{background:linear-gradient(180deg,rgba(19,40,87,.72),rgba(12,26,58,.8))!important;border:1px solid var(--bd)!important;border-radius:18px!important;box-shadow:0 10px 30px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.04)!important;transition:border-color .25s,transform .25s var(--ease),box-shadow .25s}
+.card:hover{border-color:var(--bdg)!important}
+.card h2{letter-spacing:.2px}
+.wrap>section:not(.hid),.wrap>.grid>section:not(.hid),.wrap>.g2>section:not(.hid){animation:fu .55s var(--ease) both}
+.wrap>section:nth-of-type(2){animation-delay:.05s}.wrap>section:nth-of-type(3){animation-delay:.1s}.wrap>section:nth-of-type(4){animation-delay:.15s}.wrap>section:nth-of-type(5){animation-delay:.2s}
+@keyframes fu{from{opacity:0;transform:translateY(14px) scale(.99)}to{opacity:1;transform:none}}
+button:active{transform:scale(.97)}button{transition:background .2s,border-color .2s,color .2s,transform .12s}
+/* مفتاح السوق */
+.mktw{max-width:1180px;margin:0 auto;padding:0 14px 9px}
+.mkt{position:relative;display:grid;grid-template-columns:1fr 1fr;background:rgba(255,255,255,.04);border:1px solid var(--bd);border-radius:14px;padding:4px}
+.mkt button{all:unset;position:relative;z-index:1;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;padding:9px 8px;border-radius:10px;font:800 14px Tajawal,sans-serif;color:var(--mut);transition:color .25s}
+.mkt button svg{width:18px;height:18px}.mkt button.on{color:#0C1B3A}
+.mkt button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.mkt .ind{position:absolute;top:4px;bottom:4px;left:0;border-radius:10px;background:linear-gradient(180deg,var(--gold2),var(--gold));box-shadow:0 4px 16px rgba(215,166,73,.35);transition:transform .35s var(--ease),width .35s var(--ease)}
+/* شعار البطاقة الرئيسية بدل الصورة */
+.hlogo{width:52px;height:52px;border-radius:50%;flex:none;display:inline-flex;align-items:center;justify-content:center;background:radial-gradient(circle at 30% 25%,#2A4F9E,#142A5B);border:2px solid var(--gold);box-shadow:0 0 0 4px rgba(215,166,73,.15),0 0 24px rgba(215,166,73,.25);animation:glow 3.2s ease-in-out infinite}
+.hlogo svg{width:26px;height:26px}
+@keyframes glow{50%{box-shadow:0 0 0 6px rgba(215,166,73,.08),0 0 34px rgba(215,166,73,.4)}}
+/* قائمة الأسواق */
+.mkl{display:flex;flex-direction:column}
+.mkr{all:unset;box-sizing:border-box;cursor:pointer;display:grid;grid-template-columns:40px minmax(0,1fr) auto 84px 92px;align-items:center;gap:10px;padding:11px 6px;border-bottom:1px solid var(--bd);border-radius:10px;transition:background .2s}
+.mkr:hover{background:rgba(255,255,255,.04)}.mkr:last-child{border-bottom:0}
+.mkr .cic{width:36px;height:36px;font-size:10px}
+.mkr .nm b{display:block;font-size:15px}.mkr .nm small{display:block;color:var(--mut);font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mkr .pxx{direction:ltr;font-size:15px;font-weight:800;text-align:left;border-radius:6px;padding:2px 4px}
+.mkr .pxx.fl{animation:pf .8s ease}@keyframes pf{0%{background:rgba(215,166,73,.35)}100%{background:transparent}}
+.pill{direction:ltr;text-align:center;border-radius:8px;padding:6px 4px;font-size:13px;font-weight:800;color:#fff}
+.pill.up{background:#1e9e66}.pill.dn{background:#d9455a}
+.sg{text-align:center;font-size:12.5px;border-radius:8px;padding:5px 4px;border:1px solid var(--bd)}
+.sg.L{color:var(--up);border-color:rgba(47,212,138,.4);background:rgba(47,212,138,.08)}.sg.S{color:var(--dn);border-color:rgba(255,93,108,.4);background:rgba(255,93,108,.08)}
+.sg small{display:block;font-size:10.5px;color:var(--mut)}
+@media(max-width:560px){.mkr{grid-template-columns:34px minmax(0,1fr) auto 74px;gap:8px}.mkr .sg{display:none}.mkr .cic{width:32px;height:32px}}
+/* الأخبار وقوة التأثير */
+.nwc{border:1px solid var(--bd);border-inline-start:3px solid var(--mut);border-radius:12px;padding:10px 12px;margin-bottom:9px;background:rgba(255,255,255,.02);animation:fu .5s var(--ease) both}
+.nwc.up{border-inline-start-color:var(--up)}.nwc.dn{border-inline-start-color:var(--dn)}
+.nwh{display:flex;align-items:center;justify-content:space-between;gap:8px}.nwh em{font-style:normal;font-size:12px;border-radius:6px;padding:2px 8px}
+.nwc p{margin:7px 0 0;font-size:14px;line-height:1.75}
+.pw{display:inline-flex;align-items:center;gap:3px}.pw i{width:16px;height:6px;border-radius:3px;background:rgba(255,255,255,.12)}
+.pw i.on{background:linear-gradient(90deg,var(--gold),var(--gold2));animation:gr .6s var(--ease) both}.pw i.on:nth-child(2){animation-delay:.1s}.pw i.on:nth-child(3){animation-delay:.2s}
+.pw small{margin-inline-start:5px;font-size:11.5px;color:var(--gold2)}
+@keyframes gr{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.nwc .tg{display:flex;gap:5px;flex-wrap:wrap;margin-top:7px}.nwc .tg b{font-size:11px;border:1px solid var(--bd);border-radius:6px;padding:1px 6px;color:var(--mut);direction:ltr}
+.b-nt{background:rgba(159,176,204,.15);color:var(--mut)}
+/* هياكل التحميل */
+.sk{height:46px;border-radius:12px;margin:8px 0;background:linear-gradient(90deg,rgba(255,255,255,.04) 25%,rgba(255,255,255,.09) 50%,rgba(255,255,255,.04) 75%);background-size:200% 100%;animation:sh 1.3s linear infinite}
+@keyframes sh{from{background-position:200% 0}to{background-position:-200% 0}}
+/* لمسات TradingView على المصفوفة والشريط */
+.mx .cell{transition:transform .15s,border-color .2s,background .2s}.mx .cell:hover{transform:translateY(-1px)}
+.tape{background:rgba(8,19,41,.7)!important;border-bottom:1px solid var(--bd)!important}
+#tabbar{background:rgba(8,19,41,.9)!important;border-color:var(--bdg)!important}
+#tabbar button.on{box-shadow:0 6px 18px rgba(215,166,73,.35)}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
 </head>
 <body>
 <header><div class="in">
@@ -225,7 +284,9 @@ header{border-bottom:1px solid rgba(215,166,73,.18)}header .in{padding:9px 14px;
   <button class="hbtn" id="subBtn">اشتراكي</button>
   <button class="hbtn" id="insBtn">ثبّت التطبيق</button>
  </div>
-</div></header>
+</div>
+<div class="mktw"><div id="mkt" class="mkt" role="tablist" aria-label="السوق"><span class="ind" aria-hidden="true"></span><button role="tab" data-m="c"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 8h4a2 2 0 010 4h-4m0 0h4.5a2 2 0 010 4H9.5m0-8v8m2-10v2m0 8v2"/></svg>الكريبتو</button><button role="tab" data-m="s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10m6 10V4m6 16v-7m4 7H2"/></svg>الأسهم الأمريكية</button></div></div>
+</header>
 <div id="pay" role="dialog" aria-modal="true" aria-labelledby="payT"><div class="pb">
  <button class="x" id="payX" aria-label="إغلاق">×</button>
  <h2 id="payT">الاشتراك في غرفة التداول</h2><p id="payS"></p>
@@ -241,10 +302,18 @@ header{border-bottom:1px solid rgba(215,166,73,.18)}header .in{padding:9px 14px;
 
 <div class="wrap">
  <section class="card" id="hero">
-  <div class="hh"><div class="who"><img class="av lg" src="https://cdn.jsdelivr.net/gh/aumanalbalushi-collab/ayman@55b88610e465eca2e050ca853c472f8214891113/crypto-live/ayman-k.jpg" alt="Ayman Al-Balushi" width="58" height="58"><div><small class="en">Ayman Al-Balushi</small><b>غرفة التداول</b></div></div><button class="hchip" id="heroSub">—</button></div>
+  <div class="hh"><div class="who"><span class="hlogo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></span><div><small class="en">Ayman Al-Balushi</small><b>غرفة التداول</b></div></div><button class="hchip" id="heroSub">—</button></div>
   <div class="hs"><div><b id="hN">—</b><span>صفقات مفتوحة</span></div><div><b id="hW">—</b><span>نسبة نجاح الروبوت</span></div><div><b id="hR">—</b><span>صافي النتيجة بعد العمولة</span></div></div>
   <div id="hBest"></div>
   <div id="riskB" class="riskb hid"></div>
+ </section>
+<section class="card" id="mkts">
+  <h2><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg></span><span id="mkTt">الأسواق</span><span class="r" id="mkR">السعر • تغير ٢٤س • إشارة الروبوت</span></h2>
+  <div class="mkl" id="mkl"><div class="sk"></div><div class="sk"></div><div class="sk"></div></div>
+ </section>
+ <section class="card" id="newsC">
+  <h2><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h13v16H6a2 2 0 01-2-2z"/><path d="M17 8h3v10a2 2 0 01-2 2M8 8h5M8 12h5M8 16h3"/></svg></span>الأخبار وقوة التأثير<span class="r" id="nwT">من قراءة Claude</span></h2>
+  <div id="nwL"><div class="sk"></div><div class="sk"></div></div>
  </section>
  <section class="card" id="acct">
   <h2><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4" stroke="#fff"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6" stroke="#fff"/></svg></span>حسابي</h2>
@@ -260,7 +329,7 @@ header{border-bottom:1px solid rgba(215,166,73,.18)}header .in{padding:9px 14px;
  </section>
 
  <section class="card" id="focus" style="margin-bottom:16px">
-  <h2><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 7.5h4a2 2 0 0 1 0 4h-4zM9.5 11.5h4.5a2 2 0 0 1 0 4H9.5zM9.5 6v12M11.5 6v1.5M11.5 16.5V18"/></svg></span>تركيز: البيتكوين والإيثيريوم<span class="r">إعدادات روبوت خاصة بهما • اضغط أي فريم</span></h2>
+  <h2><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 7.5h4a2 2 0 0 1 0 4h-4zM9.5 11.5h4.5a2 2 0 0 1 0 4H9.5zM9.5 6v12M11.5 6v1.5M11.5 16.5V18"/></svg></span><span id="fxT">تركيز: البيتكوين والإيثيريوم</span><span class="r">اضغط أي فريم للتفاصيل</span></h2>
   <div class="fx" id="fx"></div>
  </section>
 
@@ -326,7 +395,7 @@ header{border-bottom:1px solid rgba(215,166,73,.18)}header .in{padding:9px 14px;
 
  <section class="card" id="open" style="margin-top:16px">
   <h2><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></span>كل الصفقات المفتوحة<span class="r" id="openN">—</span></h2>
-  <p class="sub">الروبوت يدخل فقط مع اتجاه قوي: اتفاق أغلب الاستراتيجيات الثماني، موافقة الفريم الأعلى واتجاه البيتكوين، ومؤشر قوة الاتجاه ADX فوق الحد، وعلى خانات نجاحها ٧٠٪+ فقط (والفريمات السريعة ٥ و١٥ دقيقة ٥٠٪+ للمضاربة). وكل صفقة عليها تقييم (A+ إلى C) من مراكز كبار المتداولين والأخبار ونظرة Claude. أرقام الصفقة <b style="color:var(--gold)">مقفلة</b> ومحسوبة على الخادم، فتظهر نفسها على كل الأجهزة حتى لو كانت الصفحة مغلقة. عند الهدف ١ يُغلق جزء من الصفقة ويُنقل الوقف للدخول، والباقي يكمل بوقف متحرك.</p>
+  <p class="sub">الروبوت يدخل فقط مع اتجاه قوي: اتفاق أغلب الاستراتيجيات الثماني، موافقة الفريم الأعلى واتجاه البيتكوين، ومؤشر قوة الاتجاه ADX فوق الحد، وعلى خانات نجاحها ٧٠٪+ فقط (فريم ١٥ دقيقة ٦٥٪+، و٥ دقائق للتحليل فقط بدون صفقات). وكل صفقة عليها تقييم (A+ إلى C) من مراكز كبار المتداولين والأخبار ونظرة Claude. أرقام الصفقة <b style="color:var(--gold)">مقفلة</b> ومحسوبة على الخادم، فتظهر نفسها على كل الأجهزة حتى لو كانت الصفحة مغلقة. عند الهدف ١ يُغلق جزء من الصفقة ويُنقل الوقف للدخول، والباقي يكمل بوقف متحرك.</p>
   <div class="tfbar" id="openTf"></div>
   <div class="trades" id="trades" style="margin-top:10px"></div>
  </section>
@@ -403,7 +472,7 @@ header{border-bottom:1px solid rgba(215,166,73,.18)}header .in{padding:9px 14px;
   <div class="wid" id="newsW"></div>
  </section>
 
- <p class="disc">الإشارات آلية تجمع ٨ استراتيجيات معروفة (اتجاه EMA، سوبرترند، إيشيموكو، MACD، RSI، اختراق دونشيان، VWAP، الحجم) مع تأكيد الفريم الأعلى، وتُحسب على خادم من شموع Binance المغلقة. ليست توصية مالية؛ القرار وإدارة المخاطرة مسؤوليتك.</p>
+ <p class="disc">الإشارات آلية تجمع ٨ استراتيجيات معروفة (اتجاه EMA، سوبرترند، إيشيموكو، MACD، RSI، اختراق دونشيان، VWAP، الحجم) مع تأكيد الفريم الأعلى، وتُحسب على خادم من الشموع المغلقة (Binance للعملات، وHyperliquid للأسهم الأمريكية التي تتداول ٢٤ ساعة). ليست توصية مالية؛ القرار وإدارة المخاطرة مسؤوليتك.</p>
 </div>
 <nav id="tabbar" aria-label="التنقل">
  <button data-t="home" class="on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg><span>الرئيسية</span></button>
@@ -417,11 +486,11 @@ header{border-bottom:1px solid rgba(215,166,73,.18)}header .in{padding:9px 14px;
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
 const COINS=[['BTC','بيتكوين','#F7931A'],['ETH','إيثريوم','#8C8CF7'],['SOL','سولانا','#14F195'],['XRP','ريبل','#9fb0cc'],['BNB','بينانس','#F3BA2F'],['DOGE','دوجكوين','#C2A633'],['ADA','كاردانو','#3b82f6'],['AVAX','أفالانش','#E84142'],['LINK','تشينلينك','#2A5ADA'],['SUI','سوي','#4DA2FF'],['TRX','ترون','#EF0027'],['DOT','بولكادوت','#E6007A'],['LTC','لايتكوين','#8f9396'],['NEAR','نير','#00C08B'],['TON','تون','#0098EA'],
-['NVDA','إنفيديا','#76B900','s'],['AAPL','أبل','#8E8E93','s'],['TSLA','تسلا','#CC0000','s'],['MSFT','مايكروسوفت','#00A4EF','s'],['SPX','مؤشر S&P 500','#1F6FEB','s'],['XAU','الذهب','#C9A227','m'],['XAG','الفضة','#9EA3A8','m']];
-const MK=s=>(COINS.find(c=>c[0]===s)||[])[3]||'c',CC=COINS.filter(c=>!c[3]),pairOf=s=>MK(s)==='c'?s+'/USDT':s+'/USD';
-const HLX={NVDA:'xyz:NVDA',AAPL:'xyz:AAPL',TSLA:'xyz:TSLA',MSFT:'xyz:MSFT',SPX:'xyz:SP500',XAU:'xyz:GOLD',XAG:'xyz:SILVER'};
-const TVS={NVDA:'NASDAQ:NVDA',AAPL:'NASDAQ:AAPL',TSLA:'NASDAQ:TSLA',MSFT:'NASDAQ:MSFT',SPX:'FOREXCOM:SPXUSD',XAU:'OANDA:XAUUSD',XAG:'OANDA:XAGUSD'},tvSym=s=>TVS[s]||'BINANCE:'+s+'USDT';
-const MKN={all:'الكل',c:'كريبتو',s:'أسهم',m:'ذهب وفضة'};let mf=(()=>{try{return JSON.parse(localStorage.getItem('cx_mf'))||'all'}catch(e){return'all'}})();if(!MKN[mf])mf='all';
+['NVDA','إنفيديا','#76B900','s'],['AAPL','أبل','#8E8E93','s'],['TSLA','تسلا','#CC0000','s'],['MSFT','مايكروسوفت','#00A4EF','s'],['SPX','مؤشر S&P 500','#1F6FEB','s']];
+const MK=s=>(COINS.find(c=>c[0]===s)||[0,0,0,'x'])[3]||'c',CC=COINS.filter(c=>!c[3]),pairOf=s=>MK(s)==='c'?s+'/USDT':s+'/USD';
+const HLX={NVDA:'xyz:NVDA',AAPL:'xyz:AAPL',TSLA:'xyz:TSLA',MSFT:'xyz:MSFT',SPX:'xyz:SP500'};
+const TVS={NVDA:'NASDAQ:NVDA',AAPL:'NASDAQ:AAPL',TSLA:'NASDAQ:TSLA',MSFT:'NASDAQ:MSFT',SPX:'FOREXCOM:SPXUSD'},tvSym=s=>TVS[s]||'BINANCE:'+s+'USDT';
+const MKN={c:'الكريبتو',s:'الأسهم'};let mf=(()=>{try{return JSON.parse(localStorage.getItem('cx_mf'))||'c'}catch(e){return'c'}})();if(!MKN[mf])mf='c';const inM=s=>MK(s)===mf,MC=()=>COINS.filter(c=>(c[3]||'c')===mf);
 const TFS=['5m','15m','1h','4h','1d'],TFN={'5m':'٥ دقائق','15m':'١٥ دقيقة','1h':'ساعة','4h':'٤ ساعات','1d':'يومي'},TFK={'5m':'سكالبينج','15m':'سكالبينج','1h':'مضاربة يومية','4h':'سوينغ','1d':'متوسط المدى'},TVI={'5m':'5','15m':'15','1h':'60','4h':'240','1d':'D'};
 const $=i=>document.getElementById(i);
 const col=s=>COINS.find(c=>c[0]===s)[2],nameOf=s=>COINS.find(c=>c[0]===s)[1];
@@ -433,7 +502,7 @@ const AR=n=>String(n).replace(/\d/g,d=>'٠١٢٣٤٥٦٧٨٩'[d]);
 const tStr=t=>new Date(t).toLocaleString('en-GB',{timeZone:'Asia/Muscat',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});
 const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const label=s=>s>=50?['شراء قوي','up']:s>=20?['ميل للشراء','up']:s<=-50?['بيع قوي','dn']:s<=-20?['ميل للبيع','dn']:['محايد','nt'];
-let D=null,AI=null,sel=store.get('sel','BTC'),tf=store.get('tf','1h'),openTf='all';if(!COINS.some(c=>c[0]===sel))sel='BTC';if(!TFS.includes(tf))tf='1h';
+let D=null,AI=null,sel=store.get('sel','BTC'),tf=store.get('tf','1h'),openTf='all';if(!COINS.some(c=>c[0]===sel))sel='BTC';if(MK(sel)!==mf)sel=mf==='s'?'SPX':'BTC';if(!TFS.includes(tf))tf='1h';
 const P={};COINS.forEach(([s])=>P[s]={px:0,chg:0,hi:0,lo:0,qv:0});
 
 /* ---------- live R ---------- */
@@ -459,7 +528,7 @@ function grade(t){const c=D.coins[t.s]||{},i=c.inst||{},ai=AI&&AI.coins&&AI.coin
 function gradeHtml(t){const G=grade(t);return`<div class="grd"><b class="gr g${G.L[0]}">${G.L}</b><span>${G.p.map(x=>`<i class="${x[0]?'up':'dn'}">${x[0]?'✓':'✗'}</i> ${x[1]}`).join(' • ')||'لا توجد بيانات إضافية الآن'}</span></div>`}
 function paintRisk(){const r=AI&&AI.risk,el=$('riskB');if(!el)return;if(!r||!r.level||r.level==='low'){el.classList.add('hid');return}el.classList.remove('hid');el.className='riskb '+(r.level==='high'?'hi':'md');el.innerHTML=`<b>${r.level==='high'?'تنبيه: خبر قوي التأثير قريب':'انتبه: أخبار متوسطة التأثير'}</b><span>${esc(r.note||'')}</span>`}
 /* ===== تبويبات التطبيق ===== */
-const TABS={home:['hero','focus','aiTop','conf','matrix','world'],trades:['open','perf'],an:['detail','macro','cmd','chart','aiFull','news'],tools:['risk','alertsC','cal','journal'],me:['acct']};
+const TABS={home:['hero','mkts','focus','newsC','aiTop','conf','matrix','world'],trades:['open','perf'],an:['detail','macro','cmd','chart','aiFull','news'],tools:['risk','alertsC','cal','journal'],me:['acct']};
 let TAB='home';
 function setTab(t,keep){if(!TABS[t])t='home';TAB=t;const show=new Set(TABS[t]);document.querySelectorAll('.wrap section').forEach(x=>x.classList.toggle('hid',!show.has(x.id)));
  document.querySelectorAll('.wrap>.grid,.wrap>.g2').forEach(g=>g.classList.toggle('hid',![...g.children].some(c=>!c.classList.contains('hid'))));
@@ -467,7 +536,7 @@ function setTab(t,keep){if(!TABS[t])t='home';TAB=t;const show=new Set(TABS[t]);d
  document.querySelectorAll('#tabbar button').forEach(b=>{b.classList.toggle('on',b.dataset.t===t);b.setAttribute('aria-current',b.dataset.t===t?'page':'false')});
  if(!keep)scrollTo({top:0});setTimeout(()=>dispatchEvent(new Event('resize')),60)}
 document.querySelectorAll('#tabbar button').forEach(b=>b.onclick=()=>setTab(b.dataset.t));
-function paintHero(){if(!D)return;const o=allOpen();let n=0,w=0,sum=0;for(const s in D.coins)for(const f in D.coins[s].tfs){const x=D.coins[s].tfs[f];if(!x||x.off)continue;n+=x.stats.n;w+=x.stats.w;sum+=x.stats.sum}
+function paintHero(){if(!D)return;const o=allOpen().filter(t=>inM(t.s));let n=0,w=0,sum=0;for(const s in D.coins)for(const f in (inM(s)?D.coins[s].tfs:{})){const x=D.coins[s].tfs[f];if(!x||x.off||!x.ok)continue;n+=x.stats.n;w+=x.stats.w;sum+=x.stats.sum}
  $('hN').textContent=o.length;$('hW').textContent=n?Math.round(100*w/n)+'%':'—';$('hR').textContent=fR(sum);$('hR').className=sum>=0?'up':'dn';
  $('tbN').textContent=o.length;$('tbN').classList.toggle('on',o.length>0);
  const b=o.slice().sort((x,y)=>(grade(y).g-grade(x).g)||(y.wr-x.wr))[0];
@@ -486,8 +555,8 @@ function showPay(free,msg){$('payS').textContent=msg;$('pay').classList.toggle('
 async function lock(d){if(!store.get('tr2',0)&&(d.reason==='none'||(d.reason==='expired'&&d.plan==='t'))){store.set('tr2',1);try{const r=await(await fetch('/api/trial?fp='+encodeURIComponent(FP)+'&d='+DEV+'&r=1',{cache:'no-store'})).json();if(r.code&&r.code!==K&&r.ok!==false){K=r.code;SES='';store.set('k',K);store.set('s','');store.set('tr',1);return load()}}catch(e){}}lock0(d)}
 function lock0(d){const m=d.reason==='device'?'هذا الكود مفعّل على جهاز ثاني. كل كود يشتغل على جهاز واحد. تواصل معنا في القناة الخاصة لو غيّرت جهازك.':d.reason==='expired'?(d.plan==='t'?'انتهت تجربتك المجانية (٧ أيام). اشترك عشان تكمل تشوف الصفقات والتحليل.':'انتهى اشتراكك. جدّد عشان تكمل.'):'الدخول للمشتركين فقط. اشترك أو اكتب كود التفعيل.';showPay(false,m);$('upd').textContent='الاشتراك مطلوب'}
 function paintSub(){if(!SUB)return;const dl=Math.max(1,Math.ceil((SUB.exp-Date.now())/864e5)),dt=new Date(SUB.exp-1).toLocaleDateString('en-GB',{timeZone:'Asia/Muscat',day:'2-digit',month:'2-digit',year:'numeric'});
- const lbl=SUB.plan==='t'?'تجربة: باقي '+dl+' يوم':SUB.plan==='o'?'حساب المالك':'مشترك حتى '+dt;$('subBtn').textContent=lbl;$('heroSub').textContent=lbl;
- $('acS').innerHTML=`<b style="color:var(--gold)">${SUB.plan==='t'?'تجربة مجانية':SUB.plan==='o'?'حساب المالك':SUB.plan==='y'?'اشتراك سنوي':'اشتراك شهري'}</b><br>ينتهي: <b style="direction:ltr;display:inline-block">${dt}</b> • باقي ${AR(dl)} يوم${SUB.plan==='t'?'<br><span class="mu">اشترك قبل نهاية التجربة عشان ما ينقطع عليك شي.</span>':''}`}
+ const lbl=SUB.plan==='t'?'تجربة: باقي '+dl+' يوم':SUB.plan==='o'?'مالك • مدى الحياة':'مشترك حتى '+dt;$('subBtn').textContent=lbl;$('heroSub').textContent=lbl;
+ $('acS').innerHTML=`<b style="color:var(--gold)">${SUB.plan==='t'?'تجربة مجانية':SUB.plan==='o'?'حساب المالك':SUB.plan==='y'?'اشتراك سنوي':'اشتراك شهري'}</b><br>${SUB.plan==='o'?'اشتراك <b style="color:var(--gold2)">مدى الحياة</b> — بدون تاريخ انتهاء':`ينتهي: <b style="direction:ltr;display:inline-block">${dt}</b> • باقي ${AR(dl)} يوم`}${SUB.plan==='t'?'<br><span class="mu">اشترك قبل نهاية التجربة عشان ما ينقطع عليك شي.</span>':''}`}
 async function activate(){const c=$('payIn').value.trim();if(!c)return;$('payErr').textContent='جارٍ التحقق…';try{const r=await session(c);
  if(r.ok){K=c.toUpperCase();store.set('k',K);$('pay').classList.remove('on','free');$('payIn').value='';load()}else{const w=r.d.reason;$('payErr').textContent=w==='expired'?'هذا الكود منتهي.':w==='device'?'هذا الكود مفعّل على جهاز ثاني. كل كود لجهاز واحد.':'الكود غير صحيح. تأكد منه وحاول مرة ثانية.'}}catch(e){$('payErr').textContent='تعذّر الاتصال. حاول مرة ثانية.'}}
 $('payGo').onclick=activate;$('payIn').onkeydown=e=>{if(e.key==='Enter')activate()};$('payX').onclick=()=>$('pay').classList.remove('on');
@@ -545,17 +614,17 @@ function tradeCard(t){const px=pxOf(t.s),r=liveR(t,px),pct=t.dir*(px-t.entry)/t.
  ${gradeHtml(t)}${CFX(t.s,t.tf)&&CFX(t.s,t.tf).FAST?'<div class="fast">⚡ فريم سريع (مضاربة): نتائجه في الاختبار الطويل أضعف من فريم الساعة و٤ ساعات واليومي. خاطر بنصف حجمك المعتاد.</div>':''}
  <div class="mgmt">${t.tp1hit?`تحقق الهدف ١: أُغلق ${pctF(t)}٪ من الصفقة، والباقي يكمل بوقف متحرك.`:`عند الهدف ١: أغلق ${pctF(t)}٪ وانقل الوقف للدخول، والباقي بوقف متحرك.`}</div>
  <div class="acts"><button class="act" data-cp="${t.id}">${CP}<span>نسخ الصفقة</span></button><button class="act tg" data-tg="${t.id}">${TG}<span>تلجرام</span></button></div></div>`}
-function paintMf(){let b=$('mfBar');if(!b){b=document.createElement('div');b.id='mfBar';b.style.cssText='display:flex;gap:8px;flex-wrap:wrap;margin:0 0 10px';const sc=$('mx').closest('.scroll')||$('mx');sc.parentNode.insertBefore(b,sc)}
+function paintMf(){return;let b=$('mfBar');if(!b){b=document.createElement('div');b.id='mfBar';b.style.cssText='display:flex;gap:8px;flex-wrap:wrap;margin:0 0 10px';const sc=$('mx').closest('.scroll')||$('mx');sc.parentNode.insertBefore(b,sc)}
  b.innerHTML=Object.keys(MKN).map(k=>`<button class="tfb${k===mf?' on':''}" data-m="${k}">${MKN[k]}</button>`).join('');b.querySelectorAll('.tfb').forEach(x=>x.onclick=()=>{mf=x.dataset.m;store.set('mf',mf);paintMatrix()})}
 function paintMatrix(){if(!D)return;paintMf();let h='<thead><tr><th style="text-align:right">الأصل</th>'+TFS.map(f=>`<th>${TFN[f]}</th>`).join('')+'</tr></thead><tbody>';
- COINS.filter(c=>mf==='all'||(c[3]||'c')===mf).forEach(([s,n,c])=>{const C=D.coins[s];h+=`<tr><td><div class="coin"><span class="cic" style="background:${c}">${s}</span><div><b>${s}</b><small id="mp-${s}">${fmt(pxOf(s))}</small>${C&&C.tfs['1h']&&C.tfs['1h'].flow!=null?`<small class="${C.tfs['1h'].flow>=50?'up':'dn'}" style="display:block">شراء ${C.tfs['1h'].flow.toFixed(0)}%</small>`:''}</div></div></td>`;
+ MC().forEach(([s,n,c])=>{const C=D.coins[s];h+=`<tr><td><div class="coin"><span class="cic" style="background:${c}">${s}</span><div><b>${s}</b><small id="mp-${s}">${fmt(pxOf(s))}</small>${C&&C.tfs['1h']&&C.tfs['1h'].flow!=null?`<small class="${C.tfs['1h'].flow>=50?'up':'dn'}" style="display:block">شراء ${C.tfs['1h'].flow.toFixed(0)}%</small>`:''}</div></div></td>`;
   TFS.forEach(f=>{const x=C&&C.tfs[f],on=s===sel&&f===tf?' sel':'';if(!x){h+=`<td><button class="cell${on}" data-s="${s}" data-f="${f}">—</button></td>`;return}
    if(x.trade){const r=liveR(x.trade,pxOf(s));h+=`<td><button class="cell ${x.trade.dir>0?'L':'S'}${on}" data-s="${s}" data-f="${f}" aria-label="${s} ${TFN[f]}"><b class="${x.trade.dir>0?'up':'dn'}">${x.trade.dir>0?'▲ شراء':'▼ بيع'}</b><small class="${r>=0?'up':'dn'}">${fR(r)}</small></button></td>`}
    else if(x.off){h+=`<td><button class="cell${on}" data-s="${s}" data-f="${f}" aria-label="${s} ${TFN[f]} متوقف"><b class="mu" style="font-size:11px">متوقف</b><small class="mu">تحليل فقط</small></button></td>`}
    else if(!x.ok){h+=`<td><button class="cell${on}" data-s="${s}" data-f="${f}" aria-label="${s} ${TFN[f]} غير معتمد" title="أداء هذه الخانة تحت الشرط"><b class="mu" style="font-size:11px">غير معتمد</b><small class="mu">${x.stats.n<8?'صفقات قليلة':x.stats.sum<=0?'خاسرة بعد العمولة':'نجاح '+x.stats.wr+'%'}</small></button></td>`}
    else{const[l,cl]=label(x.score);h+=`<td><button class="cell${on}" data-s="${s}" data-f="${f}" aria-label="${s} ${TFN[f]}"><b class="mu">—</b><small class="${cl==='nt'?'mu':cl}">${x.score>0?'+':''}${x.score}</small></button></td>`}});
   h+='</tr>'});
- $('mx').innerHTML=h+'</tbody>';$('mx').querySelectorAll('.cell').forEach(b=>b.onclick=()=>{select(b.dataset.s,b.dataset.f);setTab('an')})}
+ $('mx').innerHTML=h+'</tbody>';paintMkts();$('mx').querySelectorAll('.cell').forEach(b=>b.onclick=()=>{select(b.dataset.s,b.dataset.f);setTab('an')})}
 function paintTfBar(){$('tfbar').innerHTML=TFS.map(f=>`<button class="tfb${f===tf?' on':''}" data-f="${f}">${TFN[f]} <small class="mu">${TFK[f]}</small></button>`).join('');$('tfbar').querySelectorAll('.tfb').forEach(b=>b.onclick=()=>select(sel,b.dataset.f))}
 function paintDetail(){const d=P[sel];$('selName').textContent=`${nameOf(sel)} • ${pairOf(sel)}`;$('selIc').textContent=sel;$('selIc').style.background=col(sel);$('selPx').textContent=fmt(pxOf(sel));
  $('selChg').innerHTML=d.px?`<span class="${d.chg>=0?'up':'dn'}">${d.chg>=0?'▲':'▼'} ${d.chg.toFixed(2)}% • H ${fmt(d.hi)} • L ${fmt(d.lo)}</span>`:'';
@@ -583,7 +652,7 @@ function paintDetail(){const d=P[sel];$('selName').textContent=`${nameOf(sel)} �
 function curve(svg,rs){if(!rs||!rs.length){svg.innerHTML='';return}const pts=[0];rs.forEach(r=>pts.push(pts.at(-1)+r));const mx=Math.max(...pts,1),mn=Math.min(...pts,-1),y=v=>74-(v-mn)/(mx-mn)*68,x=i=>i/(pts.length-1||1)*596+2;
  const d=pts.map((v,i)=>(i?'L':'M')+x(i).toFixed(1)+' '+y(v).toFixed(1)).join(' '),last=pts.at(-1);
  svg.innerHTML=`<line x1="0" x2="600" y1="${y(0)}" y2="${y(0)}" stroke="rgba(255,255,255,.2)" stroke-dasharray="4 4"/><path d="${d} L${x(pts.length-1)} ${y(mn)} L2 ${y(mn)}Z" fill="${last>=0?'rgba(47,212,138,.15)':'rgba(255,93,108,.15)'}"/><path d="${d}" fill="none" stroke="${last>=0?'#2fd48a':'#ff5d6c'}" stroke-width="2.5" vector-effect="non-scaling-stroke"/>`}
-function paintOpen(){const all=allOpen(),list=openTf==='all'?all:all.filter(t=>t.tf===openTf);$('openN').textContent=AR(all.length)+' مفتوحة';
+function paintOpen(){const all=allOpen().filter(t=>inM(t.s)),list=openTf==='all'?all:all.filter(t=>t.tf===openTf);$('openN').textContent=AR(all.length)+' مفتوحة';
  $('openTf').innerHTML=[['all','الكل']].concat(TFS.map(f=>[f,TFN[f]])).map(([f,n])=>`<button class="tfb${f===openTf?' on':''}" data-f="${f}">${n} (${AR(f==='all'?all.length:all.filter(t=>t.tf===f).length)})</button>`).join('');
  $('openTf').querySelectorAll('.tfb').forEach(b=>b.onclick=()=>{openTf=b.dataset.f;paintOpen()});
  $('trades').innerHTML=list.length?list.map(tradeCard).join(''):'<div class="empty">لا توجد صفقات مفتوحة على هذا الفريم الآن.</div>';rkOptions()}
@@ -608,10 +677,27 @@ function connect(){try{ws=new WebSocket(WSS[wsI%WSS.length]+'?streams='+CC.map((
 async function poll(){if(Date.now()-lastMsg<15000)return;for(const b of['https://data-api.binance.vision','https://api.binance.com']){try{const a=await(await fetch(b+'/api/v3/ticker/24hr?symbols='+encodeURIComponent(JSON.stringify(CC.map(([s])=>s+'USDT'))))).json();a.forEach(t=>onTick({s:t.symbol,c:t.lastPrice,h:t.highPrice,l:t.lowPrice,q:t.quoteVolume,o:t.openPrice}));livePaint();$('wsDot').classList.add('on');$('wsTxt').textContent='أسعار (تحديث دوري)';return}catch(e){}}}
 async function hlPoll(){try{const[m,c]=await(await fetch('https://api.hyperliquid.xyz/info',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({type:'metaAndAssetCtxs',dex:'xyz'})})).json();const ix={};m.universe.forEach((u,i)=>ix[u.name]=c[i]);for(const s in HLX){const x=ix[HLX[s]];if(x&&+x.markPx)onTick({s:s+'USDT',c:x.markPx,h:0,l:0,q:x.dayNtlVlm,o:x.prevDayPx})}livePaint()}catch(e){}}
 hlPoll();setInterval(hlPoll,10000);
+/* ===== السوق: كريبتو | أسهم ===== */
+function mktInd(){const m=$('mkt');if(!m)return;const b=m.querySelector(`button[data-m="${mf}"]`),i=m.querySelector('.ind');m.querySelectorAll('button').forEach(x=>{x.classList.toggle('on',x===b);x.setAttribute('aria-selected',x===b)});if(b&&i){i.style.width=b.offsetWidth+'px';i.style.transform=`translateX(${b.offsetLeft}px)`}}
+function setMarket(m){if(!MKN[m])return;mf=m;store.set('mf',m);mktInd();const ft=$('fxT');if(ft)ft.textContent=m==='s'?'تركيز: S&P 500 وإنفيديا':'تركيز: البيتكوين والإيثيريوم';const t=$('mkTt');if(t)t.textContent=m==='s'?'الأسهم الأمريكية':'العملات الرقمية';
+ document.body.classList.toggle('stk',m==='s');tape();paintHero();paintOpen();paintFocus();paintNewsC();if(MK(sel)!==m)select(m==='s'?'SPX':'BTC');else{paintMatrix();paintDetail()}}
+document.querySelectorAll('#mkt button').forEach(b=>b.onclick=()=>setMarket(b.dataset.m));addEventListener('resize',mktInd);setTimeout(()=>setMarket(mf),0);
+/* ===== قائمة الأسواق (على طريقة Binance) ===== */
+function sigOf(s){const C=D&&D.coins[s];if(!C)return null;for(const f of['1d','4h','1h','15m']){const x=C.tfs[f];if(x&&x.trade)return{t:x.trade,f}}const x=C.tfs['1h']||C.tfs['4h'];return x?{score:x.score}:null}
+function paintMkts(){const el=$('mkl');if(!el||!D)return;el.innerHTML=MC().map(([s,n,c])=>{const d=P[s]||{},g=sigOf(s);let sg='<span class="sg mu">—</span>';
+  if(g&&g.t)sg=`<span class="sg ${g.t.dir>0?'L':'S'}">${g.t.dir>0?'شراء':'بيع'} <small>${TFN[g.f]}</small></span>`;else if(g&&g.score!=null){const[l,cl]=label(g.score);sg=`<span class="sg ${cl==='nt'?'mu':cl}">${l}</span>`}
+  return`<button class="mkr" data-s="${s}"><span class="cic" style="background:${c}">${s}</span><span class="nm"><b>${s}</b><small>${esc(n)}</small></span><span class="pxx" id="mk-px-${s}">${fmt(pxOf(s))}</span><span class="pill ${d.chg>=0?'up':'dn'}" id="mk-ch-${s}">${d.px?(d.chg>=0?'+':'')+d.chg.toFixed(2)+'%':'—'}</span>${sg}</button>`}).join('');
+ el.querySelectorAll('.mkr').forEach(b=>b.onclick=()=>{select(b.dataset.s);setTab('an')})}
+const _onTick=onTick;onTick=function(t){_onTick(t);const s=String(t.s).replace('USDT',''),d=P[s];if(!d)return;const a=$('mk-px-'+s),b=$('mk-ch-'+s);if(a){const o=a.textContent;a.textContent=fmt(d.px);if(o!==a.textContent){a.classList.remove('fl');void a.offsetWidth;a.classList.add('fl')}}if(b){b.textContent=(d.chg>=0?'+':'')+d.chg.toFixed(2)+'%';b.className='pill '+(d.chg>=0?'up':'dn')}};
+/* ===== الأخبار وقوة التأثير ===== */
+function paintNewsC(){const el=$('nwL');if(!el)return;let n=AI&&AI.news;if(!n||!n.length){el.innerHTML='<div class="empty">تتحدث الأخبار مع كل قراءة من Claude.</div>';return}{const f=n.filter(x=>!x.coins||!x.coins.length||x.coins.some(inM));if(f.length>=2)n=f}
+ const st=AI.updated?tStr(AI.updated):'';if($('nwT'))$('nwT').textContent=st?'آخر تحديث '+st:'من قراءة Claude';
+ el.innerHTML=n.slice(0,6).map((x,i)=>{const k=x.impact==='bullish'?'up':x.impact==='bearish'?'dn':'nt',S=Math.max(1,Math.min(3,+x.strength||1));
+  return`<div class="nwc ${k}" style="animation-delay:${i*60}ms"><div class="nwh"><em class="b-${k}">${k==='up'?'▲ إيجابي':k==='dn'?'▼ سلبي':'• محايد'}</em><span class="pw" title="قوة التأثير ${S} من ٣"><i class="${S>=1?'on':''}"></i><i class="${S>=2?'on':''}"></i><i class="${S>=3?'on':''}"></i><small>${S===3?'قوي':S===2?'متوسط':'ضعيف'}</small></span></div><p>${esc(x.t)}</p>${x.coins&&x.coins.length?`<div class="tg">${x.coins.map(c=>`<b>${esc(c)}</b>`).join('')}</div>`:''}</div>`}).join('')}
 // تحديث تلقائي: لو نُشرت نسخة جديدة من الغرفة، يعيد التطبيق تحميل نفسه عند فتحه (مهم للتطبيق المثبّت على الشاشة الرئيسية)
 async function verCheck(){try{let cur='';try{cur=localStorage.getItem('cx_src')||''}catch(e){}if(!cur)return;const h=await(await fetch('/?v='+Date.now(),{cache:'no-store'})).text(),m=h.match(/var SRC='([^']+)'/);if(m&&m[1]!==cur)location.reload()}catch(e){}}
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')verCheck()});setInterval(verCheck,600000);
-function tape(){$('tape').innerHTML=[0,1].map(()=>COINS.map(([s])=>{const d=P[s];return`<span>${s} <b>${fmt(d.px)}</b> <span class="${d.chg>=0?'up':'dn'}">${(d.chg>=0?'+':'')+d.chg.toFixed(2)}%</span></span>`}).join('')).join('')}
+function tape(){$('tape').innerHTML=[0,1].map(()=>MC().map(([s])=>{const d=P[s];return`<span>${s} <b>${fmt(d.px)}</b> <span class="${d.chg>=0?'up':'dn'}">${(d.chg>=0?'+':'')+d.chg.toFixed(2)}%</span></span>`}).join('')).join('')}
 
 /* ---------- risk ---------- */
 function rkOptions(){const s0=$('rkTr').value,op=allOpen();const opts=op.map(t=>`<option value="${t.id}">${t.dir>0?'شراء':'بيع'} ${t.s} • ${TFN[t.tf]} @ ${fmt(t.entry)}</option>`).join('')||'<option value="">لا توجد صفقات مفتوحة</option>';
@@ -740,7 +826,7 @@ function paintTimer(){const x=D&&D.coins[sel]&&D.coins[sel].tfs[tf],tr=x&&x.trad
 let FNG=null;
 /* ===== تركيز BTC و ETH ===== */
 function paintFocus(){const el=$('fx');if(!el||!D)return;const BN={bullish:['up','إيجابية'],bearish:['dn','سلبية'],neutral:['','محايدة']};
- el.innerHTML=['BTC','ETH'].map(s=>{const C=D.coins[s];if(!C)return'';const p=P[s]||{},px=pxOf(s),ai=AI&&AI.coins&&AI.coins[s],i=C.inst||{},se=C.sent||{},lv=AI&&AI.levels&&AI.levels[s];
+ el.innerHTML=(mf==='s'?['SPX','NVDA']:['BTC','ETH']).map(s=>{const C=D.coins[s];if(!C)return'';const p=P[s]||{},px=pxOf(s),ai=AI&&AI.coins&&AI.coins[s],i=C.inst||{},se=C.sent||{},lv=AI&&AI.levels&&AI.levels[s];
   let best=null;const chips=TFS.map(f=>{const x=C.tfs[f];if(!x)return`<button disabled><small>${TFN[f]}</small><b class="mu">—</b></button>`;
    if(x.trade){const r=liveR(x.trade,px);return`<button class="${x.trade.dir>0?'L':'S'}" data-s="${s}" data-f="${f}"><small>${TFN[f]}</small><b class="${x.trade.dir>0?'up':'dn'}">${x.trade.dir>0?'شراء':'بيع'}</b><i dir="ltr">${r>=0?'+':''}${r.toFixed(2)}R</i></button>`}
    const cf=CFX(s,f),dr=Math.sign(x.score),cnd=[Math.abs(x.score)>=cf.TH,x.agree>=cf.AGREE,x.htf===dr,x.adx>=cf.ADX,!cf.BTCF||x.btc==null||x.btc===dr],met=cnd.filter(Boolean).length;
@@ -776,7 +862,7 @@ function paintMacro(){const m=AI&&AI.macro;if(!m||!$('mcB'))return;const ST={haw
  $('mcF').innerHTML=(m.flows||[]).map(f=>{const c=IM[f.impact]||IM.neutral;return`<div class="flw"><span><span class="pill ${c[0]}">${c[1]}</span> ${esc(f.t)}</span><b class="${f.impact==='bullish'?'up':f.impact==='bearish'?'dn':''}">${esc(f.v)}</b></div>`}).join('')||'<span class="mu">—</span>';
  const ev=(m.events||[]).filter(e=>Date.parse(e.at)>Date.now()-36e5).sort((a,b)=>Date.parse(a.at)-Date.parse(b.at));
  $('mcE').innerHTML=ev.map(e=>`<div class="ev"><time>${new Date(Date.parse(e.at)).toLocaleString('en-GB',{timeZone:'Asia/Muscat',weekday:'short',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})}</time><span>${esc(e.t)}</span><em><b class="stg">${'●'.repeat(Math.min(3,e.strength||1))}${'○'.repeat(3-Math.min(3,e.strength||1))}</b></em></div>`).join('')||'<span class="mu">لا أحداث قوية مسجلة.</span>'}
-function paintNews(){const n=AI&&AI.news;if(!n||!n.length)return;$('newsH').innerHTML=n.slice(0,6).map(x=>`<div class="nw"><em class="${x.impact==='bullish'?'b-up':x.impact==='bearish'?'b-dn':'b-nt'}">${x.impact==='bullish'?'إيجابي':x.impact==='bearish'?'سلبي':'محايد'}</em><span>${x.strength?`<b class="stg" title="قوة التأثير">${'●'.repeat(Math.min(3,x.strength))}${'○'.repeat(3-Math.min(3,x.strength))}</b> `:''}${esc(x.t)}${x.coins&&x.coins.length?' <small class="mu">('+x.coins.map(esc).join('، ')+')</small>':''}</span></div>`).join('')}
+function paintNews(){const n=AI&&AI.news;paintNewsC();if(!n||!n.length)return;$('newsH').innerHTML=n.slice(0,6).map(x=>`<div class="nw"><em class="${x.impact==='bullish'?'b-up':x.impact==='bearish'?'b-dn':'b-nt'}">${x.impact==='bullish'?'إيجابي':x.impact==='bearish'?'سلبي':'محايد'}</em><span>${x.strength?`<b class="stg" title="قوة التأثير">${'●'.repeat(Math.min(3,x.strength))}${'○'.repeat(3-Math.min(3,x.strength))}</b> `:''}${esc(x.t)}${x.coins&&x.coins.length?' <small class="mu">('+x.coins.map(esc).join('، ')+')</small>':''}</span></div>`).join('')}
 
 /* ---------- boot ---------- */
 setInterval(()=>{$('clock').textContent=new Date().toLocaleTimeString('en-GB',{timeZone:'Asia/Muscat'})+' مسقط'},1000);
