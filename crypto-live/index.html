@@ -416,7 +416,12 @@ header{border-bottom:1px solid rgba(215,166,73,.18)}header .in{padding:9px 14px;
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
-const COINS=[['BTC','بيتكوين','#F7931A'],['ETH','إيثريوم','#8C8CF7'],['SOL','سولانا','#14F195'],['XRP','ريبل','#9fb0cc'],['BNB','بينانس','#F3BA2F'],['DOGE','دوجكوين','#C2A633'],['ADA','كاردانو','#3b82f6'],['AVAX','أفالانش','#E84142'],['LINK','تشينلينك','#2A5ADA']];
+const COINS=[['BTC','بيتكوين','#F7931A'],['ETH','إيثريوم','#8C8CF7'],['SOL','سولانا','#14F195'],['XRP','ريبل','#9fb0cc'],['BNB','بينانس','#F3BA2F'],['DOGE','دوجكوين','#C2A633'],['ADA','كاردانو','#3b82f6'],['AVAX','أفالانش','#E84142'],['LINK','تشينلينك','#2A5ADA'],['SUI','سوي','#4DA2FF'],['TRX','ترون','#EF0027'],['DOT','بولكادوت','#E6007A'],['LTC','لايتكوين','#8f9396'],['NEAR','نير','#00C08B'],['TON','تون','#0098EA'],
+['NVDA','إنفيديا','#76B900','s'],['AAPL','أبل','#8E8E93','s'],['TSLA','تسلا','#CC0000','s'],['MSFT','مايكروسوفت','#00A4EF','s'],['SPX','مؤشر S&P 500','#1F6FEB','s'],['XAU','الذهب','#C9A227','m'],['XAG','الفضة','#9EA3A8','m']];
+const MK=s=>(COINS.find(c=>c[0]===s)||[])[3]||'c',CC=COINS.filter(c=>!c[3]),pairOf=s=>MK(s)==='c'?s+'/USDT':s+'/USD';
+const HLX={NVDA:'xyz:NVDA',AAPL:'xyz:AAPL',TSLA:'xyz:TSLA',MSFT:'xyz:MSFT',SPX:'xyz:SP500',XAU:'xyz:GOLD',XAG:'xyz:SILVER'};
+const TVS={NVDA:'NASDAQ:NVDA',AAPL:'NASDAQ:AAPL',TSLA:'NASDAQ:TSLA',MSFT:'NASDAQ:MSFT',SPX:'FOREXCOM:SPXUSD',XAU:'OANDA:XAUUSD',XAG:'OANDA:XAGUSD'},tvSym=s=>TVS[s]||'BINANCE:'+s+'USDT';
+const MKN={all:'الكل',c:'كريبتو',s:'أسهم',m:'ذهب وفضة'};let mf=(()=>{try{return JSON.parse(localStorage.getItem('cx_mf'))||'all'}catch(e){return'all'}})();if(!MKN[mf])mf='all';
 const TFS=['5m','15m','1h','4h','1d'],TFN={'5m':'٥ دقائق','15m':'١٥ دقيقة','1h':'ساعة','4h':'٤ ساعات','1d':'يومي'},TFK={'5m':'سكالبينج','15m':'سكالبينج','1h':'مضاربة يومية','4h':'سوينغ','1d':'متوسط المدى'},TVI={'5m':'5','15m':'15','1h':'60','4h':'240','1d':'D'};
 const $=i=>document.getElementById(i);
 const col=s=>COINS.find(c=>c[0]===s)[2],nameOf=s=>COINS.find(c=>c[0]===s)[1];
@@ -523,7 +528,7 @@ function paintLog(){$('log').innerHTML=events.length?events.map(e=>`<div><time>$
 
 /* ---------- trade text ---------- */
 function tradeText(t){const px=pxOf(t.s),r=liveR(t,px);
- return[`${t.dir>0?'🟢 شراء':'🔴 بيع'} — ${t.s}/USDT • فريم ${TFN[t.tf]}`,`💰 الدخول: ${fmt(t.entry)}`,(t.tp1hit?`⛔ وقف الخسارة الآن: ${fmt(t.sl)} (متحرك بعد الهدف ١، كان ${fmt(t.sl0)})`:`⛔ وقف الخسارة: ${fmt(t.sl0)}`),`🎯 الهدف ١: ${fmt(t.tp1)}`,`🎯 الهدف ٢: ${fmt(t.tp2)}`,`🧭 الإدارة: عند الهدف ١ أغلق ${pctF(t)}٪ وانقل الوقف للدخول، والباقي بوقف متحرك حتى الهدف ٢`,`📊 القوة ${Math.abs(t.score)}/100 • ${t.agree} من ٨ استراتيجيات`,...(t.wr?[`✅ نسبة النجاح التاريخية: ${t.wr}% • تقييم الصفقة: ${grade(t).L}`]:[]),...(t.flow!=null?[`⚖️ الشراء ${t.flow.toFixed(0)}% / البيع ${(100-t.flow).toFixed(0)}%`]:[]),`📌 الحالة: ${t.tp1hit?'✅ تحقق الهدف ١ — الوقف متحرك':'🟡 مفتوحة'} (${fR(r)})`,`⏰ ${tStr(t.t)} مسقط`,`⚠️ ليست توصية مالية`].join('\n')}
+ return[`${t.dir>0?'🟢 شراء':'🔴 بيع'} — ${pairOf(t.s)} • فريم ${TFN[t.tf]}`,`💰 الدخول: ${fmt(t.entry)}`,(t.tp1hit?`⛔ وقف الخسارة الآن: ${fmt(t.sl)} (متحرك بعد الهدف ١، كان ${fmt(t.sl0)})`:`⛔ وقف الخسارة: ${fmt(t.sl0)}`),`🎯 الهدف ١: ${fmt(t.tp1)}`,`🎯 الهدف ٢: ${fmt(t.tp2)}`,`🧭 الإدارة: عند الهدف ١ أغلق ${pctF(t)}٪ وانقل الوقف للدخول، والباقي بوقف متحرك حتى الهدف ٢`,`📊 القوة ${Math.abs(t.score)}/100 • ${t.agree} من ٨ استراتيجيات`,...(t.wr?[`✅ نسبة النجاح التاريخية: ${t.wr}% • تقييم الصفقة: ${grade(t).L}`]:[]),...(t.flow!=null?[`⚖️ الشراء ${t.flow.toFixed(0)}% / البيع ${(100-t.flow).toFixed(0)}%`]:[]),`📌 الحالة: ${t.tp1hit?'✅ تحقق الهدف ١ — الوقف متحرك':'🟡 مفتوحة'} (${fR(r)})`,`⏰ ${tStr(t.t)} مسقط`,`⚠️ ليست توصية مالية`].join('\n')}
 async function copyTxt(t){try{await navigator.clipboard.writeText(t);return true}catch(e){const a=document.createElement('textarea');a.value=t;a.style.cssText='position:fixed;opacity:0';document.body.appendChild(a);a.select();let ok=false;try{ok=document.execCommand('copy')}catch(_){}a.remove();return ok}}
 document.addEventListener('click',async e=>{const b=e.target.closest('[data-cp],[data-tg]');if(!b)return;const t=allOpen().find(x=>x.id===(b.dataset.cp||b.dataset.tg));if(!t)return;const txt=tradeText(t);
  if(b.dataset.tg){open('https://t.me/share/url?url='+encodeURIComponent('https://t.me/+7bygsfyVnMJiMWE0')+'&text='+encodeURIComponent(txt),'_blank');return}
@@ -540,8 +545,10 @@ function tradeCard(t){const px=pxOf(t.s),r=liveR(t,px),pct=t.dir*(px-t.entry)/t.
  ${gradeHtml(t)}${CFX(t.s,t.tf)&&CFX(t.s,t.tf).FAST?'<div class="fast">⚡ فريم سريع (مضاربة): نتائجه في الاختبار الطويل أضعف من فريم الساعة و٤ ساعات واليومي. خاطر بنصف حجمك المعتاد.</div>':''}
  <div class="mgmt">${t.tp1hit?`تحقق الهدف ١: أُغلق ${pctF(t)}٪ من الصفقة، والباقي يكمل بوقف متحرك.`:`عند الهدف ١: أغلق ${pctF(t)}٪ وانقل الوقف للدخول، والباقي بوقف متحرك.`}</div>
  <div class="acts"><button class="act" data-cp="${t.id}">${CP}<span>نسخ الصفقة</span></button><button class="act tg" data-tg="${t.id}">${TG}<span>تلجرام</span></button></div></div>`}
-function paintMatrix(){if(!D)return;let h='<thead><tr><th style="text-align:right">العملة</th>'+TFS.map(f=>`<th>${TFN[f]}</th>`).join('')+'</tr></thead><tbody>';
- COINS.forEach(([s,n,c])=>{const C=D.coins[s];h+=`<tr><td><div class="coin"><span class="cic" style="background:${c}">${s}</span><div><b>${s}</b><small id="mp-${s}">${fmt(pxOf(s))}</small>${C&&C.tfs['1h']&&C.tfs['1h'].flow!=null?`<small class="${C.tfs['1h'].flow>=50?'up':'dn'}" style="display:block">شراء ${C.tfs['1h'].flow.toFixed(0)}%</small>`:''}</div></div></td>`;
+function paintMf(){let b=$('mfBar');if(!b){b=document.createElement('div');b.id='mfBar';b.style.cssText='display:flex;gap:8px;flex-wrap:wrap;margin:0 0 10px';const sc=$('mx').closest('.scroll')||$('mx');sc.parentNode.insertBefore(b,sc)}
+ b.innerHTML=Object.keys(MKN).map(k=>`<button class="tfb${k===mf?' on':''}" data-m="${k}">${MKN[k]}</button>`).join('');b.querySelectorAll('.tfb').forEach(x=>x.onclick=()=>{mf=x.dataset.m;store.set('mf',mf);paintMatrix()})}
+function paintMatrix(){if(!D)return;paintMf();let h='<thead><tr><th style="text-align:right">الأصل</th>'+TFS.map(f=>`<th>${TFN[f]}</th>`).join('')+'</tr></thead><tbody>';
+ COINS.filter(c=>mf==='all'||(c[3]||'c')===mf).forEach(([s,n,c])=>{const C=D.coins[s];h+=`<tr><td><div class="coin"><span class="cic" style="background:${c}">${s}</span><div><b>${s}</b><small id="mp-${s}">${fmt(pxOf(s))}</small>${C&&C.tfs['1h']&&C.tfs['1h'].flow!=null?`<small class="${C.tfs['1h'].flow>=50?'up':'dn'}" style="display:block">شراء ${C.tfs['1h'].flow.toFixed(0)}%</small>`:''}</div></div></td>`;
   TFS.forEach(f=>{const x=C&&C.tfs[f],on=s===sel&&f===tf?' sel':'';if(!x){h+=`<td><button class="cell${on}" data-s="${s}" data-f="${f}">—</button></td>`;return}
    if(x.trade){const r=liveR(x.trade,pxOf(s));h+=`<td><button class="cell ${x.trade.dir>0?'L':'S'}${on}" data-s="${s}" data-f="${f}" aria-label="${s} ${TFN[f]}"><b class="${x.trade.dir>0?'up':'dn'}">${x.trade.dir>0?'▲ شراء':'▼ بيع'}</b><small class="${r>=0?'up':'dn'}">${fR(r)}</small></button></td>`}
    else if(x.off){h+=`<td><button class="cell${on}" data-s="${s}" data-f="${f}" aria-label="${s} ${TFN[f]} متوقف"><b class="mu" style="font-size:11px">متوقف</b><small class="mu">تحليل فقط</small></button></td>`}
@@ -550,7 +557,7 @@ function paintMatrix(){if(!D)return;let h='<thead><tr><th style="text-align:righ
   h+='</tr>'});
  $('mx').innerHTML=h+'</tbody>';$('mx').querySelectorAll('.cell').forEach(b=>b.onclick=()=>{select(b.dataset.s,b.dataset.f);setTab('an')})}
 function paintTfBar(){$('tfbar').innerHTML=TFS.map(f=>`<button class="tfb${f===tf?' on':''}" data-f="${f}">${TFN[f]} <small class="mu">${TFK[f]}</small></button>`).join('');$('tfbar').querySelectorAll('.tfb').forEach(b=>b.onclick=()=>select(sel,b.dataset.f))}
-function paintDetail(){const d=P[sel];$('selName').textContent=`${nameOf(sel)} • ${sel}/USDT`;$('selIc').textContent=sel;$('selIc').style.background=col(sel);$('selPx').textContent=fmt(pxOf(sel));
+function paintDetail(){const d=P[sel];$('selName').textContent=`${nameOf(sel)} • ${pairOf(sel)}`;$('selIc').textContent=sel;$('selIc').style.background=col(sel);$('selPx').textContent=fmt(pxOf(sel));
  $('selChg').innerHTML=d.px?`<span class="${d.chg>=0?'up':'dn'}">${d.chg>=0?'▲':'▼'} ${d.chg.toFixed(2)}% • H ${fmt(d.hi)} • L ${fmt(d.lo)}</span>`:'';
  paintTfBar();if(!D)return;const C=D.coins[sel],x=C&&C.tfs[tf];if(!x){$('vTxt').textContent='لا تتوفر بيانات';return}
  let[lb,c]=label(x.score);const hOpp=x.htf&&Math.sign(x.score)&&x.htf!==Math.sign(x.score);if(hOpp&&Math.abs(x.score)>=20){lb=(x.score>0?'ارتداد صاعد':'ارتداد هابط')+' عكس الاتجاه العام';c='nt'}$('needle').style.transform=`rotate(${x.score*.9}deg)`;$('vTxt').textContent=lb+' — '+TFN[tf];$('vTxt').className='v '+(c==='nt'?'':c);
@@ -594,11 +601,13 @@ function onTick(t){const s=t.s.replace('USDT','');if(!P[s])return;const d=P[s],o
  if(window.G)G.update(s,d)}
 let lastPaint=0;function livePaint(){if(Date.now()-lastPaint<3000||!D)return;lastPaint=Date.now();c3build();paintMatrix();paintOpen();const x=D.coins[sel]&&D.coins[sel].tfs[tf];if(x&&x.trade)$('selTrade').innerHTML=tradeCard({...x.trade,s:sel,tf,id:sel+tf+x.trade.t,wr:x.stats.wr,flow:x.flow})}
 const WSS=['wss://data-stream.binance.vision/stream','wss://stream.binance.com:9443/stream'];let wsI=0,ws,lastMsg=0;
-function connect(){try{ws=new WebSocket(WSS[wsI%WSS.length]+'?streams='+COINS.map(([s])=>s.toLowerCase()+'usdt@miniTicker').join('/'))}catch(e){wsI++;return setTimeout(connect,3000)}
+function connect(){try{ws=new WebSocket(WSS[wsI%WSS.length]+'?streams='+CC.map(([s])=>s.toLowerCase()+'usdt@miniTicker').join('/'))}catch(e){wsI++;return setTimeout(connect,3000)}
  ws.onopen=()=>{$('wsDot').classList.add('on');$('wsTxt').textContent='أسعار مباشرة'};
  ws.onmessage=e=>{lastMsg=Date.now();const m=JSON.parse(e.data);if(m.data){onTick(m.data);livePaint()}};
  ws.onclose=()=>{$('wsDot').classList.remove('on');$('wsTxt').textContent='إعادة الاتصال…';wsI++;setTimeout(connect,3000)}}
-async function poll(){if(Date.now()-lastMsg<15000)return;for(const b of['https://data-api.binance.vision','https://api.binance.com']){try{const a=await(await fetch(b+'/api/v3/ticker/24hr?symbols='+encodeURIComponent(JSON.stringify(COINS.map(([s])=>s+'USDT'))))).json();a.forEach(t=>onTick({s:t.symbol,c:t.lastPrice,h:t.highPrice,l:t.lowPrice,q:t.quoteVolume,o:t.openPrice}));livePaint();$('wsDot').classList.add('on');$('wsTxt').textContent='أسعار (تحديث دوري)';return}catch(e){}}}
+async function poll(){if(Date.now()-lastMsg<15000)return;for(const b of['https://data-api.binance.vision','https://api.binance.com']){try{const a=await(await fetch(b+'/api/v3/ticker/24hr?symbols='+encodeURIComponent(JSON.stringify(CC.map(([s])=>s+'USDT'))))).json();a.forEach(t=>onTick({s:t.symbol,c:t.lastPrice,h:t.highPrice,l:t.lowPrice,q:t.quoteVolume,o:t.openPrice}));livePaint();$('wsDot').classList.add('on');$('wsTxt').textContent='أسعار (تحديث دوري)';return}catch(e){}}}
+async function hlPoll(){try{const[m,c]=await(await fetch('https://api.hyperliquid.xyz/info',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({type:'metaAndAssetCtxs',dex:'xyz'})})).json();const ix={};m.universe.forEach((u,i)=>ix[u.name]=c[i]);for(const s in HLX){const x=ix[HLX[s]];if(x&&+x.markPx)onTick({s:s+'USDT',c:x.markPx,h:0,l:0,q:x.dayNtlVlm,o:x.prevDayPx})}livePaint()}catch(e){}}
+hlPoll();setInterval(hlPoll,10000);
 function tape(){$('tape').innerHTML=[0,1].map(()=>COINS.map(([s])=>{const d=P[s];return`<span>${s} <b>${fmt(d.px)}</b> <span class="${d.chg>=0?'up':'dn'}">${(d.chg>=0?'+':'')+d.chg.toFixed(2)}%</span></span>`}).join('')).join('')}
 
 /* ---------- risk ---------- */
@@ -632,7 +641,7 @@ function paintAlTf(){const w=store.get('alTf',['15m','1h','4h']);$('alTf').inner
 
 /* ---------- widgets ---------- */
 function tv(){$('chT').textContent=sel+' • '+TFN[tf];$('tv').innerHTML='';const f=document.createElement('iframe');f.style.cssText='width:100%;height:100%;border:0';f.title='الشارت';f.loading='lazy';
- f.src='https://s.tradingview.com/widgetembed/?symbol=BINANCE%3A'+sel+'USDT&interval='+TVI[tf]+'&theme=light&style=1&locale=ar_AE&timezone=Asia%2FMuscat&studies=%5B%22RSI%40tv-basicstudies%22%2C%22MACD%40tv-basicstudies%22%2C%22IchimokuCloud%40tv-basicstudies%22%5D&allow_symbol_change=1';$('tv').appendChild(f)}
+ f.src='https://s.tradingview.com/widgetembed/?symbol='+encodeURIComponent(tvSym(sel))+'&interval='+TVI[tf]+'&theme=light&style=1&locale=ar_AE&timezone=Asia%2FMuscat&studies=%5B%22RSI%40tv-basicstudies%22%2C%22MACD%40tv-basicstudies%22%2C%22IchimokuCloud%40tv-basicstudies%22%5D&allow_symbol_change=1';$('tv').appendChild(f)}
 function widget(el,src,cfg){const d=$(el);d.innerHTML='<div class="tradingview-widget-container" style="height:100%"><div class="tradingview-widget-container__widget" style="height:100%"></div></div>';const s=document.createElement('script');s.src=src;s.async=true;s.textContent=JSON.stringify(cfg);d.firstChild.appendChild(s)}
 async function mood(){try{const r=await(await fetch('https://api.alternative.me/fng/?limit=1')).json();const v=+r.data[0].value;FNG=v;paintConf();$('fngN').textContent=v;$('fngN').className=v<25?'dn':v>75?'up':'';$('fngL').textContent='الخوف والطمع: '+({'Extreme Fear':'خوف شديد','Fear':'خوف','Neutral':'محايد','Greed':'طمع','Extreme Greed':'طمع شديد'}[r.data[0].value_classification]||'')}catch(e){}
  try{const g=(await(await fetch('https://api.coingecko.com/api/v3/global')).json()).data;$('gCap').textContent='$'+big(g.total_market_cap.usd);$('gDom').textContent=g.market_cap_percentage.btc.toFixed(1)+'%';const ch=g.market_cap_change_percentage_24h_usd;$('gChg').innerHTML=`<span class="${ch>=0?'up':'dn'}">${ch>=0?'+':''}${ch.toFixed(2)}%</span>`}catch(e){}}
@@ -699,7 +708,7 @@ function c3init(){if(!window.THREE)return;const el=$('c3d'),W=()=>el.clientWidth
  (function loop(){t+=.016;if(auto&&!RM)yaw=-.3+Math.sin(t*.15)*.3;const R=14;cam.position.set(Math.sin(yaw)*R*Math.cos(pitch),Math.sin(pitch)*R+.6,Math.cos(yaw)*R*Math.cos(pitch));cam.lookAt(0,.2,0);
   if(C3.pulse){C3.pulse.material.opacity=.55+.45*Math.sin(t*5)}r.render(sc,cam);requestAnimationFrame(loop)})();
  c3load();setInterval(c3load,30000)}
-async function c3load(){if(!C3.r)return;const key=sel+tf;for(const b of['https://data-api.binance.vision','https://api.binance.com']){try{const k=await(await fetch(`${b}/api/v3/klines?symbol=${sel}USDT&interval=${tf}&limit=70`)).json();if(Array.isArray(k)){C3.k=k;C3.key=key;c3build();return}}catch(e){}}}
+async function c3load(){if(!C3.r)return;const key=sel+tf;if(MK(sel)!=='c'){try{const sec={'5m':300,'15m':900,'1h':3600,'4h':14400,'1d':86400}[tf];const r=await(await fetch('https://api.hyperliquid.xyz/info',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({type:'candleSnapshot',req:{coin:HLX[sel],interval:tf,startTime:Date.now()-sec*70e3}})})).json();if(Array.isArray(r)&&r.length){C3.k=r.slice(-70).map(x=>[x.t,x.o,x.h,x.l,x.c,x.v]);C3.key=key;c3build()}}catch(e){}return}for(const b of['https://data-api.binance.vision','https://api.binance.com']){try{const k=await(await fetch(`${b}/api/v3/klines?symbol=${sel}USDT&interval=${tf}&limit=70`)).json();if(Array.isArray(k)){C3.k=k;C3.key=key;c3build();return}}catch(e){}}}
 function c3build(){if(!C3.k||!window.THREE)return;const{root}=C3,k=C3.k.map(r=>({t:+r[0],o:+r[1],h:+r[2],l:+r[3],c:+r[4],v:+r[5]}));
  const last=k.at(-1);if(P[sel].px&&C3.key===sel+tf){last.c=P[sel].px;last.h=Math.max(last.h,last.c);last.l=Math.min(last.l,last.c)}
  while(root.children.length){const o=root.children.pop();o.traverse(x=>{x.geometry&&x.geometry.dispose();x.material&&(x.material.map&&x.material.map.dispose(),x.material.dispose())})}
@@ -719,7 +728,7 @@ function c3build(){if(!C3.k||!window.THREE)return;const{root}=C3,k=C3.k.map(r=>(
   zone(tr.entry,tr.sl0,0xff5d6c);zone(tr.entry,tr.tp2,0x2fd48a);
   line(tr.entry,0xf0cf80,.9,'دخول '+fmt(tr.entry));line(tr.sl0,0xff5d6c,.9,'وقف '+fmt(tr.sl0));line(tr.tp1,0x2fd48a,.9,'هدف١ '+fmt(tr.tp1));line(tr.tp2,0x2fd48a,.9,'هدف٢ '+fmt(tr.tp2));
   const ei=k.findIndex(c=>c.t>=tr.t);if(ei>=0){const v=new THREE.Mesh(new THREE.BoxGeometry(.02,5.4,.02),new THREE.MeshBasicMaterial({color:0xD7A649}));v.position.set(X(ei),0,0);root.add(v);const s=txtSprite('بداية الصفقة','#D7A649',.24);s.position.set(X(ei),2.95,0);root.add(s)}}
- const nm=txtSprite(sel+'/USDT • '+TFN[tf],'#ffffff',.36);nm.position.set(-span/2+1.6,3.1,0);root.add(nm);
+ const nm=txtSprite(pairOf(sel)+' • '+TFN[tf],'#ffffff',.36);nm.position.set(-span/2+1.6,3.1,0);root.add(nm);
  $('c3T').textContent=sel+' • '+TFN[tf];paintTimer()}
 function paintTimer(){const x=D&&D.coins[sel]&&D.coins[sel].tfs[tf],tr=x&&x.trade;
  if(!tr){$('tTimer').innerHTML=`<b class="hh">وقت الصفقة</b><span class="mu">لا توجد صفقة مفتوحة على ${sel} — ${TFN[tf]}. الروبوت يراقب كل شمعة.</span>`;return}
@@ -737,7 +746,7 @@ function paintFocus(){const el=$('fx');if(!el||!D)return;const BN={bullish:['up'
   const open=TFS.map(f=>C.tfs[f]&&C.tfs[f].trade?f:null).filter(Boolean);
   const nx=open.length?`<b style="color:var(--gold)">صفقة مفتوحة على ${open.map(f=>TFN[f]).join(' و')}</b> — اضغطها لتشوف الدخول والوقف والأهداف.`:best?`أقرب فرصة: <b class="${best.dr>0?'up':'dn'}">${best.dr>0?'شراء':'بيع'}</b> على فريم ${TFN[best.f]} (تحقق ${best.met} من ٥ شروط، نجاح الخانة ${best.x.stats.wr}%). الروبوت يدخل تلقائيًا أول ما تكتمل الشروط على شمعة مغلقة.`:'لا توجد خانة معتمدة قريبة من الدخول الآن.';
   const pct=x=>(100*x/(1+x)).toFixed(0)+'%',L=v=>(+v).toLocaleString('en-US',{maximumFractionDigits:2});
-  return`<div class="fc"><div class="ft"><span class="cic" style="background:${col(s)}">${s}</span><div><b>${nameOf(s)}</b><br><small class="mu">${s}/USDT</small></div><div class="px"><b>${fmt(px)}</b>${p.chg!=null?`<small class="${p.chg>=0?'up':'dn'}">${p.chg>=0?'▲':'▼'} ${p.chg.toFixed(2)}%</small>`:''}</div></div>
+  return`<div class="fc"><div class="ft"><span class="cic" style="background:${col(s)}">${s}</span><div><b>${nameOf(s)}</b><br><small class="mu">${pairOf(s)}</small></div><div class="px"><b>${fmt(px)}</b>${p.chg!=null?`<small class="${p.chg>=0?'up':'dn'}">${p.chg>=0?'▲':'▼'} ${p.chg.toFixed(2)}%</small>`:''}</div></div>
    <div class="ftf">${chips}</div>
    <div class="fmeta">${ai?`<span>نظرة Claude: <b class="${(BN[ai.bias]||BN.neutral)[0]}">${(BN[ai.bias]||BN.neutral)[1]}</b></span>`:''}${i.top?`<span>كبار المتداولين: شراء <b class="up" dir="ltr">${pct(i.top)}</b> • بيع <b class="dn" dir="ltr">${(100-100*i.top/(1+i.top)).toFixed(0)}%</b></span>`:''}${se.funding!=null?`<span>التمويل: <b class="${se.funding>0?'up':'dn'}" style="direction:ltr;display:inline-block">${(se.funding*100).toFixed(4)}%</b></span>`:''}${C.tfs['1h']&&C.tfs['1h'].flow!=null?`<span>تدفق الشراء (ساعة): <b dir="ltr" class="${C.tfs['1h'].flow>=50?'up':'dn'}">${C.tfs['1h'].flow}%</b></span>`:''}</div>
    ${lv?`<div class="flv"><span>الدعم: <b class="up">${(lv.s||[]).map(L).join(' ← ')}</b></span><span>المقاومة: <b class="dn">${(lv.r||[]).map(L).join(' ← ')}</b></span></div>`:''}
