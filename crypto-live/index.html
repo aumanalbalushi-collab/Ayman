@@ -273,6 +273,7 @@ button:active{transform:scale(.97)}button{transition:background .2s,border-color
 .mrb{display:inline-block;font-style:normal;font-size:10.5px;color:#0C1B3A;background:linear-gradient(180deg,var(--gold2),var(--gold));border-radius:6px;padding:1px 6px;margin-top:2px}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 </style>
+<style>.mkb{font-style:normal;font-size:9.5px;font-weight:700;padding:1px 5px;border-radius:5px;margin-inline-start:5px;vertical-align:middle}.mkb.on{background:rgba(14,203,129,.15);color:#0ecb81}.mkb.off{background:rgba(132,142,156,.18);color:#9aa4b2}.mkc{margin-top:6px;padding:7px 10px;border-radius:9px;background:rgba(240,185,11,.1);border:1px solid rgba(240,185,11,.3);color:#f0b90b;font-size:12px;line-height:1.6;direction:rtl;text-align:right}.mkc small{color:#b7bdc6;font-size:11px}</style>
 </head>
 <body>
 <header><div class="in">
@@ -369,7 +370,7 @@ button:active{transform:scale(.97)}button{transition:background .2s,border-color
 
  <section class="card" id="detail" style="margin-top:16px">
   <h2><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4M10 10h4v4h-4z"/></svg></span>التحليل الكامل<span class="r" id="dTime">—</span></h2>
-  <div class="sel-head"><span class="cic" id="selIc" style="width:44px;height:44px;font-size:12px"></span><div><b id="selName" style="font-size:19px">—</b><div id="selChg" style="direction:ltr;text-align:right;font-size:13px"></div></div><div class="big" id="selPx">—</div></div>
+  <div class="sel-head"><span class="cic" id="selIc" style="width:44px;height:44px;font-size:12px"></span><div><b id="selName" style="font-size:19px">—</b><div id="selChg" style="direction:ltr;text-align:right;font-size:13px"></div><div id="selMk" class="mkc" style="display:none"></div></div><div class="big" id="selPx">—</div></div>
   <div class="tfbar" id="tfbar" style="margin-top:10px"></div>
   <div class="g2" style="margin-top:4px">
    <div>
@@ -542,7 +543,7 @@ function paintHero(){if(!D)return;const o=allOpen().filter(t=>inM(t.s));let n=0,
  $('hN').textContent=o.length;$('hW').textContent=n?Math.round(100*w/n)+'%':'—';$('hR').textContent=fR(sum);$('hR').className=sum>=0?'up':'dn';
  $('tbN').textContent=o.length;$('tbN').classList.toggle('on',o.length>0);
  const b=o.slice().sort((x,y)=>(grade(y).g-grade(x).g)||(y.wr-x.wr))[0];
- $('hBest').innerHTML=b?`<button data-s="${b.s}" data-f="${b.tf}"><span class="cic" style="background:${col(b.s)}">${b.s}</span><span><b class="${b.dir>0?'up':'dn'}">${b.dir>0?'شراء':'بيع'} ${b.s}</b> • ${TFN[b.tf]} • نجاح ${b.wr}% • تقييم ${grade(b).L}<small>أقوى صفقة مفتوحة الآن — اضغط للتحليل الكامل</small></span><em>‹</em></button>`:'<div class="box" style="margin-top:10px"><span class="mu">لا توجد صفقة مفتوحة الآن. الروبوت ينتظر اتجاهًا قويًا، وهذا أفضل من الدخول في سوق متذبذب.</span></div>';
+ $('hBest').innerHTML=b?`<button data-s="${b.s}" data-f="${b.tf}"><span class="cic" style="background:${col(b.s)}">${b.s}</span><span><b class="${b.dir>0?'up':'dn'}">${b.dir>0?'شراء':'بيع'} ${b.s}</b>${mkBadge(b.s)} • ${TFN[b.tf]} • نجاح ${b.wr}% • تقييم ${grade(b).L}<small>أقوى صفقة مفتوحة الآن — اضغط للتحليل الكامل</small></span><em>‹</em></button>`:'<div class="box" style="margin-top:10px"><span class="mu">لا توجد صفقة مفتوحة الآن. الروبوت ينتظر اتجاهًا قويًا، وهذا أفضل من الدخول في سوق متذبذب.</span></div>';
  const hb=$('hBest').querySelector('button');if(hb)hb.onclick=()=>{select(hb.dataset.s,hb.dataset.f);setTab('an')}}
 /* ===== الاشتراك والتثبيت ===== */
 let K=store.get('k',''),SES=store.get('s',''),SUB=null,PLAN='m';
@@ -550,12 +551,12 @@ let DEV=store.get('dev','');if(!/^[a-z0-9]{16,40}$/.test(DEV)){DEV=Array.from(cr
 const FP=[screen.width,screen.height,devicePixelRatio,Intl.DateTimeFormat().resolvedOptions().timeZone,navigator.language,navigator.platform,navigator.hardwareConcurrency||0,navigator.deviceMemory||0,navigator.maxTouchPoints||0].join('~');
 const Q=()=>'k='+encodeURIComponent(K)+'&d='+DEV+'&s='+encodeURIComponent(SES);
 async function session(code){const r=await fetch('/api/activate?k='+encodeURIComponent(code)+'&d='+DEV,{cache:'no-store'});const d=await r.json().catch(()=>({}));if(r.ok&&d.s){SES=d.s;store.set('s',SES);return{ok:true}}return{ok:false,d}}
-async function ensureKey(){if(K||store.get('tr',0))return;try{const d=await(await fetch('/api/trial?fp='+encodeURIComponent(FP)+'&d='+DEV,{cache:'no-store'})).json();if(d.code){K=d.code;store.set('k',K);store.set('tr',1)}}catch(e){}}
+async function ensureKey(){if(K||store.get('tr',0))return;for(let a=0;a<3&&!K;a++){if(a)await new Promise(r=>setTimeout(r,1500*a));try{const d=await(await fetch('/api/trial?fp='+encodeURIComponent(FP)+'&d='+DEV,{cache:'no-store'})).json();if(d.code){K=d.code;store.set('k',K);store.set('tr',1)}}catch(e){}}}
 function payTg(){const n=PLAN==='y'?'سنوي ($100)':'شهري ($10)';PMSG='السلام عليكم، أبي أشترك في تطبيق غرفة التداول\nالخطة: '+n+'\nحوّلت المبلغ، وهذا الإيصال 👇';$('payTg').href='https://t.me/CryptoPulseVIP_Admin?text='+encodeURIComponent(PMSG)}
 let PMSG='';$('payTg').onclick=()=>{try{navigator.clipboard.writeText(PMSG).then(()=>toast('انتسخت رسالة الاشتراك — الصقها مع صورة الإيصال في المحادثة'),()=>{})}catch(e){}};
 function showPay(free,msg){$('payS').textContent=msg;$('pay').classList.toggle('free',!!free);$('pay').classList.add('on');$('payErr').textContent='';payTg()}
-async function lock(d){if(!store.get('tr2',0)&&(d.reason==='none'||(d.reason==='expired'&&d.plan==='t'))){store.set('tr2',1);try{const r=await(await fetch('/api/trial?fp='+encodeURIComponent(FP)+'&d='+DEV+'&r=1',{cache:'no-store'})).json();if(r.code&&r.code!==K&&r.ok!==false){K=r.code;SES='';store.set('k',K);store.set('s','');store.set('tr',1);return load()}}catch(e){}}lock0(d)}
-function lock0(d){const m=d.reason==='device'?'هذا الكود مفعّل على جهاز ثاني. كل كود يشتغل على جهاز واحد. تواصل معنا في القناة الخاصة لو غيّرت جهازك.':d.reason==='expired'?(d.plan==='t'?'انتهت تجربتك المجانية (٧ أيام). اشترك عشان تكمل تشوف الصفقات والتحليل.':'انتهى اشتراكك. جدّد عشان تكمل.'):'الدخول للمشتركين فقط. اشترك أو اكتب كود التفعيل.';showPay(false,m);$('upd').textContent='الاشتراك مطلوب'}
+async function lock(d){if(Date.now()-(+store.get('tr2',0)||0)>6e4&&(d.reason==='none'||(d.reason==='expired'&&d.plan==='t'))){store.set('tr2',Date.now());try{const r=await(await fetch('/api/trial?fp='+encodeURIComponent(FP)+'&d='+DEV+'&r=1',{cache:'no-store'})).json();if(r.code&&r.code!==K&&r.ok!==false){K=r.code;SES='';store.set('k',K);store.set('s','');store.set('tr',1);return load()}}catch(e){}}lock0(d)}
+function lock0(d){const m=d.reason==='device'?'هذا الكود مفعّل على جهاز ثاني. كل كود يشتغل على جهاز واحد. تواصل معنا في القناة الخاصة لو غيّرت جهازك.':d.reason==='expired'?(d.plan==='t'?'انتهت تجربتك المجانية (٧ أيام). اشترك عشان تكمل تشوف الصفقات والتحليل.':'انتهى اشتراكك. جدّد عشان تكمل.'):(!K?'ما قدرنا نبدأ تجربتك المجانية تلقائيًا (غالبًا مشكلة اتصال). تأكد من الإنترنت وأعد فتح التطبيق، أو اكتب كود التفعيل إذا عندك.':'الدخول للمشتركين فقط. اشترك أو اكتب كود التفعيل.');showPay(false,m);$('upd').textContent='الاشتراك مطلوب'}
 function paintSub(){if(!SUB)return;const dl=Math.max(1,Math.ceil((SUB.exp-Date.now())/864e5)),dt=new Date(SUB.exp-1).toLocaleDateString('en-GB',{timeZone:'Asia/Muscat',day:'2-digit',month:'2-digit',year:'numeric'});
  const lbl=SUB.plan==='t'?'تجربة: باقي '+dl+' يوم':SUB.plan==='o'?'مالك • مدى الحياة':'مشترك حتى '+dt;$('subBtn').textContent=lbl;$('heroSub').textContent=lbl;
  $('acS').innerHTML=`<b style="color:var(--gold)">${SUB.plan==='t'?'تجربة مجانية':SUB.plan==='o'?'حساب المالك':SUB.plan==='y'?'اشتراك سنوي':'اشتراك شهري'}</b><br>${SUB.plan==='o'?'اشتراك <b style="color:var(--gold2)">مدى الحياة</b> — بدون تاريخ انتهاء':`ينتهي: <b style="direction:ltr;display:inline-block">${dt}</b> • باقي ${AR(dl)} يوم`}${SUB.plan==='t'?'<br><span class="mu">اشترك قبل نهاية التجربة عشان ما ينقطع عليك شي.</span>':''}`}
@@ -609,7 +610,7 @@ document.addEventListener('click',async e=>{const b=e.target.closest('[data-cp],
 const CP='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></svg>';
 const TG='<svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.8 19c-.2 1-.9 1.3-1.8.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8 8.8-7.9c.4-.3-.1-.5-.6-.2L6.6 13 2 11.6c-1-.3-1-1 .2-1.5L20.5 3c.9-.3 1.6.2 1.4 1.3z"/></svg>';
 function tradeCard(t){const px=pxOf(t.s),r=liveR(t,px),pct=t.dir*(px-t.entry)/t.entry*100,pos=Math.max(0,Math.min(100,(rOf(t,px)+1)/(1+k2(t))*100)),e1=(1+k1(t))/(1+k2(t))*100;
- return`<div class="trade ${t.dir>0?'buy':'sell'}"><div class="top"><span class="cic" style="background:${col(t.s)}">${t.s}</span><b>${t.dir>0?'شراء':'بيع'} ${t.s}</b><span class="pill b-gd">${TFN[t.tf]}</span>${t.wr?`<span class="pill b-up wr60">نجاح ${t.wr}%</span>`:''}${t.tp1hit?'<span class="pill b-up">الهدف ١ ✓</span>':''}<div class="pnl ${r>=0?'up':'dn'}">${fR(r)}<small style="font-size:12px;display:block">${pct>=0?'+':''}${pct.toFixed(2)}%</small></div></div>
+ return`<div class="trade ${t.dir>0?'buy':'sell'}"><div class="top"><span class="cic" style="background:${col(t.s)}">${t.s}</span><b>${t.dir>0?'شراء':'بيع'} ${t.s}</b>${mkBadge(t.s)}<span class="pill b-gd">${TFN[t.tf]}</span>${t.wr?`<span class="pill b-up wr60">نجاح ${t.wr}%</span>`:''}${t.tp1hit?'<span class="pill b-up">الهدف ١ ✓</span>':''}<div class="pnl ${r>=0?'up':'dn'}">${fR(r)}<small style="font-size:12px;display:block">${pct>=0?'+':''}${pct.toFixed(2)}%</small></div></div>
  <div class="lv"><div><span>الدخول</span><b>${fmt(t.entry)}</b></div><div class="sl">${t.tp1hit?`<span>الوقف الآن (${t.sl===t.entry?'على الدخول':'متحرك'})</span><b>${fmt(t.sl)}</b><small class="mu" style="display:block;text-decoration:line-through">${fmt(t.sl0)}</small>`:`<span>الوقف</span><b>${fmt(t.sl0)}</b>`}</div><div class="tp ${t.tp1hit?'hit':''}"><span>الهدف ١</span><b>${fmt(t.tp1)}</b></div><div class="tp"><span>الهدف ٢</span><b>${fmt(t.tp2)}</b></div></div>
  <div class="track"><em style="left:${e1}%"></em><i style="left:${pos}%"></i></div>
  <div class="meta"><span>الآن <b style="direction:ltr;display:inline-block">${fmt(px)}</b></span><span>فُتحت ${tStr(t.t)}</span><span>${t.mr?'<b class="mrb">روبوت الارتداد للمتوسط</b>':`قوة ${Math.abs(t.score)} • ${t.agree}/٨`}</span>${t.flow!=null?`<span>شراء <b class="up">${t.flow.toFixed(0)}%</b> / بيع <b class="dn">${(100-t.flow).toFixed(0)}%</b></span>`:''}</div>
@@ -628,8 +629,8 @@ function paintMatrix(){if(!D)return;paintMf();let h='<thead><tr><th style="text-
   h+='</tr>'});
  $('mx').innerHTML=h+'</tbody>';paintMkts();$('mx').querySelectorAll('.cell').forEach(b=>b.onclick=()=>{select(b.dataset.s,b.dataset.f);setTab('an')})}
 function paintTfBar(){$('tfbar').innerHTML=TFS.map(f=>`<button class="tfb${f===tf?' on':''}" data-f="${f}">${TFN[f]} <small class="mu">${TFK[f]}</small></button>`).join('');$('tfbar').querySelectorAll('.tfb').forEach(b=>b.onclick=()=>select(sel,b.dataset.f))}
-function paintDetail(){const d=P[sel];$('selName').textContent=`${nameOf(sel)} • ${pairOf(sel)}`;$('selIc').textContent=sel;$('selIc').style.background=col(sel);$('selPx').textContent=fmt(pxOf(sel));
- $('selChg').innerHTML=d.px?`<span class="${d.chg>=0?'up':'dn'}">${d.chg>=0?'▲':'▼'} ${d.chg.toFixed(2)}% • H ${fmt(d.hi)} • L ${fmt(d.lo)}</span>`:'';
+function paintDetail(){const d=P[sel];$('selName').textContent=`${nameOf(sel)} • ${pairOf(sel)}`;$('selIc').textContent=sel;$('selIc').style.background=col(sel);$('selPx').textContent=fmt(pxOf(sel));paintMkNote();
+ $('selChg').innerHTML=d.px?`<span class="${d.chg>=0?'up':'dn'}">${d.chg>=0?'▲':'▼'} ${d.chg.toFixed(2)}%${d.hi?` • H ${fmt(d.hi)} • L ${fmt(d.lo)}`:''}</span>`:'';
  paintTfBar();if(!D)return;const C=D.coins[sel],x=C&&C.tfs[tf];if(!x){$('vTxt').textContent='لا تتوفر بيانات';return}
  let[lb,c]=label(x.score);const hOpp=x.htf&&Math.sign(x.score)&&x.htf!==Math.sign(x.score);if(hOpp&&Math.abs(x.score)>=20){lb=(x.score>0?'ارتداد صاعد':'ارتداد هابط')+' عكس الاتجاه العام';c='nt'}$('needle').style.transform=`rotate(${x.score*.9}deg)`;$('vTxt').textContent=lb+' — '+TFN[tf];$('vTxt').className='v '+(c==='nt'?'':c);
  $('verdict').style.borderColor=c==='up'?'var(--up)':c==='dn'?'var(--dn)':'var(--line)';
@@ -668,7 +669,7 @@ function select(s,f){sel=s;tf=f||tf;store.set('sel',sel);store.set('tf',tf);pain
 /* ---------- live prices ---------- */
 function onTick(t){const s=t.s.replace('USDT','');if(!P[s])return;const d=P[s],old=d.px;d.px=+t.c;d.hi=+t.h;d.lo=+t.l;d.qv=+t.q;d.chg=+t.o?(d.px-+t.o)/+t.o*100:0;
  const m=$('mp-'+s);if(m){m.textContent=fmt(d.px);if(old&&old!==d.px){m.classList.remove('flash-up','flash-dn');void m.offsetWidth;m.classList.add(d.px>old?'flash-up':'flash-dn')}}
- if(s===sel){$('selPx').textContent=fmt(d.px);$('selChg').innerHTML=`<span class="${d.chg>=0?'up':'dn'}">${d.chg>=0?'▲':'▼'} ${d.chg.toFixed(2)}% • H ${fmt(d.hi)} • L ${fmt(d.lo)}</span>`}
+ if(s===sel){$('selPx').textContent=fmt(d.px);$('selChg').innerHTML=`<span class="${d.chg>=0?'up':'dn'}">${d.chg>=0?'▲':'▼'} ${d.chg.toFixed(2)}%${d.hi?` • H ${fmt(d.hi)} • L ${fmt(d.lo)}`:''}</span>`}
  if(window.G)G.update(s,d)}
 let lastPaint=0;function livePaint(){if(Date.now()-lastPaint<3000||!D)return;lastPaint=Date.now();c3build();paintMatrix();paintOpen();const x=D.coins[sel]&&D.coins[sel].tfs[tf];if(x&&x.trade)$('selTrade').innerHTML=tradeCard({...x.trade,s:sel,tf,id:sel+tf+x.trade.t,wr:x.stats.wr,flow:x.flow})}
 const WSS=['wss://data-stream.binance.vision/stream','wss://stream.binance.com:9443/stream'];let wsI=0,ws,lastMsg=0;
@@ -677,6 +678,19 @@ function connect(){try{ws=new WebSocket(WSS[wsI%WSS.length]+'?streams='+CC.map((
  ws.onmessage=e=>{lastMsg=Date.now();const m=JSON.parse(e.data);if(m.data){onTick(m.data);livePaint()}};
  ws.onclose=()=>{$('wsDot').classList.remove('on');$('wsTxt').textContent='إعادة الاتصال…';wsI++;setTimeout(connect,3000)}}
 async function poll(){if(Date.now()-lastMsg<15000)return;for(const b of['https://data-api.binance.vision','https://api.binance.com']){try{const a=await(await fetch(b+'/api/v3/ticker/24hr?symbols='+encodeURIComponent(JSON.stringify(CC.map(([s])=>s+'USDT'))))).json();a.forEach(t=>onTick({s:t.symbol,c:t.lastPrice,h:t.highPrice,l:t.lowPrice,q:t.quoteVolume,o:t.openPrice}));livePaint();$('wsDot').classList.add('on');$('wsTxt').textContent='أسعار (تحديث دوري)';return}catch(e){}}}
+var NYH=new Set(['2026-11-26','2026-12-25','2027-01-01','2027-01-18','2027-02-15','2027-03-26','2027-05-31','2027-06-18','2027-07-05','2027-09-06','2027-11-25','2027-12-24']);
+var NYF=new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',weekday:'short',hourCycle:'h23'});
+function nyP(t){const p={};NYF.formatToParts(new Date(t)).forEach(x=>p[x.type]=x.value);return p}
+function mktOpenAt(m,t){if(m!=='s'&&m!=='m')return true;const p=nyP(t),wd=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].indexOf(p.weekday),mn=(+p.hour%24)*60+ +p.minute,ds=`${p.year}-${p.month}-${p.day}`;
+ if(m==='s')return wd>=1&&wd<=5&&!NYH.has(ds)&&mn>=570&&mn<960;
+ if(wd===6)return false;if(wd===0)return mn>=1080;if(wd===5)return mn<1020;return!(mn>=1020&&mn<1080)}
+var MKS={};function mkState(m){const now=Date.now(),c=MKS[m];if(c&&now-c.t<6e4)return c;let o=mktOpenAt(m,now),nx=null;if(!o){let t=Math.ceil(now/3e5)*3e5;for(let i=0;i<5000;i++,t+=3e5)if(mktOpenAt(m,t)){nx=t;break}}return MKS[m]={t:now,o,nx}}
+var MSF=new Intl.DateTimeFormat('ar-OM',{timeZone:'Asia/Muscat',weekday:'long',hour:'numeric',minute:'2-digit'});
+function nxTxt(t){if(!t)return'';const h=(t-Date.now())/36e5;return MSF.format(new Date(t))+(h<24?` (بعد ${h<1?Math.max(1,Math.round(h*60))+' دقيقة':(n=>n+(n>=3&&n<=10?' ساعات':' ساعة'))(Math.round(h))})`:'')}
+function mkBadge(s){const m=MK(s);if(m!=='s'&&m!=='m')return'';return mkState(m).o?'<i class="mkb on">مفتوح</i>':'<i class="mkb off">مغلق</i>'}
+function paintMkNote(){const el=$('selMk');if(!el)return;const m=MK(sel);if(m!=='s'&&m!=='m'){el.style.display='none';return}const st=mkState(m);if(st.o){el.style.display='none';return}
+ el.style.display='block';el.innerHTML=`<b>السوق مغلق الحين</b> • يفتح ${nxTxt(st.nx)} بتوقيت مسقط.<br><small>${m==='m'?'السلع (الذهب والفضة والنفط) تتداول من مساء الأحد إلى مساء الجمعة بتوقيت نيويورك، مع استراحة ساعة يوميًا.':'الأسهم الأمريكية تتداول من الإثنين إلى الجمعة ٩:٣٠ص–٤م بتوقيت نيويورك (بتوقيت مسقط: ٦:٣٠م–١ص في الشتاء، و٥:٣٠م–١٢ص في الصيف).'} وقت الإغلاق السعر شبه ثابت، والصفقات المفتوحة تنتظر الافتتاح.</small>`}
+setInterval(()=>{if(typeof paintMkNote==='function')paintMkNote()},6e4);
 async function hlPoll(){try{const[m,c]=await(await fetch('https://api.hyperliquid.xyz/info',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({type:'metaAndAssetCtxs',dex:'xyz'})})).json();const ix={};m.universe.forEach((u,i)=>ix[u.name]=c[i]);for(const s in HLX){const x=ix[HLX[s]];if(x&&+x.markPx)onTick({s:s+'USDT',c:x.markPx,h:0,l:0,q:x.dayNtlVlm,o:x.prevDayPx})}livePaint()}catch(e){}}
 hlPoll();setInterval(hlPoll,10000);
 /* ===== السوق: كريبتو | أسهم ===== */
@@ -688,7 +702,7 @@ document.querySelectorAll('#mkt button').forEach(b=>b.onclick=()=>setMarket(b.da
 function sigOf(s){const C=D&&D.coins[s];if(!C)return null;for(const f of['1d','4h','1h','15m']){const x=C.tfs[f];if(x&&x.trade)return{t:x.trade,f}}const x=C.tfs['1h']||C.tfs['4h'];return x?{score:x.score}:null}
 function paintMkts(){const el=$('mkl');if(!el||!D)return;el.innerHTML=MC().map(([s,n,c])=>{const d=P[s]||{},g=sigOf(s);let sg='<span class="sg mu">—</span>';
   if(g&&g.t)sg=`<span class="sg ${g.t.dir>0?'L':'S'}">${g.t.dir>0?'شراء':'بيع'} <small>${TFN[g.f]}</small></span>`;else if(g&&g.score!=null){const[l,cl]=label(g.score);sg=`<span class="sg ${cl==='nt'?'mu':cl}">${l}</span>`}
-  return`<button class="mkr" data-s="${s}"><span class="cic" style="background:${c}">${s}</span><span class="nm"><b>${s}</b><small>${esc(n)}</small></span><span class="pxx" id="mk-px-${s}">${fmt(pxOf(s))}</span><span class="pill ${d.chg>=0?'up':'dn'}" id="mk-ch-${s}">${d.px?(d.chg>=0?'+':'')+d.chg.toFixed(2)+'%':'—'}</span>${sg}</button>`}).join('');
+  return`<button class="mkr" data-s="${s}"><span class="cic" style="background:${c}">${s}</span><span class="nm"><b>${s}${mkBadge(s)}</b><small>${esc(n)}</small></span><span class="pxx" id="mk-px-${s}">${fmt(pxOf(s))}</span><span class="pill ${d.chg>=0?'up':'dn'}" id="mk-ch-${s}">${d.px?(d.chg>=0?'+':'')+d.chg.toFixed(2)+'%':'—'}</span>${sg}</button>`}).join('');
  el.querySelectorAll('.mkr').forEach(b=>b.onclick=()=>{select(b.dataset.s);setTab('an')})}
 const _onTick=onTick;onTick=function(t){_onTick(t);const s=String(t.s).replace('USDT',''),d=P[s];if(!d)return;const a=$('mk-px-'+s),b=$('mk-ch-'+s);if(a){const o=a.textContent;a.textContent=fmt(d.px);if(o!==a.textContent){a.classList.remove('fl');void a.offsetWidth;a.classList.add('fl')}}if(b){b.textContent=(d.chg>=0?'+':'')+d.chg.toFixed(2)+'%';b.className='pill '+(d.chg>=0?'up':'dn')}};
 /* ===== الأخبار وقوة التأثير ===== */
