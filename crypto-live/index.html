@@ -608,6 +608,9 @@ function connect(){try{ws=new WebSocket(WSS[wsI%WSS.length]+'?streams='+CC.map((
 async function poll(){if(Date.now()-lastMsg<15000)return;for(const b of['https://data-api.binance.vision','https://api.binance.com']){try{const a=await(await fetch(b+'/api/v3/ticker/24hr?symbols='+encodeURIComponent(JSON.stringify(CC.map(([s])=>s+'USDT'))))).json();a.forEach(t=>onTick({s:t.symbol,c:t.lastPrice,h:t.highPrice,l:t.lowPrice,q:t.quoteVolume,o:t.openPrice}));livePaint();$('wsDot').classList.add('on');$('wsTxt').textContent='أسعار (تحديث دوري)';return}catch(e){}}}
 async function hlPoll(){try{const[m,c]=await(await fetch('https://api.hyperliquid.xyz/info',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({type:'metaAndAssetCtxs',dex:'xyz'})})).json();const ix={};m.universe.forEach((u,i)=>ix[u.name]=c[i]);for(const s in HLX){const x=ix[HLX[s]];if(x&&+x.markPx)onTick({s:s+'USDT',c:x.markPx,h:0,l:0,q:x.dayNtlVlm,o:x.prevDayPx})}livePaint()}catch(e){}}
 hlPoll();setInterval(hlPoll,10000);
+// تحديث تلقائي: لو نُشرت نسخة جديدة من الغرفة، يعيد التطبيق تحميل نفسه عند فتحه (مهم للتطبيق المثبّت على الشاشة الرئيسية)
+async function verCheck(){try{let cur='';try{cur=localStorage.getItem('cx_src')||''}catch(e){}if(!cur)return;const h=await(await fetch('/?v='+Date.now(),{cache:'no-store'})).text(),m=h.match(/var SRC='([^']+)'/);if(m&&m[1]!==cur)location.reload()}catch(e){}}
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')verCheck()});setInterval(verCheck,600000);
 function tape(){$('tape').innerHTML=[0,1].map(()=>COINS.map(([s])=>{const d=P[s];return`<span>${s} <b>${fmt(d.px)}</b> <span class="${d.chg>=0?'up':'dn'}">${(d.chg>=0?'+':'')+d.chg.toFixed(2)}%</span></span>`}).join('')).join('')}
 
 /* ---------- risk ---------- */
