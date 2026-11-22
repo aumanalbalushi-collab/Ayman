@@ -656,8 +656,8 @@ function paintOpen(){const all=allOpen().filter(t=>inM(t.s)),list=openTf==='all'
  $('openTf').innerHTML=[['all','الكل']].concat(TFS.map(f=>[f,TFN[f]])).map(([f,n])=>`<button class="tfb${f===openTf?' on':''}" data-f="${f}">${n} (${AR(f==='all'?all.length:all.filter(t=>t.tf===f).length)})</button>`).join('');
  $('openTf').querySelectorAll('.tfb').forEach(b=>b.onclick=()=>{openTf=b.dataset.f;paintOpen()});
  $('trades').innerHTML=list.length?list.map(tradeCard).join(''):'<div class="empty">لا توجد صفقات مفتوحة على هذا الفريم الآن.</div>';rkOptions()}
-function paintPerf(){if(!D)return;let h='<thead><tr><th>الفريم</th><th>الأسلوب</th><th>صفقات</th><th>نسبة النجاح</th><th class="num">صافي النتيجة</th><th>أفضل عملة</th><th>أضعف عملة</th></tr></thead><tbody>';
- TFS.forEach(f=>{if(D.cfgs[f].OFF){h+=`<tr><td>${TFN[f]}</td><td class="mu" colspan="6">متوقف — ما ثبت له ربح بنسبة ٧٠٪+ بعد العمولة، يُعرض للتحليل فقط</td></tr>`;return}let n=0,w=0,sum=0,best=null,worst=null;COINS.forEach(([s])=>{const x=D.coins[s]&&D.coins[s].tfs[f];if(!x)return;n+=x.stats.n;w+=x.stats.w;sum+=x.stats.sum;if(!best||x.stats.sum>best[1])best=[s,x.stats.sum];if(!worst||x.stats.sum<worst[1])worst=[s,x.stats.sum]});
+function paintPerf(){if(!D)return;let h='<thead><tr><th>الفريم</th><th>الأسلوب</th><th>صفقات</th><th>نسبة النجاح</th><th class="num">صافي النتيجة</th><th>الأفضل</th><th>الأضعف</th></tr></thead><tbody>';
+ TFS.forEach(f=>{if(D.cfgs[f].OFF){h+=`<tr><td>${TFN[f]}</td><td class="mu" colspan="6">متوقف — ما ثبت له ربح بنسبة ٧٠٪+ بعد العمولة، يُعرض للتحليل فقط</td></tr>`;return}let n=0,w=0,sum=0,best=null,worst=null;MC().forEach(([s])=>{const x=D.coins[s]&&D.coins[s].tfs[f];if(!x)return;n+=x.stats.n;w+=x.stats.w;sum+=x.stats.sum;if(!best||x.stats.sum>best[1])best=[s,x.stats.sum];if(!worst||x.stats.sum<worst[1])worst=[s,x.stats.sum]});
   h+=`<tr><td>${TFN[f]}</td><td class="mu">${TFK[f]}</td><td>${AR(n)}</td><td>${n?Math.round(w/n*100)+'%':'—'}</td><td class="num ${sum>=0?'up':'dn'}">${fR(sum)}</td><td>${best?best[0]+' <span class="up" style="direction:ltr;display:inline-block">'+fR(best[1])+'</span>':'—'}</td><td>${worst?worst[0]+' <span class="dn" style="direction:ltr;display:inline-block">'+fR(worst[1])+'</span>':'—'}</td></tr>`});
  $('perfT').innerHTML=h+'</tbody>'}
 function paintAll(){paintFocus();paintConf();paintHero();paintMatrix();paintDetail();paintOpen();paintPerf();riskCalc();if(window.G)G.sig();c3build()}
@@ -680,7 +680,7 @@ hlPoll();setInterval(hlPoll,10000);
 /* ===== السوق: كريبتو | أسهم ===== */
 function mktInd(){const m=$('mkt');if(!m)return;const b=m.querySelector(`button[data-m="${mf}"]`),i=m.querySelector('.ind');m.querySelectorAll('button').forEach(x=>{x.classList.toggle('on',x===b);x.setAttribute('aria-selected',x===b)});if(b&&i){i.style.width=b.offsetWidth+'px';i.style.transform=`translateX(${b.offsetLeft}px)`}}
 function setMarket(m){if(!MKN[m])return;mf=m;store.set('mf',m);mktInd();const ft=$('fxT');if(ft)ft.textContent=m==='s'?'تركيز: S&P 500 وإنفيديا':'تركيز: البيتكوين والإيثيريوم';const t=$('mkTt');if(t)t.textContent=m==='s'?'الأسهم الأمريكية':'العملات الرقمية';
- document.body.classList.toggle('stk',m==='s');tape();paintHero();paintOpen();paintFocus();paintNewsC();if(MK(sel)!==m)select(m==='s'?'SPX':'BTC');else{paintMatrix();paintDetail()}}
+ document.body.classList.toggle('stk',m==='s');tape();paintHero();paintOpen();paintFocus();paintNewsC();paintPerf();if(MK(sel)!==m)select(m==='s'?'SPX':'BTC');else{paintMatrix();paintDetail()}}
 document.querySelectorAll('#mkt button').forEach(b=>b.onclick=()=>setMarket(b.dataset.m));addEventListener('resize',mktInd);setTimeout(()=>setMarket(mf),0);
 /* ===== قائمة الأسواق (على طريقة Binance) ===== */
 function sigOf(s){const C=D&&D.coins[s];if(!C)return null;for(const f of['1d','4h','1h','15m']){const x=C.tfs[f];if(x&&x.trade)return{t:x.trade,f}}const x=C.tfs['1h']||C.tfs['4h'];return x?{score:x.score}:null}
