@@ -333,7 +333,7 @@ button:active{transform:scale(.97)}button{transition:background .2s,border-color
  </section>
  <section class="card" id="acct">
   <h2><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4" stroke="#fff"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6" stroke="#fff"/></svg></span>حسابي</h2>
-  <div class="box" id="acS">—</div><div class="box" id="ownU" style="display:none"></div><div class="box" id="ctBox" style="display:none"></div>
+  <div class="box" id="acS">—</div><div class="box" id="ownU" style="display:none"></div>
   <div class="acg"><button class="act" id="acRenew"><span>اشترك أو جدّد أو أدخل كود</span></button><button class="act alt" id="insBtn2"><span>ثبّت التطبيق على الجوال</span></button><a class="act tg" href="https://t.me/+7bygsfyVnMJiMWE0" target="_blank" rel="noopener"><span>قناة VIP على تلجرام</span></a></div>
   <p class="mu" style="font-size:13px;line-height:1.8;margin:12px 0 0">كل كود اشتراك يشتغل على جهاز واحد فقط. لو غيّرت جوالك راسلني على تلجرام <a href="https://t.me/ayman_trading_om" target="_blank" rel="noopener" style="color:var(--gold)">@ayman_trading_om</a> ونفك لك الربط.</p>
  </section>
@@ -414,11 +414,6 @@ button:active{transform:scale(.97)}button{transition:background .2s,border-color
   <p class="sub">بجانب الروبوت الأساسي تعمل <b style="color:var(--gold)">روبوتات احترافية</b> (أنماط الشموع، الاختراق، هايكن آشي) على الخانات التي نجحت فيها فقط، وتظهر صفقاتها بشارة زرقاء. في الكريبتو الروبوت الأساسي يدخل فقط مع اتجاه قوي. في الأسهم يعمل معه «روبوت الارتداد للمتوسط» على فريم ٤ ساعات. وفي السلع (الذهب والفضة والنفط) يتداول الروبوتان على فريم ٤ ساعات فقط لأنه الفريم الوحيد اللي نجح في اختبار بيانات ما شافها، والباقي تحليل فقط. روبوت الاتجاه: اتفاق أغلب الاستراتيجيات الثماني، موافقة الفريم الأعلى واتجاه البيتكوين، ومؤشر قوة الاتجاه ADX فوق الحد، وعلى خانات نجاحها ٧٠٪+ فقط (فريم ١٥ دقيقة للبيتكوين فقط بشرط ٦٥٪+، و٥ دقائق للتحليل فقط بدون صفقات). صفقات ٤ ساعات واليومي «ثقة عالية» لأنها الأقوى في الاختبار، وصفقات الساعة والأسهم والسلع «ثقة متوسطة». وكل صفقة عليها تقييم (A+ إلى C) من مراكز كبار المتداولين والأخبار ونظرة Claude. أرقام الصفقة <b style="color:var(--gold)">مقفلة</b> ومحسوبة على الخادم، فتظهر نفسها على كل الأجهزة حتى لو كانت الصفحة مغلقة. عند الهدف ١ يُغلق جزء من الصفقة ويُنقل الوقف للدخول، والباقي يكمل بوقف متحرك.</p>
   <div class="tfbar" id="openTf"></div>
   <div class="trades" id="trades" style="margin-top:10px"></div>
- </section>
- <section class="card" id="ctr" style="margin-top:16px;display:none">
-  <h2><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M7 14l3-3 3 2 4-5"/><path d="M8 21h8"/></svg></span>صفقات cTrader<span class="r" id="ctrN">—</span></h2>
-  <p class="sub">صفقات أيمن المفتوحة على منصة cTrader كما هي (قراءة فقط)، مقسّمة حسب نوع الأصل، ومع كل صفقة تحليل المنصة وتحليل Claude لنفس الأصل. تتحدث تلقائيًا كل دقيقة تقريبًا.</p>
-  <div id="ctrL"></div>
  </section>
 
  <section class="card" id="perf" style="margin-top:16px">
@@ -563,7 +558,7 @@ function grade(t){const c=D.coins[t.s]||{},i=c.inst||{},ai=AI&&AI.coins&&AI.coin
 function gradeHtml(t){const G=grade(t);return`<div class="grd"><b class="gr g${G.L[0]}">${G.L}</b><span>${G.p.map(x=>`<i class="${x[0]?'up':'dn'}">${x[0]?'✓':'✗'}</i> ${x[1]}`).join(' • ')||'لا توجد بيانات إضافية الآن'}</span></div>`}
 function paintRisk(){const r=AI&&AI.risk,el=$('riskB');if(!el)return;if(!r||!r.level||r.level==='low'){el.classList.add('hid');return}el.classList.remove('hid');el.className='riskb '+(r.level==='high'?'hi':'md');el.innerHTML=`<b>${r.level==='high'?'تنبيه: خبر قوي التأثير قريب':'انتبه: أخبار متوسطة التأثير'}</b><span>${esc(r.note||'')}</span>`}
 /* ===== تبويبات التطبيق ===== */
-const TABS={home:['hero','mkts','focus','newsC','aiTop','conf','matrix','world'],trades:['open','ctr','perf','prosec'],an:['detail','macro','cmd','chart','aiFull','news'],tools:['risk','alertsC','cal','journal'],me:['acct']};
+const TABS={home:['hero','mkts','focus','newsC','aiTop','conf','matrix','world'],trades:['open','perf','prosec'],an:['detail','macro','cmd','chart','aiFull','news'],tools:['risk','alertsC','cal','journal'],me:['acct']};
 let TAB='home';
 function setTab(t,keep){if(!TABS[t])t='home';TAB=t;if(t==='me'&&typeof loadUsers==='function')loadUsers();const show=new Set(TABS[t]);document.querySelectorAll('.wrap section').forEach(x=>x.classList.toggle('hid',!show.has(x.id)));
  document.querySelectorAll('.wrap>.grid,.wrap>.g2').forEach(g=>g.classList.toggle('hid',![...g.children].some(c=>!c.classList.contains('hid'))));
@@ -591,7 +586,7 @@ async function lock(d){if(Date.now()-(+store.get('tr2',0)||0)>6e4&&(d.reason==='
 function lock0(d){const m=d.reason==='device'?'هذا الكود مفعّل على جهاز ثاني. كل كود يشتغل على جهاز واحد. لو غيّرت جهازك راسلني على تلجرام @ayman_trading_om ونفك لك الربط.':d.reason==='expired'?(d.plan==='t'?'انتهت تجربتك المجانية (٧ أيام). اشترك عشان تكمل تشوف الصفقات والتحليل.':'انتهى اشتراكك. جدّد عشان تكمل.'):(!K?'ما قدرنا نبدأ تجربتك المجانية تلقائيًا (غالبًا مشكلة اتصال). تأكد من الإنترنت وأعد فتح التطبيق، أو اكتب كود التفعيل إذا عندك.':'الدخول للمشتركين فقط. اشترك أو اكتب كود التفعيل.');showPay(false,m);$('upd').textContent='الاشتراك مطلوب'}
 function paintSub(){if(!SUB)return;trialNag();const dl=Math.max(1,Math.ceil((SUB.exp-Date.now())/864e5)),dt=new Date(SUB.exp-1).toLocaleDateString('en-GB',{timeZone:'Asia/Muscat',day:'2-digit',month:'2-digit',year:'numeric'});
  const lbl=SUB.plan==='t'?'تجربة: باقي '+dl+' يوم':SUB.plan==='o'?'مالك • مدى الحياة':'مشترك حتى '+dt;$('subBtn').textContent=lbl;$('heroSub').textContent=lbl;
- $('acS').innerHTML=`<b style="color:var(--gold)">${SUB.plan==='t'?'تجربة مجانية':SUB.plan==='o'?'حساب المالك':SUB.plan==='y'?'اشتراك سنوي':'اشتراك شهري'}</b><br>${SUB.plan==='o'?'اشتراك <b style="color:var(--gold2)">مدى الحياة</b> — بدون تاريخ انتهاء':`ينتهي: <b style="direction:ltr;display:inline-block">${dt}</b> • باقي ${AR(dl)} يوم`}${SUB.plan==='t'?'<br><span class="mu">اشترك قبل نهاية التجربة عشان ما ينقطع عليك شي.</span>':''}`;const ou=$('ownU');if(ou){const o=SUB.plan==='o';ou.style.display=o?'block':'none';if(o)loadUsers()}try{ctOwner()}catch(e){}}
+ $('acS').innerHTML=`<b style="color:var(--gold)">${SUB.plan==='t'?'تجربة مجانية':SUB.plan==='o'?'حساب المالك':SUB.plan==='y'?'اشتراك سنوي':'اشتراك شهري'}</b><br>${SUB.plan==='o'?'اشتراك <b style="color:var(--gold2)">مدى الحياة</b> — بدون تاريخ انتهاء':`ينتهي: <b style="direction:ltr;display:inline-block">${dt}</b> • باقي ${AR(dl)} يوم`}${SUB.plan==='t'?'<br><span class="mu">اشترك قبل نهاية التجربة عشان ما ينقطع عليك شي.</span>':''}`;const ou=$('ownU');if(ou){const o=SUB.plan==='o';ou.style.display=o?'block':'none';if(o)loadUsers()}}
 function trialNag(){if(!SUB||SUB.plan!=='t')return;const dl=Math.ceil((SUB.exp-Date.now())/864e5),day=new Date().toDateString();if(dl<=2&&store.get('nag','')!==day){store.set('nag',day);toast(dl<=1?'⏳ آخر يوم في تجربتك المجانية — اشترك من «حسابي» عشان ما تنقطع عنك الصفقات':'⏳ باقي يومين على نهاية تجربتك المجانية — اشترك من «حسابي»')}}
 async function activate(){const c=$('payIn').value.trim();if(!c)return;$('payErr').textContent='جارٍ التحقق…';try{const r=await session(c);
  if(r.ok){K=c.toUpperCase();store.set('k',K);$('pay').classList.remove('on','free');$('payIn').value='';load()}else{const w=r.d.reason;$('payErr').textContent=w==='expired'?'هذا الكود منتهي.':w==='device'?'هذا الكود مفعّل على جهاز ثاني. كل كود لجهاز واحد.':'الكود غير صحيح. تأكد منه وحاول مرة ثانية.'}}catch(e){$('payErr').textContent='تعذّر الاتصال. حاول مرة ثانية.'}}
@@ -730,30 +725,7 @@ function paintPro(){const el=$('proT');if(!el||!D)return;if(!D.pro){el.innerHTML
  let n=0,w=0,sum=0;rows.forEach(r=>{n+=r.l.n;w+=Math.round(r.l.n*r.l.wr/100);sum+=r.l.sum});
  $('proN').textContent=AR(rows.length)+' معتمد';
  el.innerHTML='<thead><tr><th>الأصل</th><th>الفريم</th><th>الروبوت</th><th>صفقات</th><th>النجاح</th><th class="num">الصافي</th><th>الآن</th></tr></thead><tbody>'+(rows.map(r=>`<tr><td><b>${r.s}</b></td><td>${TFN[r.f]}</td><td><span class="prb">${r.l.name}</span></td><td>${AR(r.l.n)}</td><td class="up">${r.l.wr}%</td><td class="num up">${fR(r.l.sum)}</td><td>${r.t?`<b class="${r.t.dir>0?'up':'dn'}">${r.t.dir>0?'▲ شراء':'▼ بيع'}</b>`:'<span class="mu">ينتظر</span>'}</td></tr>`).join('')||'<tr><td colspan="7" class="mu">لا توجد خانات معتمدة لهذا القسم.</td></tr>')+`</tbody><tfoot><tr><td colspan="3"><b>الإجمالي</b></td><td>${AR(n)}</td><td>${n?Math.round(w/n*100)+'%':'—'}</td><td class="num ${sum>=0?'up':'dn'}">${fR(sum)}</td><td></td></tr></tfoot>`}
-/* ===== صفقات cTrader (قراءة فقط من حساب المالك) ===== */
-const CTC={c:'الكريبتو',s:'الأسهم والمؤشرات',m:'السلع',f:'الفوركس وأخرى'};
-function ctAn(p){const C=p.a&&D&&D.coins[p.a],ai=p.a&&AI&&AI.coins&&AI.coins[p.a],lv=p.a&&AI&&AI.levels&&AI.levels[p.a];let h='',s=[];
- if(C){const g=sigOf(p.a),x4=C.tfs['4h'],x1=C.tfs['1h'];
-  if(g&&g.t)s.push(g.t.dir===p.dir?`<b class="up">متوافقة</b> مع صفقة المنصة (${g.t.dir>0?'شراء':'بيع'} • ${TFN[g.f]})`:`<b class="dn">عكس</b> صفقة المنصة (${g.t.dir>0?'شراء':'بيع'} • ${TFN[g.f]}) — انتبه`);
-  else{const x=(x4&&x4.score!=null)?x4:x1;if(x&&x.score!=null){const[l,cl]=label(x.score),w=Math.abs(x.score)>=20;s.push(`اتجاه المنصة على ${x===x4?'٤ ساعات':'الساعة'}: <b class="${cl==='nt'?'mu':cl}">${l}</b>${w?(Math.sign(x.score)===p.dir?' — في صالح الصفقة':' — ضد الصفقة'):''}`)}}
-  if(x4&&x4.htf)s.push(`الاتجاه اليومي ${x4.htf>0?'<b class="up">صاعد</b>':'<b class="dn">هابط</b>'}`)}
- if(s.length)h+=`<div class="why">📊 ${s.join(' • ')}</div>`;
- if(ai&&ai.note)h+=`<div class="ins ${ai.bias==='bullish'?'up':ai.bias==='bearish'?'dn':'mu'}">🤖 تحليل Claude: <b>${ai.bias==='bullish'?'نظرة إيجابية':ai.bias==='bearish'?'نظرة سلبية':'محايد'}</b> — ${esc(ai.note)}</div>`;
- if(lv&&lv.s&&lv.r)h+=`<div class="why">الدعم ${lv.s.map(v=>fmt(v)).join(' ثم ')} • المقاومة ${lv.r.map(v=>fmt(v)).join(' ثم ')}</div>`;
- return h||'<div class="why mu">لا يوجد تحليل للمنصة لهذا الرمز بعد — يعرض الدخول والوقف والهدف فقط.</div>'}
-function ctCard(p){const has=p.a&&P[p.a],px=has?pxOf(p.a):0,pct=px&&p.entry?p.dir*(px-p.entry)/p.entry*100:null,rk=p.sl&&p.entry?Math.abs(p.entry-p.sl):0,r=rk&&px?p.dir*(px-p.entry)/rk:null,cc=p.a&&COINS.some(c=>c[0]===p.a)?col(p.a):'#142A5B';
- return`<div class="trade ${p.dir>0?'buy':'sell'}"><div class="top"><span class="cic" style="background:${cc}">${esc(String(p.a||p.sym).slice(0,5))}</span><b>${p.dir>0?'شراء':'بيع'} ${esc(p.sym)}</b><span class="pill b-gd">cTrader${p.live?'':' • تجريبي'}</span>${pct!=null?`<div class="pnl ${pct>=0?'up':'dn'}">${r!=null?fR(r):''}<small style="font-size:12px;display:block">${pct>=0?'+':''}${pct.toFixed(2)}%</small></div>`:''}</div>
- <div class="lv"><div><span>الدخول</span><b>${fmt(p.entry)}</b></div><div class="sl"><span>الوقف</span><b>${p.sl?fmt(p.sl):'بدون'}</b></div><div class="tp"><span>الهدف</span><b>${p.tp?fmt(p.tp):'بدون'}</b></div></div>
- <div class="meta">${px?`<span>الآن <b style="direction:ltr;display:inline-block">${fmt(px)}</b></span>`:''}${p.t?`<span>فُتحت ${tStr(p.t)}</span>`:''}<span>${CTC[p.c]||''}</span></div>${ctAn(p)}${!p.sl?'<div class="fast">⚠️ هذه الصفقة بدون وقف خسارة.</div>':''}</div>`}
-function paintCt(){const el=$('ctr');if(!el)return;const c=D&&D.ct;if(!c||!Array.isArray(c.pos)){el.style.display='none';return}el.style.display='';
- $('ctrN').textContent=AR(c.pos.length)+' مفتوحة'+(c.stale?' • آخر قراءة':'');
- $('ctrL').innerHTML=c.pos.length?['c','s','m','f'].map(k=>{const L=c.pos.filter(p=>(p.c||'f')===k);return L.length?`<h3 style="color:var(--gold);font-size:15px;margin:14px 0 8px">${CTC[k]} <small class="mu">(${AR(L.length)})</small></h3><div class="trades">${L.map(ctCard).join('')}</div>`:''}).join(''):'<div class="empty">لا توجد صفقات مفتوحة على cTrader الآن.</div>'}
-async function ctOwner(){const b=$('ctBox');if(!b)return;if(!SUB||SUB.plan!=='o'||!K){b.style.display='none';return}b.style.display='block';
- let st={};try{st=await(await fetch('/api/ctrader?st=1&k='+encodeURIComponent(K),{cache:'no-store'})).json()}catch(e){}
- const go='/api/ctrader?go=1&k='+encodeURIComponent(K);
- b.innerHTML=`<b style="color:var(--gold)">ربط cTrader</b><br>`+(!st.keys?'<span class="mu">أضف CTRADER_ID و CTRADER_SECRET في إعدادات المشروع على Vercel أولًا، ثم ارجع هنا.</span>':st.linked?`<span class="up">مربوط ✓</span>${st.n!=null?`<br><span class="mu">الصفقات المفتوحة الآن: ${AR(st.n)}</span>`:''}${st.err?`<br><span class="dn" style="font-size:12px">آخر خطأ: ${esc(st.err)}</span>`:''}<div class="acg" style="margin-top:8px"><a class="act alt" href="${go}"><span>إعادة الربط</span></a><button class="act alt" id="ctOff"><span>فصل الربط</span></button></div>`:`<span class="mu">غير مربوط. الصفقات بتظهر لكل المشتركين في تبويب «الصفقات».</span><div class="acg" style="margin-top:8px"><a class="act" href="${go}"><span>اربط حساب cTrader</span></a></div>`);
- const o=$('ctOff');if(o)o.onclick=async()=>{if(!confirm('فصل حساب cTrader؟ الصفقات بتختفي من المنصة.'))return;await fetch('/api/ctrader?off=1&k='+encodeURIComponent(K),{cache:'no-store'}).catch(()=>{});ctOwner()}}
-function paintAll(){try{paintCt()}catch(e){}paintFocus();paintConf();paintHero();paintMatrix();paintDetail();paintOpen();paintPerf();paintPro();riskCalc();if(window.G)G.sig();c3build()}
+function paintAll(){paintFocus();paintConf();paintHero();paintMatrix();paintDetail();paintOpen();paintPerf();paintPro();riskCalc();if(window.G)G.sig();c3build()}
 function select(s,f){sel=s;tf=f||tf;store.set('sel',sel);store.set('tf',tf);paintMatrix();paintDetail();riskCalc();tv();c3load()}
 
 /* ---------- live prices ---------- */
