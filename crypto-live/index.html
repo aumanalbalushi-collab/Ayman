@@ -46,7 +46,7 @@ h3{font-size:14.5px;color:var(--gold);margin:14px 0 8px}
 #scene .hint{position:absolute;bottom:8px;inset-inline:0;text-align:center;font-size:12px;color:var(--mut);pointer-events:none}
 .cic{width:28px;height:28px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:10.5px;font-weight:900;color:#0C1B3A;flex:none}
 .pill{font-size:11.5px;padding:2px 8px;border-radius:99px;display:inline-block;white-space:nowrap}
-.up{color:var(--up)}.dn{color:var(--dn)}.mu{color:var(--mut)}
+.up{color:var(--up)}.dn{color:var(--dn)}.mu{color:var(--mut)}.mtr{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:8px;font-size:13px}.mtr input{width:120px;background:var(--in);color:var(--fg);border:1px solid var(--line);border-radius:10px;padding:6px 8px;font:inherit;direction:ltr}.mtr .btn{background:transparent;color:var(--gold);border:1px solid var(--line);border-radius:10px;padding:6px 10px;font:inherit;cursor:pointer}.mtr small{flex-basis:100%}
 .b-up{background:rgba(47,212,138,.15);color:var(--up)}.b-dn{background:rgba(255,93,108,.15);color:var(--dn)}.b-nt{background:rgba(255,255,255,.08);color:var(--mut)}.b-gd{background:rgba(215,166,73,.18);color:var(--gold)}
 .mx{width:100%;border-collapse:separate;border-spacing:4px;font-size:13px}
 .mx th{color:var(--mut);font-size:12px;font-weight:700;padding:4px}
@@ -386,6 +386,7 @@ button:active{transform:scale(.97)}button{transition:background .2s,border-color
  <section class="card" id="detail" style="margin-top:16px">
   <h2><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4M10 10h4v4h-4z"/></svg></span>التحليل الكامل<span class="r" id="dTime">—</span></h2>
   <div class="sel-head"><span class="cic" id="selIc" style="width:44px;height:44px;font-size:12px"></span><div><b id="selName" style="font-size:19px">—</b><div id="selChg" style="direction:ltr;text-align:right;font-size:13px"></div><div id="selMk" class="mkc" style="display:none"></div></div><div class="big" id="selPx">—</div></div>
+  <div id="mtRow" class="mtr"><span>مطابقة MT5:</span><input id="mtIn" type="number" inputmode="decimal" step="any" placeholder="سعر MT5 الآن"><button id="mtSet" class="btn">مطابقة</button><button id="mtClr" class="btn">إلغاء</button><small id="mtNote" class="mu"></small></div>
   <div class="tfbar" id="tfbar" style="margin-top:10px"></div>
   <div class="g2" style="margin-top:4px">
    <div>
@@ -520,6 +521,8 @@ const TFS=['5m','15m','1h','4h','1d'],TFN={'5m':'٥ دقائق','15m':'١٥ دق
 const $=i=>document.getElementById(i);
 const col=s=>COINS.find(c=>c[0]===s)[2],nameOf=s=>COINS.find(c=>c[0]===s)[1];
 const store={get(k,d){try{const v=localStorage.getItem('cx_'+k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem('cx_'+k,JSON.stringify(v))}catch(e){}}};
+let MTO=store.get('mt5',{})||{};const off=s=>+MTO[s]||0;
+function shD(d){try{for(const s in d.coins){const o=off(s),c=d.coins[s];if(!o||!c)continue;if(+c.px)c.px+=o;for(const f in c.tfs||{}){const x=c.tfs[f];if(!x)continue;if(+x.vwap)x.vwap+=o;[x.trade,...(x.recent||[])].forEach(t=>{if(t)['entry','sl0','sl','tp1','tp2','exit','px'].forEach(k=>{if(typeof t[k]==='number')t[k]+=o})})}}}catch(e){}return d}
 const fmt=(v,d)=>{if(v==null||!isFinite(v)||v===0)return'—';if(d==null){const a=Math.abs(v);d=a>=1000?2:a>=1?3:a>=.01?5:7}return Number(v).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d})};
 const big=v=>v>=1e12?(v/1e12).toFixed(2)+'T':v>=1e9?(v/1e9).toFixed(2)+'B':v>=1e6?(v/1e6).toFixed(1)+'M':fmt(v,0);
 const fR=r=>{if(Math.abs(r)<.005)r=0;return(r>0?'+':'')+r.toFixed(2)+'R'};
@@ -639,10 +642,10 @@ async function loadUsers(){const el=$('ownU');if(!el||!SUB||SUB.plan!=='o')retur
  el.innerHTML=`<div class="onl"><span class="dot"></span><div><small class="mu">متصل الآن</small><b>${AR(d.total)}</b></div></div><div class="ust"><div><b>${AR(d.trial)}</b><span>تجربة</span></div><div><b>${AR(d.sub)}</b><span>مشترك</span></div></div><small class="mu" style="display:block">يتحدث كل ٣٠ ثانية • ما يشمل حسابك • يظهر لك أنت بس</small>`}catch(e){el.innerHTML='<span class="mu">تعذّر جلب عدد المتصلين — يحاول مرة ثانية بعد شوي</span>'}}
 setInterval(()=>{if(TAB==='me'&&document.visibilityState==='visible')loadUsers()},3e4);
 async function load(){try{if(!K&&!store.get('tr',0)&&!store.get('go',0)){$('wel').classList.add('on');$('upd').textContent='ابدأ التجربة المجانية';return}await ensureKey();if(K&&!SES){const a=await session(K);if(!a.ok){lock(a.d);return}}let r=await fetch('/api/signals?'+Q(),{cache:'no-store'});
- if(r.status===401){let d=await r.json().catch(()=>({}));if(d.reason==='session'){const a=await session(K);if(!a.ok){lock(a.d);return}r=await fetch('/api/signals?'+Q(),{cache:'no-store'});if(r.status===401)d=await r.json().catch(()=>({}))}if(r.status===401){lock(d);return}}if(!r.ok)throw 0;const d=await r.json();if(!d.coins)throw 0;D=honest(d);SUB=d.sub||null;paintSub();hb();if(!$('pay').classList.contains('free'))$('pay').classList.remove('on');
+ if(r.status===401){let d=await r.json().catch(()=>({}));if(d.reason==='session'){const a=await session(K);if(!a.ok){lock(a.d);return}r=await fetch('/api/signals?'+Q(),{cache:'no-store'});if(r.status===401)d=await r.json().catch(()=>({}))}if(r.status===401){lock(d);return}}if(!r.ok)throw 0;const d=await r.json();if(!d.coins)throw 0;D=shD(honest(d));SUB=d.sub||null;paintSub();hb();if(!$('pay').classList.contains('free'))$('pay').classList.remove('on');
  $('upd').textContent='آخر تحديث للإشارات '+new Date(D.updated).toLocaleTimeString('en-GB',{timeZone:'Asia/Muscat',hour:'2-digit',minute:'2-digit'});
  alerts();paintAll()}catch(e){$('upd').textContent='تعذّر تحديث الإشارات — إعادة المحاولة خلال دقيقة'}}
-async function ai(){try{const d=await(await fetch('analysis.json?t='+Date.now(),{cache:'no-store'})).json();AI=d;if(!d||!d.text)return;
+async function ai(){try{const d=await(await fetch('analysis.json?t='+Date.now(),{cache:'no-store'})).json();AI=d;try{for(const s in d.levels||{}){const o=off(s),L=d.levels[s];if(o&&L)['s','r'].forEach(k=>{if(Array.isArray(L[k]))L[k]=L[k].map(v=>+v+o)})}}catch(e){}if(!d||!d.text)return;
  $('aiT').textContent=d.updated?tStr(Date.parse(d.updated)):'';$('ai').innerHTML='';if(d.headline){const h=document.createElement('div');h.style.cssText='color:var(--gold);font-size:16px;margin-bottom:6px';h.textContent=d.headline;$('ai').appendChild(h)}
  const t=document.createElement('div');t.textContent=d.text;$('ai').appendChild(t);paintAiTop();paintRisk();paintMacro();paintFocus();if(D)paintAll();else{paintDetail();paintConf()}paintNews()}catch(e){}}
 function paintAiTop(){const d=AI;if(!d||!d.text)return;$('aiTopT').textContent=d.updated?'آخر تحديث '+tStr(Date.parse(d.updated)):'';
@@ -702,7 +705,7 @@ function paintMatrix(){if(!D)return;paintMf();let h='<thead><tr><th style="text-
   h+='</tr>'});
  $('mx').innerHTML=h+'</tbody>';paintMkts();$('mx').querySelectorAll('.cell').forEach(b=>b.onclick=()=>{select(b.dataset.s,b.dataset.f);setTab('an')})}
 function paintTfBar(){$('tfbar').innerHTML=TFS.map(f=>`<button class="tfb${f===tf?' on':''}" data-f="${f}">${TFN[f]} <small class="mu">${TFK[f]}</small></button>`).join('');$('tfbar').querySelectorAll('.tfb').forEach(b=>b.onclick=()=>select(sel,b.dataset.f))}
-function paintDetail(){const d=P[sel];$('selName').textContent=`${nameOf(sel)} • ${pairOf(sel)}`;$('selIc').textContent=sel;$('selIc').style.background=col(sel);$('selPx').textContent=fmt(pxOf(sel));paintMkNote();
+function paintDetail(){const d=P[sel];$('selName').textContent=`${nameOf(sel)} • ${pairOf(sel)}`;$('selIc').textContent=sel;$('selIc').style.background=col(sel);$('selPx').textContent=fmt(pxOf(sel));paintMkNote();paintMt();
  $('selChg').innerHTML=d.px?`<span class="${d.chg>=0?'up':'dn'}">${d.chg>=0?'▲':'▼'} ${d.chg.toFixed(2)}%${d.hi?` • H ${fmt(d.hi)} • L ${fmt(d.lo)}`:''}</span>`:'';
  paintTfBar();if(!D)return;const C=D.coins[sel],x=C&&C.tfs[tf];if(!x){$('vTxt').textContent='لا تتوفر بيانات';return}
  let[lb,c]=label(x.score);const hOpp=x.htf&&Math.sign(x.score)&&x.htf!==Math.sign(x.score);if(hOpp&&Math.abs(x.score)>=20){lb=(x.score>0?'ارتداد صاعد':'ارتداد هابط')+' عكس الاتجاه العام';c='nt'}$('needle').style.transform=`rotate(${x.score*.9}deg)`;$('vTxt').textContent=lb+' — '+TFN[tf];$('vTxt').className='v '+(c==='nt'?'':c);
@@ -752,7 +755,7 @@ function paintAll(){paintFocus();paintConf();paintHero();paintMatrix();paintDeta
 function select(s,f){sel=s;tf=f||tf;store.set('sel',sel);store.set('tf2',tf);paintMatrix();paintDetail();riskCalc();tv();c3load()}
 
 /* ---------- live prices ---------- */
-function onTick(t){const s=t.s.replace('USDT','');if(!P[s])return;const d=P[s],old=d.px;d.px=+t.c;d.hi=+t.h;d.lo=+t.l;d.qv=+t.q;d.chg=+t.o?(d.px-+t.o)/+t.o*100:0;
+function onTick(t){const s=t.s.replace('USDT','');if(!P[s])return;const d=P[s],old=d.px,o=off(s);d.raw=+t.c;if(o){t=Object.assign({},t,{c:+t.c+o,h:+t.h?+t.h+o:t.h,l:+t.l?+t.l+o:t.l,o:+t.o?+t.o+o:t.o})}d.px=+t.c;d.hi=+t.h;d.lo=+t.l;d.qv=+t.q;d.chg=+t.o?(d.px-+t.o)/+t.o*100:0;
  const m=$('mp-'+s);if(m){m.textContent=fmt(d.px);if(old&&old!==d.px){m.classList.remove('flash-up','flash-dn');void m.offsetWidth;m.classList.add(d.px>old?'flash-up':'flash-dn')}}
  if(s===sel){$('selPx').textContent=fmt(d.px);$('selChg').innerHTML=`<span class="${d.chg>=0?'up':'dn'}">${d.chg>=0?'▲':'▼'} ${d.chg.toFixed(2)}%${d.hi?` • H ${fmt(d.hi)} • L ${fmt(d.lo)}`:''}</span>`}
  if(window.G)G.update(s,d)}
@@ -796,6 +799,10 @@ function paintNewsC(){const el=$('nwL');if(!el)return;let n=AI&&AI.news;if(!n||!
  el.innerHTML=n.slice(0,6).map((x,i)=>{const k=x.impact==='bullish'?'up':x.impact==='bearish'?'dn':'nt',S=Math.max(1,Math.min(3,+x.strength||1));
   return`<div class="nwc ${k}" style="animation-delay:${i*60}ms"><div class="nwh"><em class="b-${k}">${k==='up'?'▲ إيجابي':k==='dn'?'▼ سلبي':'• محايد'}</em><span class="pw" title="قوة التأثير ${S} من ٣"><i class="${S>=1?'on':''}"></i><i class="${S>=2?'on':''}"></i><i class="${S>=3?'on':''}"></i><small>${S===3?'قوي':S===2?'متوسط':'ضعيف'}</small></span></div><p>${esc(x.t)}</p>${x.coins&&x.coins.length?`<div class="tg">${x.coins.map(c=>`<b>${esc(c)}</b>`).join('')}</div>`:''}</div>`}).join('')}
 // تحديث تلقائي: لو نُشرت نسخة جديدة من الغرفة، يعيد التطبيق تحميل نفسه عند فتحه (مهم للتطبيق المثبّت على الشاشة الرئيسية)
+function paintMt(){const o=off(sel),n=$('mtNote');if(!n)return;n.textContent=o?`السعر والمستويات معدّلة لتطابق MT5: ${o>0?'+':''}${fmt(o,Math.abs(o)>=1?2:Math.abs(o)>=.01?3:5)} على سعر المصدر (يُعاد الضبط عند تبديل عقد الوسيط)`:`اكتب سعر ${sel} في MT5 (سعر Bid في Market Watch) واضغط مطابقة`}
+function setMt(v){const s=sel,old=off(s);if(v)MTO[s]=v;else delete MTO[s];store.set('mt5',MTO);const dl=off(s)-old,d=P[s];if(d&&d.px)d.px+=dl;if(d&&d.hi)d.hi+=dl;if(d&&d.lo)d.lo+=dl;C3.key='';load();ai();c3load();paintDetail()}
+$('mtSet').onclick=()=>{const m=+$('mtIn').value,d=P[sel],raw=d&&(d.raw||d.px-off(sel));if(!m||!raw){$('mtNote').textContent='اكتب سعرًا صحيحًا';return}setMt(+(m-raw).toFixed(6));$('mtIn').value=''};
+$('mtClr').onclick=()=>setMt(0);
 async function verCheck(){try{let cur='';try{cur=localStorage.getItem('cx_src')||''}catch(e){}if(!cur)return;const h=await(await fetch('/?v='+Date.now(),{cache:'no-store'})).text(),m=h.match(/var SRC='([^']+)'/);if(m&&m[1]!==cur)location.reload()}catch(e){}}
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')verCheck()});setInterval(verCheck,600000);
 function tape(){$('tape').innerHTML=[0,1].map(()=>MC().map(([s])=>{const d=P[s];return`<span>${s} <b>${fmt(d.px)}</b> <span class="${d.chg>=0?'up':'dn'}">${(d.chg>=0?'+':'')+d.chg.toFixed(2)}%</span></span>`}).join('')).join('')}
@@ -898,7 +905,7 @@ function c3init(){if(!window.THREE)return;const el=$('c3d'),W=()=>el.clientWidth
  (function loop(){t+=.016;if(auto&&!RM)yaw=-.3+Math.sin(t*.15)*.3;const R=14;cam.position.set(Math.sin(yaw)*R*Math.cos(pitch),Math.sin(pitch)*R+.6,Math.cos(yaw)*R*Math.cos(pitch));cam.lookAt(0,.2,0);
   if(C3.pulse){C3.pulse.material.opacity=.55+.45*Math.sin(t*5)}r.render(sc,cam);requestAnimationFrame(loop)})();
  c3load();setInterval(c3load,30000)}
-async function c3load(){if(!C3.r)return;const key=sel+tf;if(MK(sel)!=='c'){try{const sec={'5m':300,'15m':900,'1h':3600,'4h':14400,'1d':86400}[tf];const r=await(await fetch('https://api.hyperliquid.xyz/info',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({type:'candleSnapshot',req:{coin:HLX[sel],interval:tf,startTime:Date.now()-sec*70e3}})})).json();if(Array.isArray(r)&&r.length){C3.k=r.slice(-70).map(x=>[x.t,x.o,x.h,x.l,x.c,x.v]);C3.key=key;c3build()}}catch(e){}return}for(const b of['https://data-api.binance.vision','https://api.binance.com']){try{const k=await(await fetch(`${b}/api/v3/klines?symbol=${sel}USDT&interval=${tf}&limit=70`)).json();if(Array.isArray(k)){C3.k=k;C3.key=key;c3build();return}}catch(e){}}}
+async function c3load(){if(!C3.r)return;const key=sel+tf;if(MK(sel)!=='c'){try{const sec={'5m':300,'15m':900,'1h':3600,'4h':14400,'1d':86400}[tf];const r=await(await fetch('https://api.hyperliquid.xyz/info',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({type:'candleSnapshot',req:{coin:HLX[sel],interval:tf,startTime:Date.now()-sec*70e3}})})).json();if(Array.isArray(r)&&r.length){{const o=off(sel);C3.k=r.slice(-70).map(x=>[x.t,+x.o+o,+x.h+o,+x.l+o,+x.c+o,x.v])}C3.key=key;c3build()}}catch(e){}return}for(const b of['https://data-api.binance.vision','https://api.binance.com']){try{const k=await(await fetch(`${b}/api/v3/klines?symbol=${sel}USDT&interval=${tf}&limit=70`)).json();if(Array.isArray(k)){const o=off(sel);C3.k=o?k.map(r=>[r[0],+r[1]+o,+r[2]+o,+r[3]+o,+r[4]+o,r[5]]):k;C3.key=key;c3build();return}}catch(e){}}}
 function c3build(){if(!C3.k||!window.THREE)return;const{root}=C3,k=C3.k.map(r=>({t:+r[0],o:+r[1],h:+r[2],l:+r[3],c:+r[4],v:+r[5]}));
  const last=k.at(-1);if(P[sel].px&&C3.key===sel+tf){last.c=P[sel].px;last.h=Math.max(last.h,last.c);last.l=Math.min(last.l,last.c)}
  while(root.children.length){const o=root.children.pop();o.traverse(x=>{x.geometry&&x.geometry.dispose();x.material&&(x.material.map&&x.material.map.dispose(),x.material.dispose())})}
