@@ -608,7 +608,7 @@ $('welPrice').onclick=()=>{$('wel').classList.remove('on');showPay(true,'تقد�
 $('payX').addEventListener('click',()=>{if(!K&&!store.get('go',0))$('wel').classList.add('on')});$('insBtn2').onclick=()=>$('insBtn').click();
 if(matchMedia('(display-mode: standalone)').matches||navigator.standalone)$('insBtn2').style.display='none';
 $('insBtn').onclick=async()=>{if(window.__bip){window.__bip.prompt();window.__bip=null}else $('payHow').style.display='block'};
-addEventListener('appinstalled',()=>{$('insBtn2').style.display='none'});
+addEventListener('appinstalled',()=>{const b=$('insBtn2');if(b&&b.firstElementChild)b.firstElementChild.textContent='تم التثبيت ✓ افتحه من الشاشة الرئيسية'});
 if('serviceWorker'in navigator)navigator.serviceWorker.register('/sw.js').catch(()=>{});
 function hb(){try{if(document.visibilityState!=='visible'||!K||!SES)return;fetch('/api/users?hb=1&'+Q(),{cache:'no-store'}).catch(()=>{})}catch(e){}}
 setInterval(hb,6e4);document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'){hb();if(TAB==='me')loadUsers()}});
