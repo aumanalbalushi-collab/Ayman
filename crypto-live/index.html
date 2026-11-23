@@ -323,7 +323,7 @@ button:active{transform:scale(.97)}button{transition:background .2s,border-color
   <h2><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4" stroke="#fff"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6" stroke="#fff"/></svg></span>حسابي</h2>
   <div class="box" id="acS">—</div><div class="box" id="ownU" style="display:none"></div>
   <div class="acg"><button class="act" id="acRenew"><span>اشترك أو جدّد أو أدخل كود</span></button><button class="act alt" id="insBtn2"><span>ثبّت التطبيق على الجوال</span></button><a class="act tg" href="https://t.me/+7bygsfyVnMJiMWE0" target="_blank" rel="noopener"><span>قناة VIP على تلجرام</span></a></div>
-  <p class="mu" style="font-size:13px;line-height:1.8;margin:12px 0 0">كل كود اشتراك يشتغل على جهاز واحد فقط. لو غيّرت جوالك تواصل معنا في القناة الخاصة ونفك لك الربط.</p>
+  <p class="mu" style="font-size:13px;line-height:1.8;margin:12px 0 0">كل كود اشتراك يشتغل على جهاز واحد فقط. لو غيّرت جوالك راسلني على تلجرام <a href="https://t.me/ayman_trading_om" target="_blank" rel="noopener" style="color:var(--gold)">@ayman_trading_om</a> ونفك لك الربط.</p>
  </section>
  <nav class="tabs" aria-label="أقسام الغرفة"><a href="#matrix">مصفوفة الإشارات</a><a href="#cmd">مركز القيادة 3D</a><a href="#detail">التحليل</a><a href="#open">الصفقات المفتوحة</a><a href="#perf">الأداء</a><a href="#risk">حاسبة المخاطرة</a><a href="#chart">الشارت</a><a href="#cal">التقويم</a><a href="#journal">دفتر صفقاتي</a><a href="#news">الأخبار</a></nav>
 
@@ -567,7 +567,7 @@ const FP=[screen.width,screen.height,devicePixelRatio,Intl.DateTimeFormat().reso
 const Q=()=>'k='+encodeURIComponent(K)+'&d='+DEV+'&s='+encodeURIComponent(SES);
 async function session(code){const r=await fetch('/api/activate?k='+encodeURIComponent(code)+'&d='+DEV,{cache:'no-store'});const d=await r.json().catch(()=>({}));if(r.ok&&d.s){SES=d.s;store.set('s',SES);return{ok:true}}return{ok:false,d}}
 async function ensureKey(){if(K||store.get('tr',0))return;for(let a=0;a<3&&!K;a++){if(a)await new Promise(r=>setTimeout(r,1500*a));try{const d=await(await fetch('/api/trial?fp='+encodeURIComponent(FP)+'&d='+DEV,{cache:'no-store'})).json();if(d.code){K=d.code;store.set('k',K);store.set('tr',1)}}catch(e){}}}
-function payTg(){const n=PLAN==='y'?'سنوي ($100)':'شهري ($10)';PMSG='السلام عليكم، أبي أشترك في تطبيق غرفة التداول\nالخطة: '+n+'\nحوّلت المبلغ، وهذا الإيصال 👇';$('payTg').href='https://t.me/CryptoPulseVIP_Admin?text='+encodeURIComponent(PMSG)}
+function payTg(){const n=PLAN==='y'?'سنوي ($100)':'شهري ($10)';PMSG='السلام عليكم، أبي أشترك في تطبيق غرفة التداول\nالخطة: '+n+'\nحوّلت المبلغ، وهذا الإيصال 👇';$('payTg').href='https://t.me/ayman_trading_om?text='+encodeURIComponent(PMSG)}
 let PMSG='';$('payTg').onclick=()=>{try{navigator.clipboard.writeText(PMSG).then(()=>toast('انتسخت رسالة الاشتراك — الصقها مع صورة الإيصال في المحادثة'),()=>{})}catch(e){}};
 function showPay(free,msg){$('payS').textContent=msg;$('pay').classList.toggle('free',!!free);$('pay').classList.add('on');$('payErr').textContent='';payTg()}
 async function lock(d){if(Date.now()-(+store.get('tr2',0)||0)>6e4&&(d.reason==='none'||(d.reason==='expired'&&d.plan==='t'))){store.set('tr2',Date.now());try{const r=await(await fetch('/api/trial?fp='+encodeURIComponent(FP)+'&d='+DEV+'&r=1',{cache:'no-store'})).json();if(r.code&&r.code!==K&&r.ok!==false){K=r.code;SES='';store.set('k',K);store.set('s','');store.set('tr',1);return load()}}catch(e){}}lock0(d)}
