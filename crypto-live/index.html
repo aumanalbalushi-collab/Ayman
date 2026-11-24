@@ -168,6 +168,18 @@ table.t{width:100%;border-collapse:collapse;font-size:13px}
 [hidden]{display:none!important}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 .obar{display:flex;height:8px;border-radius:6px;overflow:hidden;background:rgba(255,255,255,.06);margin:10px 0 6px}.obar i{display:block;height:100%}.ow{background:var(--up)}.ob{background:#8a94a8}.ol{background:var(--dn)}.olg{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;margin-bottom:6px}.olg span{display:inline-flex;align-items:center;gap:5px}.olg i{width:9px;height:9px;border-radius:3px;display:inline-block}.stats .ofull{grid-column:1/-1;text-align:start}.stats .ofull small{display:block;line-height:1.6}
+.rdBd{font-size:11.5px;padding:2px 9px;border-radius:99px;border:1px solid var(--line);font-weight:800}
+.rdBd.b{color:#2fd48a;border-color:rgba(47,212,138,.5)}.rdBd.s{color:#ff5d6c;border-color:rgba(255,93,108,.5)}.rdBd.l{color:var(--gold)}
+.rdSt{font-size:11.5px;padding:2px 9px;border-radius:99px;font-weight:800}.rdSt.w{background:rgba(47,212,138,.18);color:#2fd48a}.rdSt.x{background:rgba(255,93,108,.18);color:#ff5d6c}
+.rdX{all:unset;cursor:pointer;margin-inline-start:auto;width:28px;height:28px;border-radius:50%;text-align:center;line-height:28px;border:1px solid var(--line);color:var(--mut);font-size:16px}
+.rdP{margin-top:8px;font-size:13.5px}.rdP b{direction:ltr;display:inline-block}.rdP .lt{direction:ltr;unicode-bidi:isolate;display:inline-block}
+.rdNo{margin:8px 0 4px;font-size:13px;line-height:1.7}
+.rdF{background:var(--in);border:1px dashed var(--gold);border-radius:14px;padding:6px 12px;margin-bottom:12px}
+.rdF summary{cursor:pointer;color:var(--gold);font-weight:800;padding:6px 0}
+.rdF label{display:block;font-size:13px;font-weight:700;margin:8px 0 4px}
+.rdF input,.rdF select{width:100%;box-sizing:border-box;background:#0C1B3A;border:1.5px solid var(--line);border-radius:12px;padding:10px;color:#fff;font:700 15px Tajawal,sans-serif}
+.rdG{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}@media(max-width:520px){.rdG{grid-template-columns:1fr 1fr}}
+.rdGo{all:unset;cursor:pointer;background:#D7A649;color:#0C1B3A;font-weight:800;padding:10px 22px;border-radius:12px;margin:10px 0 6px}
 </style>
 <style>
 .hbtn{background:none;border:1px solid var(--line);color:var(--gold);border-radius:99px;padding:6px 12px;font:700 13px Tajawal,sans-serif;cursor:pointer}.hbtn:hover{border-color:var(--gold)}
@@ -411,6 +423,20 @@ button:active{transform:scale(.97)}button{transition:background .2s,border-color
   </div>
  </section>
 
+ <section class="card" id="ready" style="margin-top:16px">
+  <h2><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg></span>صفقات جاهزة<span class="r" id="rdN">—</span></h2>
+  <p class="sub">صفقات طويلة المدى يختارها أ. أيمن بنفسه، مرتبة حسب القسم. لكل صفقة الوقف والهدف، والاتجاه يظهر تلقائيًا (الهدف فوق الوقف = شراء). ليست توصية مالية؛ التزم بالوقف وإدارة المخاطرة.</p>
+  <div id="rdAdd" style="display:none"><details class="rdF"><summary>+ إضافة صفقة جاهزة</summary>
+   <label for="rdSym">الأصل</label><select id="rdSym"></select>
+   <div id="rdOth" style="display:none"><label for="rdOs">رمز الأصل</label><input id="rdOs" dir="ltr" placeholder="مثل: AMZN" style="text-transform:uppercase"><label for="rdOc">القسم</label><select id="rdOc"><option value="c">الكريبتو</option><option value="s">الأسهم</option><option value="m">السلع</option><option value="f">العملات</option></select></div>
+   <div class="rdG"><div><label for="rdSl">الوقف</label><input id="rdSl" inputmode="decimal" dir="ltr"></div><div><label for="rdTp">الهدف</label><input id="rdTp" inputmode="decimal" dir="ltr"></div><div><label for="rdTp2">الهدف ٢ (اختياري)</label><input id="rdTp2" inputmode="decimal" dir="ltr"></div></div>
+   <label for="rdNt">ملاحظة (اختياري)</label><input id="rdNt" maxlength="80">
+   <button id="rdGo" class="rdGo">إضافة</button> <span id="rdE" class="mu" role="status" style="font-size:13px"></span>
+  </details></div>
+  <div class="tfbar" id="rdTf"></div>
+  <div class="trades" id="rdL" style="margin-top:10px"></div>
+ </section>
+
  <section class="card" id="open" style="margin-top:16px">
   <h2><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></span>كل الصفقات المفتوحة<span class="r" id="openN">—</span></h2>
   <p class="sub">الصفقات من <b style="color:var(--gold)">الروبوت الأساسي</b> فقط، وعلى فريمي <b>٤ ساعات واليومي</b> فقط: هما اللذان بقيا رابحين في اختبار تقدمي على سنتين+ (واليومي منذ 2019) بتكلفة تداول واقعية. الساعة و١٥ و٥ دقائق تحليل فقط. في الأسهم يعمل «روبوت الارتداد للمتوسط»، وفي السلع فريم ٤ ساعات. <b>شرط الاعتماد:</b> ١٢ صفقة سابقة+، متوسط +0.08R للصفقة+، ومعامل ربح 1.3+ بعد العمولة والسبريد والانزلاق — والتعادل لا يُحسب ربحًا. أرقام الصفقة <b style="color:var(--gold)">مقفلة</b> ومحسوبة على الخادم، فتظهر نفسها على كل الأجهزة. ادخل فقط قرب سعر الدخول؛ لو ظهرت شارة <b class="dn">فات الدخول</b> انتظر الصفقة القادمة. عند الهدف ١ يُغلق جزء من الصفقة ويُنقل الوقف للدخول. لا يوجد نظام بدون خسائر: التزم بالوقف وخاطر بـ١٪ فقط في الصفقة.</p>
@@ -584,7 +610,7 @@ function grade(t){const c=D.coins[t.s]||{},i=c.inst||{},ai=AI&&AI.coins&&AI.coin
 function gradeHtml(t){const G=grade(t);return`<div class="grd"><b class="gr g${G.L[0]}">${G.L}</b><span>${G.p.map(x=>`<i class="${x[0]?'up':'dn'}">${x[0]?'✓':'✗'}</i> ${x[1]}`).join(' • ')||'لا توجد بيانات إضافية الآن'}</span></div>`}
 function paintRisk(){const r=AI&&AI.risk,el=$('riskB');if(!el)return;if(!r||!r.level||r.level==='low'){el.classList.add('hid');return}el.classList.remove('hid');el.className='riskb '+(r.level==='high'?'hi':'md');el.innerHTML=`<b>${r.level==='high'?'تنبيه: خبر قوي التأثير قريب':'انتبه: أخبار متوسطة التأثير'}</b><span>${esc(r.note||'')}</span>`}
 /* ===== تبويبات التطبيق ===== */
-const TABS={home:['hero','mkts','focus','newsC','aiTop','conf','matrix','world'],trades:['open','perf'],an:['detail','macro','cmd','chart','aiFull','news'],tools:['risk','alertsC','cal','journal'],me:['acct']};
+const TABS={home:['hero','mkts','focus','newsC','aiTop','conf','matrix','world'],trades:['ready','open','perf'],an:['detail','macro','cmd','chart','aiFull','news'],tools:['risk','alertsC','cal','journal'],me:['acct']};
 let TAB='home';
 function setTab(t,keep){if(!TABS[t])t='home';TAB=t;if(t==='me'&&typeof loadUsers==='function')loadUsers();const show=new Set(TABS[t]);document.querySelectorAll('.wrap section').forEach(x=>x.classList.toggle('hid',!show.has(x.id)));
  document.querySelectorAll('.wrap>.grid,.wrap>.g2').forEach(g=>g.classList.toggle('hid',![...g.children].some(c=>!c.classList.contains('hid'))));
@@ -644,7 +670,7 @@ setInterval(()=>{if(TAB==='me'&&document.visibilityState==='visible')loadUsers()
 async function load(){try{if(!K&&!store.get('tr',0)&&!store.get('go',0)){$('wel').classList.add('on');$('upd').textContent='ابدأ التجربة المجانية';return}await ensureKey();if(K&&!SES){const a=await session(K);if(!a.ok){lock(a.d);return}}let r=await fetch('/api/signals?'+Q(),{cache:'no-store'});
  if(r.status===401){let d=await r.json().catch(()=>({}));if(d.reason==='session'){const a=await session(K);if(!a.ok){lock(a.d);return}r=await fetch('/api/signals?'+Q(),{cache:'no-store'});if(r.status===401)d=await r.json().catch(()=>({}))}if(r.status===401){lock(d);return}}if(!r.ok)throw 0;const d=await r.json();if(!d.coins)throw 0;D=shD(honest(d));SUB=d.sub||null;paintSub();hb();if(!$('pay').classList.contains('free'))$('pay').classList.remove('on');
  $('upd').textContent='آخر تحديث للإشارات '+new Date(D.updated).toLocaleTimeString('en-GB',{timeZone:'Asia/Muscat',hour:'2-digit',minute:'2-digit'});
- alerts();paintAll()}catch(e){$('upd').textContent='تعذّر تحديث الإشارات — إعادة المحاولة خلال دقيقة'}}
+ alerts();paintAll();loadReady()}catch(e){$('upd').textContent='تعذّر تحديث الإشارات — إعادة المحاولة خلال دقيقة'}}
 async function ai(){try{const d=await(await fetch('analysis.json?t='+Date.now(),{cache:'no-store'})).json();AI=d;try{for(const s in d.levels||{}){const o=off(s),L=d.levels[s];if(o&&L)['s','r'].forEach(k=>{if(Array.isArray(L[k]))L[k]=L[k].map(v=>+v+o)})}}catch(e){}if(!d||!d.text)return;
  $('aiT').textContent=d.updated?tStr(Date.parse(d.updated)):'';$('ai').innerHTML='';if(d.headline){const h=document.createElement('div');h.style.cssText='color:var(--gold);font-size:16px;margin-bottom:6px';h.textContent=d.headline;$('ai').appendChild(h)}
  const t=document.createElement('div');t.textContent=d.text;$('ai').appendChild(t);paintAiTop();paintRisk();paintMacro();paintFocus();if(D)paintAll();else{paintDetail();paintConf()}paintNews()}catch(e){}}
@@ -751,7 +777,38 @@ function paintPro(){const el=$('proT');if(!el||!D)return;if(!D.pro){el.innerHTML
  let n=0,w=0,sum=0;rows.forEach(r=>{n+=r.l.n;w+=Math.round(r.l.n*r.l.wr/100);sum+=r.l.sum});
  $('proN').textContent=AR(rows.length)+' معتمد';
  el.innerHTML='<thead><tr><th>الأصل</th><th>الفريم</th><th>الروبوت</th><th>صفقات</th><th>النجاح</th><th class="num">الصافي</th><th>الآن</th></tr></thead><tbody>'+(rows.map(r=>`<tr><td><b>${r.s}</b></td><td>${TFN[r.f]}</td><td><span class="prb">${r.l.name}</span></td><td>${AR(r.l.n)}</td><td class="up">${r.l.wr}%</td><td class="num up">${fR(r.l.sum)}</td><td>${r.t?`<b class="${r.t.dir>0?'up':'dn'}">${r.t.dir>0?'▲ شراء':'▼ بيع'}</b>`:'<span class="mu">ينتظر</span>'}</td></tr>`).join('')||'<tr><td colspan="7" class="mu">لا توجد خانات معتمدة لهذا القسم.</td></tr>')+`</tbody><tfoot><tr><td colspan="3"><b>الإجمالي</b></td><td>${AR(n)}</td><td>${n?Math.round(w/n*100)+'%':'—'}</td><td class="num ${sum>=0?'up':'dn'}">${fR(sum)}</td><td></td></tr></tfoot>`}
-function paintAll(){paintFocus();paintConf();paintHero();paintMatrix();paintDetail();paintOpen();paintPerf();paintPro();riskCalc();if(window.G)G.sig();c3build()}
+const RX=[['AMZN','أمازون','s'],['GOOGL','جوجل (ألفابت)','s'],['META','ميتا','s'],['AMD','AMD','s'],['NFLX','نتفليكس','s'],['COIN','كوينبيس','s'],['MSTR','ستراتيجي','s'],['PLTR','بالانتير','s'],['AVGO','برودكوم','s'],['NDX','مؤشر ناسداك 100','s'],['DJI','مؤشر داو جونز','s'],['NATGAS','الغاز الطبيعي','m'],['COPPER','النحاس','m'],['XPT','البلاتين','m'],['EURUSD','يورو / دولار','f'],['GBPUSD','إسترليني / دولار','f'],['USDJPY','دولار / ين','f'],['USDCHF','دولار / فرنك','f'],['AUDUSD','أسترالي / دولار','f'],['USDCAD','دولار / كندي','f'],['DXY','مؤشر الدولار','f'],['PEPE','بيبي','c'],['SHIB','شيبا','c'],['WIF','ويف','c'],['APT','أبتوس','c'],['ARB','أربيتروم','c'],['OP','أوبتيميزم','c'],['INJ','إنجكتيف','c'],['HYPE','هايبرليكويد','c']];
+const RN={c:'الكريبتو',s:'الأسهم',m:'السلع',f:'العملات'};
+const rAll=()=>COINS.map(c=>[c[0],c[1],c[3]||'c']).concat(RX),rInfo=s=>rAll().find(x=>x[0]===s);
+let READY=[],rdF='all',rdT=0,rdInit=0;
+const rdPc=v=>'<span class="lt">'+(v>0?'+':'')+v.toFixed(1)+'%</span>';
+const rdOwn=()=>!!(SUB&&SUB.plan==='o');
+async function loadReady(force){if(!K)return;if(!force&&Date.now()-rdT<3e5){paintReady();return}rdT=Date.now();try{const d=await(await fetch('/api/trades?'+Q(),{cache:'no-store'})).json();if(d.ok)READY=d.list||[]}catch(e){}paintReady()}
+function rdForm(){if(rdInit)return;rdInit=1;const s=$('rdSym');s.innerHTML=['c','s','m','f'].map(c=>`<optgroup label="${RN[c]}">`+rAll().filter(x=>x[2]===c).map(x=>`<option value="${x[0]}">${esc(x[1])} (${x[0]})</option>`).join('')+'</optgroup>').join('')+'<option value="__o">أصل آخر…</option>';
+ s.onchange=()=>{$('rdOth').style.display=s.value==='__o'?'block':'none'};$('rdGo').onclick=rdAddGo}
+async function rdPost(b){const r=await fetch('/api/trades?'+Q(),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(b),cache:'no-store'});return r.json().catch(()=>({ok:false}))}
+async function rdAddGo(){const e=$('rdE'),v=$('rdSym').value;let s=v,c;if(v==='__o'){s=$('rdOs').value.trim().toUpperCase();c=$('rdOc').value}else c=(rInfo(v)||[0,0,'c'])[2];
+ const sl=$('rdSl').value.trim(),tp=$('rdTp').value.trim();if(!s){e.textContent='اختر الأصل.';return}if(!sl||!tp){e.textContent='اكتب الوقف والهدف.';return}
+ e.textContent='لحظة…';$('rdGo').disabled=true;try{const d=await rdPost({s,c,sl,tp,tp2:$('rdTp2').value.trim(),n:$('rdNt').value.trim()});
+  if(d.ok){READY.unshift(d.item);['rdSl','rdTp','rdTp2','rdNt','rdOs'].forEach(i=>$(i).value='');e.textContent='تمت الإضافة ✓ في قسم '+(RN[d.item.c]||'');rdF='all';paintReady()}
+  else e.textContent=d.reason==='data'?'تأكد من الأرقام: الوقف والهدف لازم يكونون أرقام مختلفة.':d.reason==='owner'?'الإضافة للمالك فقط.':'تعذّرت الإضافة، حاول مرة ثانية.'}catch(x){e.textContent='تعذّر الاتصال.'}$('rdGo').disabled=false}
+async function rdDel(id){if(!confirm('حذف هذه الصفقة من «صفقات جاهزة»؟'))return;try{const d=await rdPost({del:1,id});if(d.ok){READY=READY.filter(t=>t.id!==id);paintReady();toast('تم حذف الصفقة')}else toast('تعذّر الحذف')}catch(x){toast('تعذّر الاتصال')}}
+function paintReady(){const box=$('rdL');if(!box)return;const own=rdOwn();$('rdAdd').style.display=own?'block':'none';if(own)rdForm();
+ const cnt=c=>READY.filter(t=>c==='all'||t.c===c).length;$('rdN').textContent=AR(READY.length);
+ if(rdF!=='all'&&!cnt(rdF))rdF='all';
+ $('rdTf').innerHTML=READY.length?[['all','الكل'],['c','الكريبتو'],['s','الأسهم'],['m','السلع'],['f','العملات']].filter(([c])=>c==='all'||cnt(c)).map(([c,n])=>`<button class="tfb${c===rdF?' on':''}" data-c="${c}">${n} (${AR(cnt(c))})</button>`).join(''):'';
+ $('rdTf').querySelectorAll('.tfb').forEach(b=>b.onclick=()=>{rdF=b.dataset.c;paintReady()});
+ const L=READY.filter(t=>rdF==='all'||t.c===rdF);
+ if(!L.length){box.innerHTML='<p class="mu" style="margin:6px 0">ما في صفقات جاهزة حاليًا.</p>';return}
+ box.innerHTML=L.map(t=>{const inf=rInfo(t.s),buy=t.tp>t.sl,cd=D&&D.coins&&D.coins[t.s],p=cd&&cd.px;let st='',pr='';
+  if(p){const hit=buy?p>=t.tp:p<=t.tp,stp=buy?p<=t.sl:p>=t.sl;st=hit?'<span class="rdSt w">حقق الهدف ✓</span>':stp?'<span class="rdSt x">ضرب الوقف</span>':'';
+   pr=`<div class="rdP"><span class="mu">السعر الآن</span> <b>${fmt(p)}</b> <small class="mu">• للهدف ${rdPc((t.tp-p)/p*100)} • للوقف ${rdPc((t.sl-p)/p*100)}</small></div>`}
+  let dt='';try{dt=new Date(t.t).toLocaleDateString('ar-OM',{timeZone:'Asia/Muscat',day:'numeric',month:'long'})}catch(x){}
+  return `<div class="trade ${buy?'buy':'sell'}"><div class="top"><b>${esc(inf?inf[1]:t.s)}</b><small class="mu" dir="ltr">${esc(t.s)}</small><span class="rdBd ${buy?'b':'s'}">${buy?'شراء':'بيع'}</span><span class="rdBd l">طويلة المدى</span>${st}${own?`<button class="rdX" data-id="${esc(t.id)}" aria-label="حذف الصفقة">×</button>`:''}</div>${pr}
+  <div class="lv"><div class="sl"><span>الوقف</span><b>${fmt(t.sl)}</b></div><div class="tp"><span>الهدف${t.tp2?' ١':''}</span><b>${fmt(t.tp)}</b></div>${t.tp2?`<div class="tp"><span>الهدف ٢</span><b>${fmt(t.tp2)}</b></div>`:''}</div>
+  ${t.n?`<p class="rdNo">${esc(t.n)}</p>`:''}<small class="mu">${RN[t.c]||''}${dt?' • أُضيفت '+dt:''}</small></div>`}).join('');
+ box.querySelectorAll('.rdX').forEach(b=>b.onclick=()=>rdDel(b.dataset.id))}
+function paintAll(){paintFocus();paintConf();paintHero();paintMatrix();paintDetail();paintOpen();paintPerf();paintPro();riskCalc();paintReady();if(window.G)G.sig();c3build()}
 function select(s,f){sel=s;tf=f||tf;store.set('sel',sel);store.set('tf2',tf);paintMatrix();paintDetail();riskCalc();tv();c3load()}
 
 /* ---------- live prices ---------- */
