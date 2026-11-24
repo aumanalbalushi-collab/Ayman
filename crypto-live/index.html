@@ -786,12 +786,12 @@ const rdOwn=()=>!!(SUB&&SUB.plan==='o');
 async function loadReady(force){if(!K)return;if(!force&&Date.now()-rdT<3e5){paintReady();return}rdT=Date.now();try{const d=await(await fetch('/api/trades?'+Q(),{cache:'no-store'})).json();if(d.ok)READY=d.list||[]}catch(e){}paintReady()}
 function rdForm(){if(rdInit)return;rdInit=1;const s=$('rdSym');s.innerHTML=['c','s','m','f'].map(c=>`<optgroup label="${RN[c]}">`+rAll().filter(x=>x[2]===c).map(x=>`<option value="${x[0]}">${esc(x[1])} (${x[0]})</option>`).join('')+'</optgroup>').join('')+'<option value="__o">أصل آخر…</option>';
  s.onchange=()=>{$('rdOth').style.display=s.value==='__o'?'block':'none'};$('rdGo').onclick=rdAddGo}
-async function rdPost(b){const r=await fetch('/api/trades?'+Q(),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(b),cache:'no-store'});return r.json().catch(()=>({ok:false}))}
+async function rdPost(b){const go=async()=>{const r=await fetch('/api/trades?'+Q(),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(b),cache:'no-store'});return r.json().catch(()=>({ok:false}))};let d=await go();if(!d.ok&&(d.reason==='owner'||d.reason==='session')&&rdOwn()){const a=await session(K);if(a.ok)d=await go()}return d}
 async function rdAddGo(){const e=$('rdE'),v=$('rdSym').value;let s=v,c;if(v==='__o'){s=$('rdOs').value.trim().toUpperCase();c=$('rdOc').value}else c=(rInfo(v)||[0,0,'c'])[2];
  const sl=$('rdSl').value.trim(),tp=$('rdTp').value.trim();if(!s){e.textContent='اختر الأصل.';return}if(!sl||!tp){e.textContent='اكتب الوقف والهدف.';return}
  e.textContent='لحظة…';$('rdGo').disabled=true;try{const d=await rdPost({s,c,sl,tp,tp2:$('rdTp2').value.trim(),n:$('rdNt').value.trim()});
   if(d.ok){READY.unshift(d.item);['rdSl','rdTp','rdTp2','rdNt','rdOs'].forEach(i=>$(i).value='');e.textContent='تمت الإضافة ✓ في قسم '+(RN[d.item.c]||'');rdF='all';paintReady()}
-  else e.textContent=d.reason==='data'?'تأكد من الأرقام: الوقف والهدف لازم يكونون أرقام مختلفة.':d.reason==='owner'?'الإضافة للمالك فقط.':'تعذّرت الإضافة، حاول مرة ثانية.'}catch(x){e.textContent='تعذّر الاتصال.'}$('rdGo').disabled=false}
+  else e.textContent=d.reason==='data'?'تأكد من الأرقام: الوقف والهدف لازم يكونون أرقام مختلفة.':d.reason==='owner'?'تعذّر التحقق من جلسة المالك — حدّث الصفحة وحاول مرة ثانية.':'تعذّرت الإضافة، حاول مرة ثانية.'}catch(x){e.textContent='تعذّر الاتصال.'}$('rdGo').disabled=false}
 async function rdDel(id){if(!confirm('حذف هذه الصفقة من «صفقات جاهزة»؟'))return;try{const d=await rdPost({del:1,id});if(d.ok){READY=READY.filter(t=>t.id!==id);paintReady();toast('تم حذف الصفقة')}else toast('تعذّر الحذف')}catch(x){toast('تعذّر الاتصال')}}
 function paintReady(){const box=$('rdL');if(!box)return;const own=rdOwn();$('rdAdd').style.display=own?'block':'none';if(own)rdForm();
  const cnt=c=>READY.filter(t=>c==='all'||t.c===c).length;$('rdN').textContent=AR(READY.length);
